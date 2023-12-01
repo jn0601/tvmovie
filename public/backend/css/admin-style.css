@@ -1,0 +1,124 @@
+.lvr_upload-images {
+    margin-bottom: 20px;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_upload-btn{
+    width: 20%;
+    border: 2px dashed #ccc;
+    padding: 5px;
+    text-align: center;
+}
+
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_upload-btn:hover{
+    border: 2px dashed #007bff;
+}
+
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_display-image{
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_item-image{
+    padding: 2px;
+    border: 1px solid #ccc;
+    width: 25%;
+    margin: 0 5px 5px 0;
+    float: left;
+    max-width: 100px;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_item-image:first-child{
+    width: 25%;
+    float: none;
+    max-width: 25%;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_item-image img{
+    width: 100%;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_delete-images{
+    width: 60px;
+    border: 2px dashed red;
+    padding: 5px;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+}
+.lvr_upload-images .lvr_box-upload-image .lvr_box-images .lvr_delete-images i{
+    color: red;
+}
+.lvr_upload-images .lvr_box-upload-image .images_file{
+    display : none;
+}
+.LVR_list-admin .item input {
+    font-size: 13px !important;
+}
+.LVR_list-admin .select2-selection__choice__remove{
+    border: none !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+.LVR_list-admin .select2-selection__choice{
+    margin-top: 3px !important;
+    padding: 0px 3px !important;
+}
+.LVR_list-admin .select2-selection--multiple{
+    border-radius: 3px;
+    min-height: 29px !important;
+    height: 29.5px !important;
+}
+.LVR_list-admin .page-link:hover{
+    color: #fff !important;
+}
+.LVR_list-admin .form_delete{
+    display: inline;
+}
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+.LVR_box-search {
+    margin-top: 15px;
+}
+.title-space {
+    width: 30%;
+}
+
+.LVR_list-admin .box-item-tab-content {
+    padding-top: 20px;
+    border: 2px solid #E6E9ED;
+    /* border-top: none; */
+}
+
+.search_bar {
+    margin-right: 10px;
+    border-radius: 5px !important;
+}
+
+.list-image {
+    height: 80px;
+    width: 80px;
+}
+
+.LVR_line-content {
+    margin: 20px 0;
+    height: 1px;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #E6E9ED;
+}
+
+.LVR_list-admin .box-item-tab-content-image {
+    padding-top: 20px;
+    border: 2px solid #E6E9ED;
+}
+
+.LVR_list-admin .box-item-tab-content-default {
+    padding-top: 20px;
+    border: 2px solid #E6E9ED;
+}
+
+.LVR_list-admin .bar_tabs .nav-item .nav-link.active {
+    color: #007bff;
+}
+
+.status_button {
+    font-size: 25px;
+}

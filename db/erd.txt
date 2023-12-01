@@ -1,0 +1,208 @@
+@startuml
+skin rose
+hide circle
+
+title Sơ đồ ERD
+
+entity news_categories {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity news {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>category_id <color:peru>int</color></i>
+    --
+    <i>admin_id <color:peru>int</color></i>
+    --
+    ...
+}
+
+
+
+entity movie_categories {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity genres {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity countries {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+
+entity movies {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>category_id <color:peru>int</color></i>
+    --
+    ...
+}
+
+
+
+entity movie_genres{
+    <b>id <color:peru>int</color></b>
+    --
+    <i>movie_id <color:peru>int</color></i>
+    --
+    <i>genre_id <color:peru>int</color></i>
+}
+
+
+
+entity episodes {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>movie_id <color:peru>int</color></i>
+    --
+    <i>admin_id <color:peru>int</color></i>
+    --
+    ...
+}
+
+entity subtitles{
+    <b>id <color:peru>int</color></b>
+    --
+    <i>episode_id <color:peru>int</color></i>
+    --
+    ...
+}
+
+entity servers{
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity episode_servers{
+    <b>id <color:peru>int</color></b>
+    --
+    <i>episode_id <color:peru>int</color></i>
+    --
+    <i>server_id <color:peru>int</color></i>
+    --
+    link <color:peru>varchar</color> 
+}
+
+
+
+entity movie_countries{
+    <b>id <color:peru>int</color></b>
+    --
+    <i>movie_id <color:peru>int</color></i>
+    --
+    <i>country_id <color:peru>int</color></i>
+}
+
+entity admins {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity customers {
+    <b>id <color:peru>int</color></b>
+    --
+    role_id <color:peru>int</color>
+    ...
+}
+
+entity roles {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity role_admins {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>role_id <color:peru>int</color></i>
+    --
+    <i>admin_id <color:peru>int</color></i>
+}
+
+entity menus {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity orders {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>customer_id <color:peru>int</color></i>
+    --
+    <i>service_id <color:peru>int</color></i>
+    ...
+}
+
+entity services {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity informations {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity banner_categories {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity banners {
+    <b>id <color:peru>int</color></b>
+    --
+    <i>category_id <color:peru>int</color></i>
+    --
+    ...
+}
+
+entity socials {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+entity statistics {
+    <b>id <color:peru>int</color></b>
+    --
+    ...
+}
+
+news_categories::id ||--|{ news::category_id
+news::admin_id }|-|| admins::id
+movie_categories::id ||-|{ movies::category_id 
+movies::id ||--|{ movie_genres::movie_id
+movie_genres::genre_id  }|--|| genres::id
+movies::id ||-|{ episodes::movie_id
+episodes::id ||--|{ episode_servers::episode_id
+episodes::id ||-|{ subtitles::episode_id
+episodes::admin_id }|---|| admins::id
+episode_servers::server_id  }|--|| servers::id
+movies::id ||--|{ movie_countries::movie_id
+movie_countries::country_id  }|--|| countries::id
+roles::id  ||--|{ role_admins::role_id
+role_admins::admin_id }|--|| admins::id
+roles::id  ||--|{ customers::role_id
+customers::id ||--|{ orders::customer_id
+customers::id ||--o| socials::customer_id
+services::id ||--|{ orders::service_id
+banner_categories::id ||--|{ banners::category_id
+
+@enduml
