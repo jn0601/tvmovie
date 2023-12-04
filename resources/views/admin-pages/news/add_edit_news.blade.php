@@ -60,11 +60,11 @@
 													<div class="col-md-10 col-sm-10 input-group input-group-sm">
 														<input class="form-control" id="slug" onkeyup="ChangeToSlug();" data-validate-length-range="6"
 															data-validate-words="2" name="{{$name}}" value="{{old($name, $name_value)}}" placeholder="" required="required" />
-														@error($name)
-															<span style="color: red;">{{$message}}</span>
-														@enderror	
 													</div>
 												</div>
+												@error($name)
+													<span style="color: red;">{{$message}}</span>
+												@enderror	
 		
 												<div class="field item form-group">
 													<label class="col-form-label col-md-2 col-sm-2">Mô tả</label>
@@ -85,12 +85,12 @@
 													<label class="col-form-label col-md-2 col-sm-2">Đường dẫn<span class="required">*</span></label>
 													<div class="col-md-10 col-sm-10 input-group input-group-sm">
 														<input class="form-control" id="convert_slug" data-validate-length-range="6"
-															data-validate-words="2" name="{{$seoName}}" value="{{old($seoName, $seo_name_value)}}"/>
-														@error($seoName)
-															<span style="color: red;">{{$message}}</span>
-														@enderror	
+															data-validate-words="2" name="{{$seoName}}" value="{{old($seoName, $seo_name_value)}}" required="required"/>
 													</div>
 												</div>
+												@error($seoName)
+													<span style="color: red;">{{$message}}</span>
+												@enderror	
 											</div>
 										</div>
 									</div>

@@ -42,7 +42,7 @@
                   <td class="title-space">
                     <a>{{ $news->name }}</a>
                     <br />
-                    <!-- <small>Created 01.01.2015</small> -->
+                    <small>Cập nhật ngày {{$news->date_updated}}</small> 
                   </td>
                   
                   <td class="text-center">

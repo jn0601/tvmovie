@@ -99,25 +99,28 @@
                     
                     </ul>
                   </li> --}}
-                  {{-- <li><a><i class="fa fa-gamepad"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Quản lý phim <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/products')}}">Danh sách sản phẩm</a></li>
-                      <li><a href="{{URL::to('admin/product-categories')}}">Danh sách danh mục</a></li>
+                      <li><a href="{{URL::to('admin/movie-categories')}}">Danh sách danh mục</a></li>
+                      <li><a href="{{URL::to('admin/movies')}}">Danh sách phim</a></li>
+                      <li><a href="{{URL::to('admin/countries')}}">Danh sách quốc gia</a></li>
+                      <li><a href="{{URL::to('admin/genres')}}">Danh sách thể loại</a></li>
+                      <li><a href="{{URL::to('admin/server-links')}}">Danh sách server</a></li>
                     </ul>
-                  </li> --}}
+                  </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/news')}}">Danh sách tin tức</a></li>
                       <li><a href="{{URL::to('admin/news-categories')}}">Danh sách danh mục</a></li>
                     </ul>
                   </li>
-                  {{-- <li><a><i class="fa fa-sliders"></i> Quản lý banner<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-sliders"></i> Quản lý banner<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/banners')}}">Danh sách banner</a></li>
                       <li><a href="{{URL::to('admin/banner-categories')}}">Danh sách danh mục</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-image"></i> Quản lý thư viện ảnh <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-image"></i> Quản lý thư viện ảnh <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/albums')}}">Danh sách ảnh</a></li>
                       <li><a href="{{URL::to('admin/list-albums-cate')}}">Danh sách danh mục</a></li>

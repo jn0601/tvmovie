@@ -21,7 +21,7 @@ class NewsCategory extends Model
 
     public static function buildListCategory (){
     
-        $items = NewsCategory::orderBy('display_order', 'asc')->get();
+        $items = NewsCategory::orderBy('display_order', 'desc')->get();
         
         $data = [];
 

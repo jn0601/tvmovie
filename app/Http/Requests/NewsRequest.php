@@ -32,15 +32,15 @@ class NewsRequest extends FormRequest
         return $dataRules;
     }
 
-    public function message() 
+    public function messages() 
     {
         return [
-            'name.required' => 'Tên không được để trống',
-            'name.unique' => 'Tên đã tồn tại',
-            'name.max' => 'Tên không được quá 255 kí tự',
+            'name.required' => 'Tiêu đề không được để trống',
+            'name.unique' => 'Tiêu đề đã tồn tại',
+            'name.max' => 'Tiêu đề không được quá 255 kí tự',
             'img.required' => 'Vui lòng thêm hình ảnh',
-            'seo_name.required' => 'Vui lòng điền seo name',
-            'seo_name.unique' => 'Seo name đã tồn tại',
+            'seo_name.required' => 'Vui lòng điền đường dẫn',
+            'seo_name.unique' => 'Đường dẫn đã tồn tại',
         ];
     }
 

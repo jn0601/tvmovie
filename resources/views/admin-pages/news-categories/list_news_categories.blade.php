@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Danh sách tin tức</h2>
+            <h2>Danh sách danh mục tin tức</h2>
             <ul class="nav navbar-right panel_toolbox">
               <a href="{{URL::to('/admin/news-categories/create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới</a>
             </ul>
@@ -42,11 +42,10 @@
                   </td>
                   <td class="title-space">
                     @if($news_categories->parent_id != 0)
-                    <a>↪ {{ $news_categories->name }}</a>
+                    <a class="child-category">↪ {{ $news_categories->name }}</a>
                     @else
-                      <a>{{$news_categories->name}}</a>
+                    <a>{{$news_categories->name}}</a>
                     @endif
-                    <br />
                     <!-- <small>Created 01.01.2015</small> -->
                   </td>
                   

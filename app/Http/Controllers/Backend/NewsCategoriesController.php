@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsCateogoriesRequest;
+use App\Models\News;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -46,7 +48,7 @@ class NewsCategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewsCateogoriesRequest $request)
     {
         $data = $request->all();
         $categories = new NewsCategory();
@@ -110,7 +112,7 @@ class NewsCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(NewsCateogoriesRequest $request, string $id)
     {
         $dataRequest = $request->all() ;
         $data = array();
@@ -164,8 +166,18 @@ class NewsCategoriesController extends Controller
         if ($exists) {
             unlink('public/backend/uploads/news-categories/'.$get_image->image);
         }
-        NewsCategory::where('id', $id)->delete();
-        Toastr::success('Xóa thành công', 'Thành công');
+        $check_parent = NewsCategory::where('parent_id', $id)->get()->first();
+        $check_item = News::where('category_id', $id)->get()->first();
+        if ($check_parent) {
+            Toastr::error('Tồn tại thư mục con', 'Thất bại');
+        } else {
+            if ($check_item) {
+                Toastr::error('Danh mục có chứa tin tức', 'Thất bại');
+            } else {
+                NewsCategory::where('id', $id)->delete();
+                Toastr::success('Xóa thành công', 'Thành công');
+            }
+        }
         return redirect()->back();
     }
 

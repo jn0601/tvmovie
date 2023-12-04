@@ -122,3 +122,8 @@
 .status_button {
     font-size: 25px;
 }
+
+.child-category {
+    margin-left: 20px;
+    color: green !important;
+}

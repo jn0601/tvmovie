@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
         if (!Collection::hasMacro('paginate')) {
 
             Collection::macro('paginate', 
