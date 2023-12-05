@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 01, 2023 at 08:12 PM
+-- Generation Time: Dec 05, 2023 at 05:21 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -37,6 +37,191 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+DROP TABLE IF EXISTS `countries`;
+CREATE TABLE IF NOT EXISTS `countries` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `status` smallint NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `countries`
+--
+
+INSERT INTO `countries` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(1, 'vn', '<p>vnxdfghfxhtxdfhg</p>', 1, 1, 'vn', 'vvvvvv', 'vvvvvvvvv', 'nnnnnnnnnnn'),
+(2, 'us', '', 2, 1, 'us', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `episodes`
+--
+
+DROP TABLE IF EXISTS `episodes`;
+CREATE TABLE IF NOT EXISTS `episodes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movie_id` int NOT NULL,
+  `admin_id` int NOT NULL,
+  `episode` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `status` smallint NOT NULL,
+  `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `count_view` int NOT NULL,
+  `date_created` int NOT NULL,
+  `date_updated` int NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `episode_servers`
+--
+
+DROP TABLE IF EXISTS `episode_servers`;
+CREATE TABLE IF NOT EXISTS `episode_servers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `episode_id` int NOT NULL,
+  `server_id` int NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genres`
+--
+
+DROP TABLE IF EXISTS `genres`;
+CREATE TABLE IF NOT EXISTS `genres` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `status` smallint NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(1, 'abc', '<p>fxgjhgfjh</p>', 1, 1, 'abc', '', '', ''),
+(2, 'xyz', '', 2, 1, 'xyz', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movies`
+--
+
+DROP TABLE IF EXISTS `movies`;
+CREATE TABLE IF NOT EXISTS `movies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
+  `link_trailer` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` smallint NOT NULL,
+  `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `count_view` int NOT NULL,
+  `date_created` int NOT NULL,
+  `date_updated` int NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movie_categories`
+--
+
+DROP TABLE IF EXISTS `movie_categories`;
+CREATE TABLE IF NOT EXISTS `movie_categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `status` smallint NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `movie_categories`
+--
+
+INSERT INTO `movie_categories` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(1, 'hành động', '<p>hhhhhhfghfhdfh</p>', 1, 1, 'hanh-dong', 'hhhhhh', 'hhhhhhhhhh', 'hhhhhhhhhhhh'),
+(2, 'anime', '', 2, 0, 'anime', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movie_countries`
+--
+
+DROP TABLE IF EXISTS `movie_countries`;
+CREATE TABLE IF NOT EXISTS `movie_countries` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movie_id` int NOT NULL,
+  `country_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movie_genres`
+--
+
+DROP TABLE IF EXISTS `movie_genres`;
+CREATE TABLE IF NOT EXISTS `movie_genres` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movie_id` int NOT NULL,
+  `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -110,8 +295,49 @@ CREATE TABLE IF NOT EXISTS `news_categories` (
 INSERT INTO `news_categories` (`id`, `name`, `desc`, `content`, `root_id`, `parent_id`, `level`, `display_order`, `image`, `representative`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
 (1, 'danh mục aaaaaaaaa', '', '', ' , ', 0, 1, 1, 'image002_18870_b56691ea39.jpeg', 0, 1, 'danh-muc-aaaaaaaaa', '', '', ''),
 (2, 'danh mục bbbb', '<p>danh mục bbbb</p>', '', ' , 1 , ', 1, 2, 2, 'VkOoPRr73.jpeg', 0, 1, 'danh-muc-bbbb', '', '', ''),
-(3, 'danh mục ccccc', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 1 , ', 1, 2, 3, '8105Oc1+FPL27.jpg', 1, 1, 'danh-muc-ccccc', 'danh mục ccccc', '', 'danh mục ccccc'),
-(4, 'danh mục dddddddddddd', '', '<p>danh mục dddddddddddd</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 0, 1, 'danh-muc-dddddddddddd', '', '', '');
+(3, 'danh mục ccccc', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 1 , ', 1, 2, 3, '8105Oc1+FPL27.jpg', 1, 0, 'danh-muc-ccccc', 'danh mục ccccc', '', 'danh mục ccccc'),
+(4, 'danh mục dddddddddddd', '', '<p>danh mục ddddddddddddcfghvcgh</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 0, 0, 'danh-muc-dddddddddddd', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `server_links`
+--
+
+DROP TABLE IF EXISTS `server_links`;
+CREATE TABLE IF NOT EXISTS `server_links` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `display_order` int NOT NULL,
+  `status` smallint NOT NULL,
+  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` int NOT NULL,
+  `date_updated` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `server_links`
+--
+
+INSERT INTO `server_links` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `date_created`, `date_updated`) VALUES
+(1, 'abc', '<p>sdfgsdg</p>', 1, 1, 'abc', 20231204, 20231204);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subtitles`
+--
+
+DROP TABLE IF EXISTS `subtitles`;
+CREATE TABLE IF NOT EXISTS `subtitles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `episode_id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
