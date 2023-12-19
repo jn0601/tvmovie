@@ -28,6 +28,69 @@ class NewsCategoriesController extends Controller
         return view('admin_layout')->with($url, $view);
     }
 
+    public function search(Request $request) 
+    {
+        $url = 'admin-pages.news-categories.list_news_categories';
+        $data = $request->all();
+        //dd($data);
+        // không có data
+        if ($data['name'] == '' && $data['status'] == '' && $data['representative'] == '') {
+            return Redirect::to('admin/news-categories');
+        }
+        // có data
+        else {
+            //$listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
+            if ($data['status'] != '') {
+                if ($data['name'] == '' && $data['representative'] == '') {
+                    $list = NewsCategory::where('status', $data['status'])
+                    ->orderBy('display_order', 'desc')
+                    ->get();
+                }
+                else if ($data['name'] != '' && $data['representative'] == '') {
+                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
+                    ->where('status', $data['status'])
+                    ->orderBy('display_order', 'desc')
+                    ->get();
+                }
+                else if ($data['name'] == '' && $data['representative'] != '') {
+                    $list = NewsCategory::where('status', $data['status'])
+                    ->where('representative', $data['representative'])
+                    ->orderBy('display_order', 'desc')
+                    ->get();
+                }
+                else {
+                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
+                    ->where('status', $data['status'])
+                    ->where('representative', $data['representative'])
+                    ->orderBy('display_order', 'desc')
+                    ->get();
+                }
+            }
+            else {
+                if ($data['representative'] != '') {
+                    if ($data['name'] == '') {
+                        $list = NewsCategory::where('representative', $data['representative'])
+                        ->orderBy('display_order', 'desc')
+                        ->get();
+                    }
+                    else {
+                        $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
+                        ->where('representative', $data['representative'])
+                        ->orderBy('display_order', 'desc')
+                        ->get();
+                    }
+                }
+                else {
+                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
+                    ->get();
+                }
+            }
+        }
+        //dd($data, $list);
+        $view = view($url)->with('data', $list)->with('search_value', $data);
+        return view('admin_layout')->with($url, $view);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

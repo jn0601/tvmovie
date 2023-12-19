@@ -84,7 +84,13 @@
                   <li><a><i class="fa fa-edit"></i> Quản lý website <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/menus')}}">Quản lý menu</a></li>
-                      <li><a href="{{URL::to('admin/contacts')}}">Quản lý khách hàng liên hệ</a></li>
+                      <li><a href="{{URL::to('admin/contacts')}}">Góp ý từ khách hàng</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-credit-card"></i> Quản lý dịch vụ <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{URL::to('admin/services')}}">Dịch vụ</a></li>
+                      <li><a href="{{URL::to('admin/orders')}}">Đơn đăng kí</a></li>
                     </ul>
                   </li>
                   @if ($admin_level != 2)
@@ -354,6 +360,36 @@
     </script>
 <script src="{{asset('public/backend/js/select2.min.js')}}"></script>
 <script src="{{asset('public/backend/js/admin_page.js')}}" type="text/javascript"></script>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+  // Add event listener to the input element
+  document.getElementById('price').addEventListener('input', function () {
+    // Get the input value
+    let inputValue = this.value;
+
+    // Remove non-digit characters
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Add a dot every third digit from the right
+    inputValue = inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    // Add "VND" at the end
+    inputValue += ' VND';
+
+    // Validate that the input is less than 1 million
+    const numericValue = parseInt(inputValue.replace(/\D/g, ''), 10);
+    if (numericValue >= 1000000000) {
+      // Display an error message or take appropriate action
+      alert('Giá phải bé ơn 1 tỷ');
+      this.value = ''; // Clear the input
+    } else {
+      // Set the formatted value back to the input
+      this.value = inputValue;
+    }
+  });
+});
+</script>
 
 <script type="text/javascript">
   function ChangeToSlug()

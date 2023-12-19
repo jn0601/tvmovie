@@ -12,6 +12,45 @@
               <a href="{{URL::to('/admin/news-categories/create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới</a>
             </ul>
             <div class="clearfix"></div>
+            {{-- search bar --}}
+            @php
+            if (!isset($search_value)) {
+              $search_value['name'] = '';
+              $search_value['status'] = '';
+              $search_value['representative'] = '';
+            }
+            @endphp
+            {!! Form::open(['url'=>'admin/news-category-search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
+            <div class="LVR_box-search">
+              <div class="input-group input-group-sm">
+                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                  <select name="status" class="form-control">
+                    <option value="">Trạng thái</option>
+                    <option {{$search_value['status'] == '1' ? 'selected' : ''}} value="1">Hoạt động</option>
+                    <option {{$search_value['status'] == '0' ? 'selected' : ''}} value="0">Không Hoạt động</option>
+                  </select>
+                </div>
+                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                  <select name="representative" class="form-control">
+                    <option value="">Tiêu biểu</option>
+                    <option {{$search_value['representative'] == '1' ? 'selected' : ''}} value="1">Có</option>
+                    <option {{$search_value['representative'] == '0' ? 'selected' : ''}} value="0">Không</option>
+                  </select>
+                </div>
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
+                  <input type="text" name="name" value="{{$search_value['name'] ? $search_value['name'] : ''}}"
+                  class="form-conmtrol search-bar" placeholder="Nhập tên cần tìm...">
+                </div>
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-sm" type="submit">
+                    <i class="fa fa-search"></i> Tìm kiếm
+                  </button>
+                </span>
+              </div>
+            </div>
+            {!! Form::close() !!}
+
+
           </div>
 
           
@@ -42,7 +81,7 @@
                   </td>
                   <td class="title-space">
                     @if($news_categories->parent_id != 0)
-                    <a class="child-category">↪ {{ $news_categories->name }}</a>
+                    <a class="child-category"> &nbsp ↪ {{ $news_categories->name }}</a>
                     @else
                     <a>{{$news_categories->name}}</a>
                     @endif

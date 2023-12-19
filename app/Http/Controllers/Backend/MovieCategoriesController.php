@@ -26,6 +26,43 @@ class MovieCategoriesController extends Controller
         $view = view($url)->with('data', $listCategory);
         return view('admin_layout')->with($url, $view);
     }
+    
+    public function search(Request $request) 
+    {
+        $url = 'admin-pages.movie-categories.list_movie_categories';
+        $data = $request->all();
+        // không có data
+        if ($data['name'] == '' && $data['status'] == '') {
+            return Redirect::to('admin/movie-categories');
+        }
+        // có data
+        else {
+            // search status
+            if ($data['name'] == '' && $data['status'] != '') {
+                $list = MovieCategory::where('status', $data['status'])
+                ->orderBy('display_order', 'desc')
+                ->paginate($this->pagination);
+            } 
+            else {
+                // search status và name
+                if ($data['status']) {
+                    $list = MovieCategory::where('name', 'like', '%' . $data['name'] . '%')
+                    ->where('status', $data['status'])
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                } 
+                // search name
+                else {
+                    $list = MovieCategory::where('name', 'like', '%' . $data['name'] . '%')
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                }
+            }
+        }
+        //dd($data);
+        $view = view($url)->with('data', $list)->with('search_value', $data);
+        return view('admin_layout')->with($url, $view);
+    }
 
     /**
      * Show the form for creating a new resource.

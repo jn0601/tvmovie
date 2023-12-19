@@ -27,6 +27,43 @@ class ServerLinksController extends Controller
         return view('admin_layout')->with($url, $view);
     }
 
+    public function search(Request $request) 
+    {
+        $url = 'admin-pages.server-links.list_servers';
+        $data = $request->all();
+        // không có data
+        if ($data['name'] == '' && $data['status'] == '') {
+            return Redirect::to('admin/server-links');
+        }
+        // có data
+        else {
+            // search status
+            if ($data['name'] == '' && $data['status'] != '') {
+                $list = ServerLink::where('status', $data['status'])
+                ->orderBy('display_order', 'desc')
+                ->paginate($this->pagination);
+            } 
+            else {
+                // search status và name
+                if ($data['status']) {
+                    $list = ServerLink::where('name', 'like', '%' . $data['name'] . '%')
+                    ->where('status', $data['status'])
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                } 
+                // search name
+                else {
+                    $list = ServerLink::where('name', 'like', '%' . $data['name'] . '%')
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                }
+            }
+        }
+        //dd($data);
+        $view = view($url)->with('data', $list)->with('search_value', $data);
+        return view('admin_layout')->with($url, $view);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -50,8 +87,8 @@ class ServerLinksController extends Controller
 
         $item->display_order = ServerLink::max('display_order') + 1;
         $item->status = $data['status'];
-        $item->date_created = date("Ymd");
-        $item->date_updated = date("Ymd");
+        $item->date_created = date("Y-m-d H:i:s");
+        $item->date_updated = date("Y-m-d H:i:s");
         $item->save();
 
         Toastr::success('Thêm thành công', 'Thành công');
@@ -90,7 +127,7 @@ class ServerLinksController extends Controller
         $data['seo_name'] = isset($dataRequest['seo_name']) ? $dataRequest['seo_name'] : '';
 
         $data['status'] = $dataRequest['status'];
-        $data['date_updated'] = date("Ymd");
+        $data['date_updated'] = date("Y-m-d H:i:s");
         ServerLink::where('id', $id)->update($data);
         Toastr::success('Cập nhật thành công', 'Thành công');
         return Redirect::to('admin/server-links');

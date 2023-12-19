@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class NewsRequest extends FormRequest
 {

@@ -12,6 +12,38 @@
               <a href="{{URL::to('/admin/server-links/create')}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới</a>
             </ul>
             <div class="clearfix"></div>
+            {{-- search bar --}}
+            @php
+            if (!isset($search_value)) {
+              $search_value['name'] = '';
+              $search_value['status'] = '';
+            }
+            //dd($search_value['status'] == 0 ? 'yes' : 'no');
+            @endphp
+            {!! Form::open(['url'=>'admin/server-link-search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
+            <div class="LVR_box-search">
+              <div class="input-group input-group-sm">
+                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                  <select name="status" class="form-control">
+                    <option value="">Trạng thái</option>
+                    <option {{$search_value['status'] == '1' ? 'selected' : ''}} value="1">Hoạt động</option>
+                    <option {{$search_value['status'] == '0' ? 'selected' : ''}} value="0">Không Hoạt động</option>
+                  </select>
+                </div>
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
+                  <input type="text" name="name" value="{{$search_value['name'] ? $search_value['name'] : ''}}"
+                  class="form-conmtrol search-bar" placeholder="Nhập tên cần tìm...">
+                </div>
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-sm" type="submit">
+                    <i class="fa fa-search"></i> Tìm kiếm
+                  </button>
+                </span>
+              </div>
+            </div>
+            {!! Form::close() !!}
+
+
           </div>
 
           

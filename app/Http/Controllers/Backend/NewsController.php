@@ -22,9 +22,47 @@ class NewsController extends Controller
     {
         $url = 'admin-pages.news.list_news';
         $list = News::orderBy('display_order', 'desc')->paginate($this->pagination);
-        $listCategory = NewsCategory::orderBy('id', 'desc')->get();
+        $listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
 
         $view = view($url)->with('data', $list)->with('dataCategory', $listCategory);
+        return view('admin_layout')->with($url, $view);
+    }
+
+    public function search(Request $request) 
+    {
+        $url = 'admin-pages.news.list_news';
+        $data = $request->all();
+        // không có data
+        if ($data['name'] == '' && $data['status'] == '') {
+            return Redirect::to('admin/news');
+        }
+        // có data
+        else {
+            $listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
+            // search status
+            if ($data['name'] == '' && $data['status'] != '') {
+                $list = News::where('status', $data['status'])
+                ->orderBy('display_order', 'desc')
+                ->paginate($this->pagination);
+            } 
+            else {
+                // search status và name
+                if ($data['status']) {
+                    $list = News::where('name', 'like', '%' . $data['name'] . '%')
+                    ->where('status', $data['status'])
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                } 
+                // search name
+                else {
+                    $list = News::where('name', 'like', '%' . $data['name'] . '%')
+                    ->orderBy('display_order', 'desc')
+                    ->paginate($this->pagination);
+                }
+            }
+        }
+        //dd($data);
+        $view = view($url)->with('data', $list)->with('search_value', $data)->with('dataCategory', $listCategory);
         return view('admin_layout')->with($url, $view);
     }
 
@@ -74,8 +112,8 @@ class NewsController extends Controller
         $news->status = $data['status'];
         $news->options = isset($data['options']) ? implode(',', $data['options']) : '';
         $news->count_view = 0;
-        $news->date_created = date("Ymd");
-        $news->date_updated = date("Ymd");
+        $news->date_created = date("Y-m-d H:i:s");
+        $news->date_updated = date("Y-m-d H:i:s");
         $news->display_order = News::max('display_order') + 1;
         $news->save();
 
@@ -128,7 +166,7 @@ class NewsController extends Controller
         $data['category_id'] = $dataRequest['category_id'];
         $data['admin_id'] = 123;
         $data['status'] = $dataRequest['status'];
-        $data['date_updated'] = date("Ymd");
+        $data['date_updated'] = date("Y-m-d H:i:s");
 
         if ($getImage) {
             $old_image = News::where('id', $id)->get('image')->first();
