@@ -128,3 +128,17 @@
     margin-left: 20px;
     color: green !important;
 }
+
+.server-id {
+    width: 25px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    margin: 0px 10px;
+    text-align: center;
+    display: none;
+}
+
+.checked-sub {
+    color: red;
+    padding-left: 18%;
+}

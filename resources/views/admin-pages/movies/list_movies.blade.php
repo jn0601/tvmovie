@@ -80,7 +80,7 @@
                   </td>
 
                   <td class="title-space">
-                    <a href="{{URL::to('admin/episodes/'.$movies->id)}}">Thêm tập phim</a>
+                    <a href="{{URL::to('admin/episodes/'.$movies->seo_name)}}">Thêm tập phim</a>
                   </td>
                   
                   <td class="text-center">

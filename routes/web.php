@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\ServerLinksController;
 use App\Http\Controllers\Backend\ServersController;
 use App\Http\Controllers\Backend\ServicesController;
+use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// admin
 Route::name('admin/')->prefix('admin')->group(function() {
     // Route::post('login', 'LoginController@login');
     // Route::get('login', 'LoginController@index')->name('login');
@@ -97,7 +99,7 @@ Route::name('admin/')->prefix('admin')->group(function() {
 
     //Episodes
     Route::resource('episodes', EpisodesController::class);
-    Route::get('movie-search', [MoviesController::class, 'search']);
+    Route::get('add-episodes/{movie_seo_name}', [EpisodesController::class, 'add']);
     Route::get('unactivate-episodes-status/{id}', [EpisodesController::class, 'unactivate_episodes_status']);
     Route::get('activate-episodes-status/{id}', [EpisodesController::class, 'activate_episodes_status']);
 
@@ -113,7 +115,15 @@ Route::name('admin/')->prefix('admin')->group(function() {
     // Route::get('activate-services-status/{id}', [ServicesController::class, 'activate_services_status']);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// user
+Route::get('/', [IndexController::class, 'home'])->name('homepage');
+Route::get('/danh-muc/{seo_name}', [IndexController::class, 'category'])->name('category');
+Route::get('/the-loai/{seo_name}', [IndexController::class, 'genre'])->name('genre');
+Route::get('/quoc-gia/{seo_name}', [IndexController::class, 'country'])->name('country');
+Route::get('/phim/{seo_name}', [IndexController::class, 'movie'])->name('movie');
+Route::get('/xem-phim/{seo_name}', [IndexController::class, 'watch'])->name('watch');
+Route::get('/tap-phim/{seo_name}', [IndexController::class, 'episode'])->name('episode');
+
+Route::get('/danh-muc-tin-tuc/{seo_name}', [IndexController::class, 'news_category'])->name('news_category');
+Route::get('/tin-tuc/{seo_name}', [IndexController::class, 'news'])->name('news');
 

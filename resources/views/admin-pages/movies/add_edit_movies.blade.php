@@ -44,12 +44,14 @@
 										<div class="tab-content" id="myTabContent">
 											@php
 													$name = 'name';
+													$org_name = 'org_name';
 													$desc = 'desc';
 													$content = 'content';
 													$seoName = 'seo_name';
 													$link_trailer = 'link_trailer';
 
 													$name_value = isset($data['name']) ? $data['name'] : "";
+													$org_name_value = isset($data['org_name']) ? $data['org_name'] : "";
 													$desc_value = isset($data['desc']) ? $data['desc'] : "";
 													$content_value = isset($data['content']) ? $data['content'] : "";
 													$seo_name_value = isset($data['seo_name']) ? $data['seo_name'] : "";
@@ -68,6 +70,14 @@
 													<span style="color: red;">{{$message}}</span>
 												@enderror	
 		
+												<div class="field item form-group">
+													<label class="col-form-label col-md-2 col-sm-2">Tên gốc</label>
+													<div class="col-md-10 col-sm-10 input-group input-group-sm">
+														<input class="form-control" data-validate-length-range="6"
+															data-validate-words="2" name="{{$org_name}}" value="{{old($org_name, $org_name_value)}}" placeholder="" />
+													</div>
+												</div>
+
 												<div class="field item form-group">
 													<label class="col-form-label col-md-2 col-sm-2">Mô tả</label>
 													<div class="col-md-10 col-sm-10 input-group input-group-sm">

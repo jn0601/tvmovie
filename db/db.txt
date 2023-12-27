@@ -60,9 +60,9 @@ entity news {
     --
     count_view <color:peru>int (default: 0)</color> 
     --
-    date_created <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_updated <color:peru>varchar</color> 
     --
     tags <color:peru>varchar</color> 
     --
@@ -164,11 +164,13 @@ entity movies {
     --
     count_view <color:peru>int (default: 0)</color> 
     --
-    date_created <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_updated <color:peru>varchar</color> 
     --
     seo_name <color:peru>varchar</color> 
+    --
+    tags <color:peru>varchar</color> 
     --
     meta_title <color:peru>varchar </color>
     --
@@ -202,19 +204,19 @@ entity episodes {
     --
     content <color:peru>mediumtext</color> 
     --
-    display_order <color:peru>int</color> 
-    --
     status <color:peru>smallint (default: 1)</color> 
     --
     options <color:peru>varchar</color> 
     --
     count_view <color:peru>int (default: 0)</color> 
     --
-    date_created <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_updated <color:peru>varchar</color> 
     --
     seo_name <color:peru>varchar</color> 
+    --
+    tags <color:peru>varchar</color> 
     --
     meta_title <color:peru>varchar </color>
     --
@@ -244,9 +246,11 @@ entity servers{
     --
     status <color:peru>smallint (default: 1)</color> 
     --
-    date_created <color:peru>int</color> 
+    seo_name <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
+    --
+    date_updated <color:peru>varchar</color> 
 }
 
 
@@ -332,6 +336,8 @@ entity menus {
     --
     name <color:peru>varchar</color>
     --
+    seo_name <color:peru>varchar</color> 
+    --
     type <color:peru>smallint</color>
     --
     is_folder <color:peru>smallint</color>
@@ -344,15 +350,17 @@ entity menus {
 entity orders {
     <b>id <color:peru>int</color></b>
     --
+    code <color:peru>varchar</color>
+    --
     <i>customer_id <color:peru>int</color></i>
     --
     <i>service_id <color:peru>int</color></i>
     --
     status <color:peru>smallint (default: 1)</color>
     --
-    date_created <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_updated <color:peru>varchar</color> 
 
 }
 
@@ -363,15 +371,17 @@ entity services {
     --
     desc <color:peru>text</color>
     --
-    price <color:peru>double (default: 0)</color>
+    seo_name <color:peru>varchar</color> 
+    --
+    price <color:peru>varchar</color>
     --
     display_order <color:peru>int</color> 
     --
     status <color:peru>smallint (default: 1)</color> 
     --
-    date_created <color:peru>int</color> 
+    date_created <color:peru>varchar</color> 
     --
-    date_updated <color:peru>int</color> 
+    date_updated <color:peru>varchar</color> 
 }
 
 entity informations {
@@ -392,6 +402,8 @@ entity banner_categories {
     name <color:peru>varchar</color>
     --
     desc <color:peru>text</color>
+    --
+    seo_name <color:peru>varchar</color> 
     --
     display_order <color:peru>int</color> 
 }

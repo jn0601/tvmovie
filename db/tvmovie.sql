@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 19, 2023 at 06:04 AM
+-- Generation Time: Dec 27, 2023 at 08:02 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -110,15 +110,16 @@ CREATE TABLE IF NOT EXISTS `countries` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 'vn', '<p>vnxdfghfxhtxdfhg</p>', 1, 1, 'vn', 'vvvvvv', 'vvvvvvvvv', 'nnnnnnnnnnn'),
-(2, 'us', '', 2, 1, 'us', '', '', '');
+(1, 'Việt Nam', '<p>vnxdfghfxhtxdfhg</p>', 1, 1, 'viet-nam', 'vvvvvv', 'vvvvvvvvv', 'nnnnnnnnnnn'),
+(2, 'Âu Mỹ', '', 2, 1, 'au-my', '', '', ''),
+(3, 'Hàn Quốc', '', 3, 1, 'han-quoc', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,6 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `display_order` int NOT NULL,
   `status` smallint NOT NULL,
   `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `count_view` int NOT NULL,
@@ -147,7 +147,17 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `episodes`
+--
+
+INSERT INTO `episodes` (`id`, `movie_id`, `admin_id`, `episode`, `name`, `desc`, `content`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(8, 2, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-21 18:09:24', '2023-12-27 05:33:53', 'tap-1', '', '', '', ''),
+(12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2023-12-27 07:10:35', 'tap-1', '', '', '', ''),
+(13, 1, 123, 6, 'Tập 6', '', '', 1, '', 0, '2023-12-27 05:33:10', '2023-12-27 05:33:10', 'tap-6', '', '', '', ''),
+(14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2023-12-27 05:52:29', 'tap-1', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -160,9 +170,20 @@ CREATE TABLE IF NOT EXISTS `episode_servers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `episode_id` int NOT NULL,
   `server_id` int NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `episode_servers`
+--
+
+INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
+(7, 13, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
+(4, 8, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/D0Hz3lAa1u6D?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"1581057\"></iframe>'),
+(5, 8, 3, '475675674634543535'),
+(6, 12, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/m8WKxgcqJ3QS?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"3522561\"></iframe>'),
+(8, 14, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -182,15 +203,16 @@ CREATE TABLE IF NOT EXISTS `genres` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `genres`
 --
 
 INSERT INTO `genres` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 'abc', '<p>fxgjhgfjh</p>', 1, 1, 'abc', '', '', ''),
-(2, 'xyz', '', 2, 0, 'xyz', '', '', '');
+(2, 'Hoạt hình', '', 2, 1, 'hoat-hinh', '', '', ''),
+(4, 'Hành động', '', 3, 1, 'hanh-dong', '', '', ''),
+(5, 'Tâm lý', '', 4, 1, 'tam-ly', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -203,6 +225,7 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `org_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
   `link_trailer` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -219,15 +242,17 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movies`
 --
 
-INSERT INTO `movies` (`id`, `category_id`, `name`, `desc`, `content`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 0, 'abc `12', '', '', '', 1, '71-sziO1OsL79.jpg', 0, '', 0, '2023-12-12 15:54:54', '2023-12-12 16:36:40', 'abc-12', '', '', '', ''),
-(2, 2, 'dffghdtyy', '', '', '', 2, '8105Oc1+FPL60.jpg', 1, '', 0, '2023-12-12 15:57:51', '2023-12-12 16:07:25', 'dffghdtyy', '', '', '', '');
+INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `desc`, `content`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(1, 2, 'Loki mùa 2', 'Loki season 2', '<p>Trạng th&aacute;i: Full HD Vietsub</p>\r\n\r\n<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;<a href=\"https://bluphim.com/dao-dien/kate-herron-47114\" title=\"Các phim của đạo diễn Kate Herron\">Kate Herron</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/aaron-moorhead-46583\" title=\"Các phim của đạo diễn Aaron Moorhead\">Aaron Moorhead</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/justin-benson-46582\" title=\"Các phim của đạo diễn Justin Benson\">Justin Benson</a></p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;<a href=\"https://bluphim.com/tuyen-tap/marvel-series-359\" title=\"Tuyển tập series - loạt phim Marvel\">Marvel</a></p>\r\n\r\n<p>Quốc gia:&nbsp;<a href=\"https://bluphim.com/quoc-gia/au-my-1\" target=\"_blank\" title=\"Tổng hợp các phim Âu - Mỹ hay và mới nhất\">&Acirc;u - Mỹ</a></p>\r\n\r\n<p>Thể loại:&nbsp;<a href=\"https://bluphim.com/the-loai/hanh-dong-1\" target=\"_blank\" title=\"Tổng hợp các phim Hành động hay và mới nhất\">H&agrave;nh động</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phieu-luu-1\" target=\"_blank\" title=\"Tổng hợp các phim Phiêu lưu hay và mới nhất\">Phi&ecirc;u lưu</a>&nbsp;<a href=\"https://bluphim.com/the-loai/ky-ao-1\" target=\"_blank\" title=\"Tổng hợp các phim Kỳ ảo hay và mới nhất\">Kỳ ảo</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phim-bo-1\" target=\"_blank\" title=\"Tổng hợp các phim TV Series - Phim bộ hay và mới nhất\">TV Series - Phim bộ</a></p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;<a href=\"https://bluphim.com/dien-vien/owen-wilson-1805\" title=\"Các phim của diễn viên Owen Wilson\">Owen Wilson</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/tom-hiddleston-644\" title=\"Các phim của diễn viên Tom Hiddleston\">Tom Hiddleston</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/jonathan-majors-8248\" title=\"Các phim của diễn viên Jonathan Majors\">Jonathan Majors</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/deobia-oparei-1725\" title=\"Các phim của diễn viên Deobia Oparei\">Deobia Oparei</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/richard-e-grant-2104\" title=\"Các phim của diễn viên Richard E. Grant\">Richard E. Grant</a></p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 1, 'image002_18870_b56691ea27.jpeg', 1, '1', 0, '2023-12-12 15:54:54', '2023-12-27 06:11:35', 'loki-mua-2', '', '', '', ''),
+(2, 2, 'Oppenheimer', 'Oppenheimer', '', '', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '4', 0, '2023-12-12 15:57:51', '2023-12-27 05:32:23', 'oppenheimer', '', '', '', ''),
+(3, 2, 'Người nhện', 'Spider Man', '', '', '', 3, '8105Oc1+FPL90.jpg', 1, '4', 0, '2023-12-27 05:52:13', '2023-12-27 07:09:55', 'nguoi-nhen', '', '', '', ''),
+(4, 0, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '', '', '', 4, '71-sziO1OsL13.jpg', 1, '1', 0, '2023-12-27 06:59:48', '2023-12-27 06:59:48', 'nhiem-vu-bat-kha-thi', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -254,8 +279,8 @@ CREATE TABLE IF NOT EXISTS `movie_categories` (
 --
 
 INSERT INTO `movie_categories` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 'hành động', '<p>hhhhhhfghfhdfh</p>', 1, 1, 'hanh-dong', 'hhhhhh', 'hhhhhhhhhh', 'hhhhhhhhhhhh'),
-(2, 'anime', '', 2, 0, 'anime', '', '', '');
+(1, 'Phim bộ', '<p>hhhhhhfghfhdfh</p>', 1, 1, 'phim-bo', 'hhhhhh', 'hhhhhhhhhh', 'hhhhhhhhhhhh'),
+(2, 'Phim lẻ', '', 2, 1, 'phim-le', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -269,15 +294,16 @@ CREATE TABLE IF NOT EXISTS `movie_countries` (
   `movie_id` int NOT NULL,
   `country_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_countries`
 --
 
 INSERT INTO `movie_countries` (`id`, `movie_id`, `country_id`) VALUES
-(2, 2, 2),
-(3, 2, 1);
+(16, 3, 2),
+(13, 2, 2),
+(15, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -291,15 +317,18 @@ CREATE TABLE IF NOT EXISTS `movie_genres` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_genres`
 --
 
 INSERT INTO `movie_genres` (`id`, `movie_id`, `genre_id`) VALUES
-(2, 2, 2),
-(3, 2, 1);
+(22, 2, 4),
+(21, 2, 5),
+(26, 1, 4),
+(25, 1, 5),
+(27, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -362,17 +391,18 @@ CREATE TABLE IF NOT EXISTS `news_categories` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `news_categories`
 --
 
 INSERT INTO `news_categories` (`id`, `name`, `desc`, `content`, `root_id`, `parent_id`, `level`, `display_order`, `image`, `representative`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 'danh mục aaaaaaaaa', '', '', ' , ', 0, 1, 1, 'image002_18870_b56691ea39.jpeg', 0, 1, 'danh-muc-aaaaaaaaa', '', '', ''),
-(2, 'danh mục bbbb', '<p>danh mục bbbb</p>', '', ' , 1 , ', 1, 2, 2, 'VkOoPRr73.jpeg', 1, 1, 'danh-muc-bbbb', '', '', ''),
-(3, 'danh mục ccccc', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 1 , ', 1, 2, 3, '8105Oc1+FPL27.jpg', 1, 0, 'danh-muc-ccccc', 'danh mục ccccc', '', 'danh mục ccccc'),
-(4, 'danh mục dddddddddddd', '', '<p>danh mục ddddddddddddcfghvcgh</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 0, 0, 'danh-muc-dddddddddddd', '', '', '');
+(1, 'Tin mới', '', '', ' , ', 0, 1, 1, 'image002_18870_b56691ea39.jpeg', 0, 1, 'tin-moi', '', '', ''),
+(2, 'Tin abc', '<p>danh mục bbbb</p>', '', ' , 1 , ', 1, 2, 2, 'VkOoPRr73.jpeg', 1, 0, 'tin-abc', '', '', ''),
+(3, 'Tin xyz', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 5 , ', 5, 2, 3, '8105Oc1+FPL27.jpg', 1, 0, 'tin-xyz', 'danh mục ccccc', '', 'danh mục ccccc'),
+(4, 'Tin hot', '', '<p>danh mục ddddddddddddcfghvcgh</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 0, 1, 'tin-hot', '', '', ''),
+(5, 'Tin điện ảnh', '', '', ' , ', 0, 1, 5, '71-sziO1OsL80.jpg', 0, 1, 'tin-dien-anh', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -417,14 +447,16 @@ CREATE TABLE IF NOT EXISTS `server_links` (
   `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `server_links`
 --
 
 INSERT INTO `server_links` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `date_created`, `date_updated`) VALUES
-(1, 'abc', '<p>sdfgsdg</p>', 1, 1, 'abc', '20231204', '20231204');
+(1, 'UPCLOUD', '<p>sdfgsdg</p>', 1, 1, 'upcloud', '20231204', '2023-12-21 16:01:10'),
+(2, 'MEGACLOUD', '', 2, 1, 'megacloud', '2023-12-21 16:40:08', '2023-12-21 16:40:08'),
+(3, 'Openload', '', 3, 1, 'openload', '2023-12-21 17:04:11', '2023-12-21 17:04:11');
 
 -- --------------------------------------------------------
 
@@ -466,7 +498,15 @@ CREATE TABLE IF NOT EXISTS `subtitles` (
   `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subtitles`
+--
+
+INSERT INTO `subtitles` (`id`, `episode_id`, `name`, `file`) VALUES
+(14, 8, 'Tiếng Việt', '[WTRANZ] Loki S02E06 (2023) - WEB47.srt'),
+(15, 8, 'Tiếng Anh', 'Loki25.srt');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

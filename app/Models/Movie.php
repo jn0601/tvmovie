@@ -12,7 +12,7 @@ class Movie extends Model
     public $timestamps = false; //set time to false
     // $fillable là các biến có thể update 
     protected $fillable = [
-    	'category_id', 'name', 'desc', 'content', 'link_trailer',   
+    	'category_id', 'name', 'org_name', 'desc', 'content', 'link_trailer',   
         'display_order', 'image', 'status', 'options', 'count_view', 'date_created',
         'date_updated', 'seo_name', 'tags', 'meta_title', 'meta_desc', 'meta_keyword'
     ];

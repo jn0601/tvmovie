@@ -108,6 +108,7 @@ class MoviesController extends Controller
         $data = $request->all();
         $item = new Movie();
         $item->name = $data['name'];
+        $item->org_name = $data['org_name'] ? $data['org_name'] : '';
         $item->desc = $data['desc'] ? $data['desc'] : '';
         $item->content = $data['content'] ? $data['content'] : '';
         $item->seo_name = $data['seo_name'];
@@ -176,8 +177,8 @@ class MoviesController extends Controller
         $data = Movie::where('id', $id)->first();
         $listCategory = MovieCategory::orderBy('display_order', 'desc')->get();
         $listGenre = Genre::orderBy('display_order', 'desc')->get();
-        $subGenre = MovieGenre::join('genres', 'genres.id', '=', 'movie_genres.genre_id',)->where('movie_genres.movie_id', $id)->get();
-        $subCountry = MovieCountry::join('countries', 'countries.id', '=', 'movie_countries.country_id',)->where('movie_countries.movie_id', $id)->get();
+        $subGenre = MovieGenre::join('genres', 'genres.id', '=', 'movie_genres.genre_id')->where('movie_genres.movie_id', $id)->get();
+        $subCountry = MovieCountry::join('countries', 'countries.id', '=', 'movie_countries.country_id')->where('movie_countries.movie_id', $id)->get();
         $listCountry = Country::orderBy('display_order', 'desc')->get();
         $view = view($url)
         ->with('data', $data)
@@ -199,6 +200,7 @@ class MoviesController extends Controller
 
         $getImage = $request->file('img');
         $data['name'] = $dataRequest['name'];
+        $data['org_name'] = $dataRequest['org_name'] ? $dataRequest['org_name'] : '';
         $data['desc'] = isset($dataRequest['desc']) ? $dataRequest['desc'] : '';
         $data['content'] = isset($dataRequest['content']) ? $dataRequest['content'] : '';
         $data['seo_name'] = isset($dataRequest['seo_name']) ? $dataRequest['seo_name'] : '';
@@ -224,14 +226,14 @@ class MoviesController extends Controller
             $getImage->move('public/backend/uploads/movies', $newImage);
             $data['image'] = $newImage;
         }
-        
+        //dd($id);
         Movie::where('id', $id)->update($data);
 
         //update bảng phụ
         $genre = $request->input('genre_id');
         $country = $request->input('country_id');
-        MovieGenre::where('movie_id', $id)->delete();
         if ($genre) {
+            MovieGenre::where('movie_id', $id)->delete();
             foreach ($genre as $key => $value) {
                 $movie_genre = new MovieGenre();
                 $movie_genre->movie_id = $id;
@@ -239,8 +241,8 @@ class MoviesController extends Controller
                 $movie_genre->save();
             }
         }
-        MovieCountry::where('movie_id', $id)->delete();
         if ($country) {
+            MovieCountry::where('movie_id', $id)->delete();
             foreach ($country as $key => $value) {
                 $movie_country = new MovieCountry();
                 $movie_country->movie_id = $id;

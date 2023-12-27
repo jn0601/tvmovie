@@ -73,9 +73,9 @@
                   </td>
                   <td class="text-center"><span class="text-ellipsis">
                       <?php if ($item->status == 1) { ?>
-                        <a href="{{URL::to('/admin/unactivate-servers-status/'.$item->id)}}"><span class="fa fa-toggle-on status_button"></span></a>
+                        <a href="{{URL::to('/admin/unactivate-server-links-status/'.$item->id)}}"><span class="fa fa-toggle-on status_button"></span></a>
                         <?php } else { ?>
-                        <a href="{{URL::to('/admin/activate-servers-status/'.$item->id)}}"><span class="fa fa-toggle-off status_button"></span></a>
+                        <a href="{{URL::to('/admin/activate-server-links-status/'.$item->id)}}"><span class="fa fa-toggle-off status_button"></span></a>
                         <?php } ?>
                     </span>
                   </td>
