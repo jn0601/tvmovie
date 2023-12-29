@@ -13,8 +13,8 @@
       <link rel="shortcut icon" href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png" type="image/x-icon" />
       <meta name="revisit-after" content="1 days" />
       <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-      <title>Phim hay 2021 - Xem phim hay nhất</title>
-      <meta name="description" content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
+      <title>TVMOVIE</title>
+      <meta name="description" content="Phim hay - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
       <link rel="canonical" href="">
       <link rel="next" href="" />
       <meta property="og:locale" content="vi_VN" />
@@ -46,7 +46,7 @@
          <div class="container">
             <div class="row" id="headwrap">
                <div class="col-md-3 col-sm-6 slogan">
-                  <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
+                  <p class="site-title"><a class="logo" href="{{URL::to('/')}}" title="phim hay ">Phim Hay</p>
                   </a>
                </div>
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
@@ -65,10 +65,23 @@
                   </div>
                </div>
                <div class="col-md-4 hidden-xs">
-                  <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div>
-                  <div id="bookmark-list" class="hidden bookmark-list-on-pc">
+                  {{-- <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div> --}}
+                  
+                  {{-- <div id="bookmark-list" class="hidden bookmark-list-on-pc">
                      <ul style="margin: 0;"></ul>
-                  </div>
+                  </div> --}}
+                  @php
+                     use Illuminate\Support\Facades\Session;
+                     $customer_id = Session::get('customer_id');
+                     $customer_name = Session::get('customer_name');
+                  @endphp
+                  @if ($customer_id)
+                     <div class="box-shadow login-button"><span>Xin chào, </span> {{$customer_name}}</div>
+                     <a href="{{URL::to('logout')}}" class="box-shadow login-button"><span> Đăng xuất</span></a>
+                  @else
+                     <a href="{{route('view_login')}}" class="box-shadow login-button"><span> Đăng nhập</span></a>
+                     <a href="{{route('view_signup')}}" class="box-shadow login-button"><span> Đăng ký</span></a>
+                  @endif
                </div>
             </div>
          </div>
@@ -302,4 +315,7 @@
          #hide_float_right a { background: #01AEF0; padding: 5px 5px 1px 5px; color: #FFF;float: left;}
       </style>
    </body>
+
+   <div id="fb-root"></div>
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=729873248747273" nonce="EI48vUhe"></script>
 </html>

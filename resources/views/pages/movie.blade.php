@@ -1,11 +1,19 @@
 @extends('layout')
 @section('content')
+@php
+  $current_url = Request::url();
+  $session_genre = Session::get('genre');
+  $session_country = Session::get('country');
+  $session_category = Session::get('category');
+
+@endphp
+
 <div class="row container" id="wrapper">
   <div class="halim-panel-filter">
      <div class="panel-heading">
         <div class="row">
            <div class="col-xs-6">
-              <div class="yoast_breadcrumb hidden-xs"><span><span><a href="danhmuc.php">Phim hay</a> » <span><a href="danhmuc.php">Mỹ</a> » <span class="breadcrumb_last" aria-current="page">{{$movie_detail->name}}</span></span></span></span></div>
+              <div class="yoast_breadcrumb hidden-xs"><span><span><a href="{{route('genre', $genre_detail->seo_name)}}">{{$genre_detail->name}}</a> » <span><a href="{{route('country', $country_detail->seo_name)}}">{{$country_detail->name}}</a> » <span class="breadcrumb_last" aria-current="page">{{$movie_detail->name}}</span></span></span></span></div>
            </div>
         </div>
      </div>
@@ -49,6 +57,7 @@
                        <li class="list-info-group-item last-item" style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;"><span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C. Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>, <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a></li>
                     </ul> --}}
                     {!! $movie_detail->desc !!}
+                    <div class="fb-like" data-href="{{$current_url}}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
                     <div class="movie-trailer hidden"></div>
                  </div>
               </div>
@@ -81,7 +90,34 @@
                  </article>
               </div>
            </div>
+           <div class="section-bar clearfix">
+            <h2 class="section-title"><span style="color:#ffed4d">Bình luận Facebook</span></h2>
+         </div>
+         <div class="entry-content htmlwrap clearfix">
+            <div class="video-item halim-entry-box">
+               <article id="post-38424" class="item-content">
+                  {{-- Phim <a href="https://phimhay.co/goa-phu-den-38424/">GÓA PHỤ ĐEN</a> - 2021 - Mỹ:
+                  <p>Góa Phụ Đen &#8211; Black Widow 2021: Natasha Romanoff hay còn gọi là Góa phụ đen phải đối mặt với những phần đen tối của mình khi một âm mưu nguy hiểm liên quan đến quá khứ của cô nảy sinh. Bị truy đuổi bởi một thế lực sẽ không có gì có thể hạ gục cô, Natasha phải đối mặt với lịch sử là một điệp viên những mối quan hệ tan vỡ đã để lại trong cô từ lâu trước khi cô trở thành thành viên của biệt đội Avenger.</p>
+                  <h5>Từ Khoá Tìm Kiếm:</h5>
+                  <ul>
+                     <li>black widow vietsub</li>
+                     <li>Black Widow 2021 Vietsub</li>
+                     <li>phim black windows 2021</li>
+                     <li>xem phim black windows</li>
+                     <li>xem phim black widow</li>
+                     <li>phim black windows</li>
+                     <li>goa phu den</li>
+                     <li>xem phim black window</li>
+                     <li>phim black widow 2021</li>
+                     <li>xem black widow</li>
+                  </ul> --}}
+                  <div class="fb-comments" data-href="{{$current_url}}" data-width="" data-numposts="5"></div>
+               </article>
+            </div>
+         </div>
         </div>
+        
+        
      </section>
      <section class="related-movies">
         <div id="halim_related_movies-2xx" class="wrap-slider">

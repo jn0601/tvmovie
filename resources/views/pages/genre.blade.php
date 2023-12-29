@@ -1,11 +1,14 @@
 @extends('layout')
 @section('content')
+@php
+   Session::put('genre', $get_genre->name);
+@endphp
 <div class="row container" id="wrapper">
   <div class="halim-panel-filter">
      <div class="panel-heading">
         <div class="row">
            <div class="col-xs-6">
-              <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Thể loại</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+              <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Thể loại</a> » <span class="breadcrumb_last" aria-current="page">{{$get_genre->name}}</span></span></span></div>
            </div>
         </div>
      </div>
@@ -16,201 +19,49 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
      <section>
         <div class="section-bar clearfix">
-           <h1 class="section-title"><span>Phim 2020</span></h1>
+           <h1 class="section-title"><span>Phim {{$get_genre->name}}</span></h1>
         </div>
         <div class="halim_box">
+         @foreach ($genre_detail as $key => $value)
            <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
               <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                 <a class="halim-thumb" href="{{ route('movie', $value->seo_name) }}" title="{{ $value->name }}">
+                    <figure><img class="lazy img-responsive" src="{{URL::to('public/backend/uploads/movies/'.$value->image)}}" 
+                     alt="{{ $value->name }}" title="{{ $value->name }}"></figure>
+                     @foreach ($episode as $key => $ep)
+                        @if ($ep->movie_id == $value->movie_id)
+                           <span class="status">{{ $ep->name }}</span>
+                        @break
+                        @endif
+                     @endforeach
+                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                     <div class="icon_overlay"></div>
                     <div class="halim-post-title-box">
                        <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
+                          <p class="entry-title">{{ $value->name }}</p>
+                          <p class="original_title">{{ $value->org_name }}</p>
                        </div>
                     </div>
                  </a>
               </div>
            </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
-           <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-              <div class="halim-item">
-                 <a class="halim-thumb" href="chitiet.php" title="VŨNG LẦY PHẦN 1">
-                    <figure><img class="lazy img-responsive" src="https://static.vieon.vn/vieplay-image/poster_v4/2021/04/27/gw09z3vn_660x946-cuocchienthuongluu3-docquyen.jpg" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                       <div class="halim-post-title ">
-                          <p class="entry-title">VŨNG LẦY PHẦN 1</p>
-                          <p class="original_title">The Mire Season 1</p>
-                       </div>
-                    </div>
-                 </a>
-              </div>
-           </article>
+         @endforeach
+         
+           
+           
         
         </div>
         <div class="clearfix"></div>
         <div class="text-center">
-           <ul class='page-numbers'>
+           {{-- <ul class='page-numbers'>
               <li><span aria-current="page" class="page-numbers current">1</span></li>
               <li><a class="page-numbers" href="">2</a></li>
               <li><a class="page-numbers" href="">3</a></li>
               <li><span class="page-numbers dots">&hellip;</span></li>
               <li><a class="page-numbers" href="">55</a></li>
               <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
-           </ul>
+           </ul> --}}
+           {{$genre_detail->links()}}
         </div>
      </section>
   </main>
@@ -254,96 +105,8 @@
                        </span>
                     </div>
                  </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
-                 <div class="item post-37176">
-                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                       <div class="item-link">
-                          <img src="https://ghienphim.org/uploads/GPax0JpZbqvIVyfkmDwhRCKATNtLloFQ.jpeg?v=1624801798" class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                          <span class="is_trailer">Trailer</span>
-                       </div>
-                       <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                    </a>
-                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                    <div style="float: left;">
-                       <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                       <span style="width: 0%"></span>
-                       </span>
-                    </div>
-                 </div>
+                 
+                 
                 
                 
               </div>

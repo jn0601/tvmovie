@@ -92,3 +92,20 @@
 .subnav-content-subnav{
   position: relative;
 }
+
+.d-sm-none {
+  display: none !important;
+}
+
+.login-button {
+  background: #224361;
+    display: inline-block;
+    line-height: 20px;
+    padding: 6px 15px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: .4s all;
+    margin-top: 1px;
+    margin-right: 15px;
+}

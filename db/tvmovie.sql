@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 27, 2023 at 08:02 AM
+-- Generation Time: Dec 29, 2023 at 07:21 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -38,7 +38,14 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `password`, `type`, `fullname`, `email`, `phone`, `status`) VALUES
+(2, 'root', '0cc175b9c0f1b6a831c399e269772661', 99, 'admin root', 'root@admin.com', '0123456789', 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `countries` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `countries`
@@ -119,7 +126,37 @@ CREATE TABLE IF NOT EXISTS `countries` (
 INSERT INTO `countries` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
 (1, 'Việt Nam', '<p>vnxdfghfxhtxdfhg</p>', 1, 1, 'viet-nam', 'vvvvvv', 'vvvvvvvvv', 'nnnnnnnnnnn'),
 (2, 'Âu Mỹ', '', 2, 1, 'au-my', '', '', ''),
-(3, 'Hàn Quốc', '', 3, 1, 'han-quoc', '', '', '');
+(3, 'Hàn Quốc', '', 3, 1, 'han-quoc', '', '', ''),
+(4, 'Nhật Bản', '', 4, 1, 'nhat-ban', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` smallint NOT NULL,
+  `time_expired` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `role_id`, `username`, `password`, `fullname`, `email`, `phone`, `status`, `time_expired`) VALUES
+(1, 1, 'cus', '0cc175b9c0f1b6a831c399e269772661', 'cus test', 'cus@cus.com', '123', 1, '0'),
+(2, 1, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH', 'testKH@testKH', '1111111111', 1, '0'),
+(3, 1, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -155,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `episodes` (
 
 INSERT INTO `episodes` (`id`, `movie_id`, `admin_id`, `episode`, `name`, `desc`, `content`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
 (8, 2, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-21 18:09:24', '2023-12-27 05:33:53', 'tap-1', '', '', '', ''),
-(12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2023-12-27 07:10:35', 'tap-1', '', '', '', ''),
+(12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2023-12-28 10:09:24', 'tap-1', '', '', '', ''),
 (13, 1, 123, 6, 'Tập 6', '', '', 1, '', 0, '2023-12-27 05:33:10', '2023-12-27 05:33:10', 'tap-6', '', '', '', ''),
 (14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2023-12-27 05:52:29', 'tap-1', '', '', '', '');
 
@@ -182,7 +219,7 @@ INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
 (7, 13, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
 (4, 8, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/D0Hz3lAa1u6D?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"1581057\"></iframe>'),
 (5, 8, 3, '475675674634543535'),
-(6, 12, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/m8WKxgcqJ3QS?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"3522561\"></iframe>'),
+(6, 12, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
 (8, 14, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>');
 
 -- --------------------------------------------------------
@@ -203,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `genres`
@@ -212,7 +249,11 @@ CREATE TABLE IF NOT EXISTS `genres` (
 INSERT INTO `genres` (`id`, `name`, `desc`, `display_order`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
 (2, 'Hoạt hình', '', 2, 1, 'hoat-hinh', '', '', ''),
 (4, 'Hành động', '', 3, 1, 'hanh-dong', '', '', ''),
-(5, 'Tâm lý', '', 4, 1, 'tam-ly', '', '', '');
+(5, 'Tâm lý', '', 4, 1, 'tam-ly', '', '', ''),
+(6, 'Tình cảm', '', 5, 1, 'tinh-cam', '', '', ''),
+(7, 'Khoa học viễn tưởng', '', 6, 1, 'khoa-hoc-vien-tuong', '', '', ''),
+(8, 'Gia đình', '', 7, 1, 'gia-dinh', '', '', ''),
+(9, 'Kinh dị', '', 8, 1, 'kinh-di', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -242,17 +283,21 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movies`
 --
 
 INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `desc`, `content`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 2, 'Loki mùa 2', 'Loki season 2', '<p>Trạng th&aacute;i: Full HD Vietsub</p>\r\n\r\n<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;<a href=\"https://bluphim.com/dao-dien/kate-herron-47114\" title=\"Các phim của đạo diễn Kate Herron\">Kate Herron</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/aaron-moorhead-46583\" title=\"Các phim của đạo diễn Aaron Moorhead\">Aaron Moorhead</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/justin-benson-46582\" title=\"Các phim của đạo diễn Justin Benson\">Justin Benson</a></p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;<a href=\"https://bluphim.com/tuyen-tap/marvel-series-359\" title=\"Tuyển tập series - loạt phim Marvel\">Marvel</a></p>\r\n\r\n<p>Quốc gia:&nbsp;<a href=\"https://bluphim.com/quoc-gia/au-my-1\" target=\"_blank\" title=\"Tổng hợp các phim Âu - Mỹ hay và mới nhất\">&Acirc;u - Mỹ</a></p>\r\n\r\n<p>Thể loại:&nbsp;<a href=\"https://bluphim.com/the-loai/hanh-dong-1\" target=\"_blank\" title=\"Tổng hợp các phim Hành động hay và mới nhất\">H&agrave;nh động</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phieu-luu-1\" target=\"_blank\" title=\"Tổng hợp các phim Phiêu lưu hay và mới nhất\">Phi&ecirc;u lưu</a>&nbsp;<a href=\"https://bluphim.com/the-loai/ky-ao-1\" target=\"_blank\" title=\"Tổng hợp các phim Kỳ ảo hay và mới nhất\">Kỳ ảo</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phim-bo-1\" target=\"_blank\" title=\"Tổng hợp các phim TV Series - Phim bộ hay và mới nhất\">TV Series - Phim bộ</a></p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;<a href=\"https://bluphim.com/dien-vien/owen-wilson-1805\" title=\"Các phim của diễn viên Owen Wilson\">Owen Wilson</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/tom-hiddleston-644\" title=\"Các phim của diễn viên Tom Hiddleston\">Tom Hiddleston</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/jonathan-majors-8248\" title=\"Các phim của diễn viên Jonathan Majors\">Jonathan Majors</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/deobia-oparei-1725\" title=\"Các phim của diễn viên Deobia Oparei\">Deobia Oparei</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/richard-e-grant-2104\" title=\"Các phim của diễn viên Richard E. Grant\">Richard E. Grant</a></p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 1, 'image002_18870_b56691ea27.jpeg', 1, '1', 0, '2023-12-12 15:54:54', '2023-12-27 06:11:35', 'loki-mua-2', '', '', '', ''),
-(2, 2, 'Oppenheimer', 'Oppenheimer', '', '', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '4', 0, '2023-12-12 15:57:51', '2023-12-27 05:32:23', 'oppenheimer', '', '', '', ''),
-(3, 2, 'Người nhện', 'Spider Man', '', '', '', 3, '8105Oc1+FPL90.jpg', 1, '4', 0, '2023-12-27 05:52:13', '2023-12-27 07:09:55', 'nguoi-nhen', '', '', '', ''),
-(4, 0, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '', '', '', 4, '71-sziO1OsL13.jpg', 1, '1', 0, '2023-12-27 06:59:48', '2023-12-27 06:59:48', 'nhiem-vu-bat-kha-thi', '', '', '', '');
+(1, 1, 'Loki mùa 2', 'Loki season 2', '<p>Trạng th&aacute;i: Full HD Vietsub</p>\r\n\r\n<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;<a href=\"https://bluphim.com/dao-dien/kate-herron-47114\" title=\"Các phim của đạo diễn Kate Herron\">Kate Herron</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/aaron-moorhead-46583\" title=\"Các phim của đạo diễn Aaron Moorhead\">Aaron Moorhead</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/justin-benson-46582\" title=\"Các phim của đạo diễn Justin Benson\">Justin Benson</a></p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;<a href=\"https://bluphim.com/tuyen-tap/marvel-series-359\" title=\"Tuyển tập series - loạt phim Marvel\">Marvel</a></p>\r\n\r\n<p>Quốc gia:&nbsp;<a href=\"https://bluphim.com/quoc-gia/au-my-1\" target=\"_blank\" title=\"Tổng hợp các phim Âu - Mỹ hay và mới nhất\">&Acirc;u - Mỹ</a></p>\r\n\r\n<p>Thể loại:&nbsp;<a href=\"https://bluphim.com/the-loai/hanh-dong-1\" target=\"_blank\" title=\"Tổng hợp các phim Hành động hay và mới nhất\">H&agrave;nh động</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phieu-luu-1\" target=\"_blank\" title=\"Tổng hợp các phim Phiêu lưu hay và mới nhất\">Phi&ecirc;u lưu</a>&nbsp;<a href=\"https://bluphim.com/the-loai/ky-ao-1\" target=\"_blank\" title=\"Tổng hợp các phim Kỳ ảo hay và mới nhất\">Kỳ ảo</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phim-bo-1\" target=\"_blank\" title=\"Tổng hợp các phim TV Series - Phim bộ hay và mới nhất\">TV Series - Phim bộ</a></p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;<a href=\"https://bluphim.com/dien-vien/owen-wilson-1805\" title=\"Các phim của diễn viên Owen Wilson\">Owen Wilson</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/tom-hiddleston-644\" title=\"Các phim của diễn viên Tom Hiddleston\">Tom Hiddleston</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/jonathan-majors-8248\" title=\"Các phim của diễn viên Jonathan Majors\">Jonathan Majors</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/deobia-oparei-1725\" title=\"Các phim của diễn viên Deobia Oparei\">Deobia Oparei</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/richard-e-grant-2104\" title=\"Các phim của diễn viên Richard E. Grant\">Richard E. Grant</a></p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,4', 0, '2023-12-12 15:54:54', '2023-12-28 10:40:15', 'loki-mua-2', '', '', '', ''),
+(2, 2, 'Oppenheimer', 'Oppenheimer', '', '', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,4', 0, '2023-12-12 15:57:51', '2023-12-28 10:40:49', 'oppenheimer', '', '', '', ''),
+(3, 2, 'Người nhện', 'Spider Man', '', '', '', 3, '8105Oc1+FPL90.jpg', 1, '1,4', 0, '2023-12-27 05:52:13', '2023-12-28 10:40:44', 'nguoi-nhen', '', '', '', ''),
+(4, 2, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '', '', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 0, '2023-12-27 06:59:48', '2023-12-28 10:45:46', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
+(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 0, '2023-12-28 10:39:08', '2023-12-28 10:40:36', 'cu-up-ro-dau-tien', '', '', '', ''),
+(6, 2, 'Godzilla Trừ Một', 'Godzilla Minus One', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1', 0, '2023-12-28 10:44:27', '2023-12-28 10:46:51', 'godzilla-tru-mot', '', '', '', ''),
+(7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '', '', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 0, '2023-12-28 10:46:38', '2023-12-28 10:46:38', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
+(8, 1, 'Con nhà tài phiệt', 'Reborn rich', '', '', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '3', 0, '2023-12-28 10:50:33', '2023-12-28 10:50:33', 'con-nha-tai-phiet', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -294,16 +339,20 @@ CREATE TABLE IF NOT EXISTS `movie_countries` (
   `movie_id` int NOT NULL,
   `country_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_countries`
 --
 
 INSERT INTO `movie_countries` (`id`, `movie_id`, `country_id`) VALUES
-(16, 3, 2),
-(13, 2, 2),
-(15, 1, 2);
+(22, 3, 2),
+(23, 2, 2),
+(20, 1, 2),
+(21, 5, 4),
+(26, 6, 4),
+(25, 7, 2),
+(27, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -317,18 +366,23 @@ CREATE TABLE IF NOT EXISTS `movie_genres` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_genres`
 --
 
 INSERT INTO `movie_genres` (`id`, `movie_id`, `genre_id`) VALUES
-(22, 2, 4),
-(21, 2, 5),
-(26, 1, 4),
-(25, 1, 5),
-(27, 3, 2);
+(37, 2, 4),
+(36, 2, 5),
+(33, 1, 4),
+(32, 1, 5),
+(35, 3, 2),
+(34, 5, 2),
+(41, 6, 4),
+(39, 4, 4),
+(40, 7, 4),
+(42, 8, 5);
 
 -- --------------------------------------------------------
 

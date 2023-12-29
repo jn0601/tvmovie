@@ -185,7 +185,7 @@
                     <div id="halim-ajax-popular-post" class="popular-post">
                       @foreach($movie as $key => $value)
                         <div class="item post-37176">
-                            <a href="{{$value->seo_name}}" title="{{$value->name}}">
+                            <a href="{{ route('movie', $value->seo_name) }}" title="{{$value->name}}">
                                 <div class="item-link">
                                     <img src="{{URL::to('public/backend/uploads/movies/'.$value->image)}}"
                                         class="lazy post-thumb" alt="{{$value->name}}"
