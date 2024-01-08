@@ -109,3 +109,30 @@
     margin-top: 1px;
     margin-right: 15px;
 }
+
+/* .login-button:nth-child(2) {
+  position: relative;
+  top: -10px;
+} */
+
+.mobile-search {
+  margin: 1px 0 2px !important;
+}
+
+@media (max-width: 768px) {
+  .login-button {
+      margin-top: 6px;
+      margin-right: 2px;
+  }
+
+  /* .login-button:nth-child(2) {
+    position: relative;
+    top: -10px;
+  } */
+}
+
+@media (min-width: 768px){
+  .mobile-button {
+      display: none;
+  }
+}

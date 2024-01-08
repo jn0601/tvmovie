@@ -18,4 +18,8 @@ class News extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'news';
+
+     public function category() {
+        return $this->belongsTo(NewsCategory::class);
+    }
 }

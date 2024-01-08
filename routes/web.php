@@ -126,9 +126,12 @@ Route::get('/', [IndexController::class, 'home'])->name('homepage');
 Route::get('/danh-muc/{seo_name}', [IndexController::class, 'category'])->name('category');
 Route::get('/the-loai/{seo_name}', [IndexController::class, 'genre'])->name('genre');
 Route::get('/quoc-gia/{seo_name}', [IndexController::class, 'country'])->name('country');
-Route::get('/phim/{seo_name}', [IndexController::class, 'movie'])->name('movie');
-Route::get('/xem-phim/{seo_name}', [IndexController::class, 'watch'])->name('watch');
-Route::get('/tap-phim/{seo_name}', [IndexController::class, 'episode'])->name('episode');
+Route::get('/phim/{seo_name}', [IndexController::class, 'movie'])->name('movie')->middleware('web', 'trackMovieViews');
+Route::get('/xem-phim/{seo_name}/{tap}/{server}', [IndexController::class, 'watch'])->name('watch');
+Route::get('/tap-phim/{movie_seo_name}/{seo_name}', [IndexController::class, 'episode'])->name('episode');
+Route::get('/tag/{tag}', [IndexController::class, 'tag'])->name('tag');
+Route::get('/nam/{year}', [IndexController::class, 'year'])->name('year');
+Route::get('/tim-kiem/', [IndexController::class, 'search']);
 
 Route::get('/danh-muc-tin-tuc/{seo_name}', [IndexController::class, 'news_category'])->name('news_category');
 Route::get('/tin-tuc/{seo_name}', [IndexController::class, 'news'])->name('news');

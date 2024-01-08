@@ -45,6 +45,11 @@ class Kernel extends HttpKernel
         ],
     ];
 
+    protected $routeMiddleware = [
+        // Other middleware entries
+        'trackMovieViews' => \App\Http\Middleware\TrackMovieViews::class,
+    ];
+
     /**
      * The application's middleware aliases.
      *

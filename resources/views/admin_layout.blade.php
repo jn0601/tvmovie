@@ -379,9 +379,9 @@
 
     // Validate that the input is less than 1 million
     const numericValue = parseInt(inputValue.replace(/\D/g, ''), 10);
-    if (numericValue >= 1000000000) {
+    if (numericValue >= 1000000) {
       // Display an error message or take appropriate action
-      alert('Giá phải bé ơn 1 tỷ');
+      alert('Giá phải bé ơn 1 triệu');
       this.value = ''; // Clear the input
     } else {
       // Set the formatted value back to the input
@@ -390,6 +390,8 @@
   });
 });
 </script>
+
+@stack('scripts')
 
 <script type="text/javascript">
   function ChangeToSlug()
@@ -601,6 +603,6 @@
 
   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   {!! Toastr::message() !!}
-	
+
   </body>
 </html>

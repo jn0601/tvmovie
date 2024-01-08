@@ -18,4 +18,14 @@ class Movie extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'movies';
+
+    public function episode() {
+        return $this->hasMany(Episode::class);
+    }
+    public function category() {
+        return $this->belongsTo(MovieCategory::class);
+    }
+    // public function movie_genre() {
+    //     return $this->belongsToMany(Genre::class, 'movie_genres', 'movie_id', 'genre_id');
+    // }
 }

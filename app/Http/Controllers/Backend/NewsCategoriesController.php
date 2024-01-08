@@ -39,54 +39,18 @@ class NewsCategoriesController extends Controller
         }
         // có data
         else {
-            //$listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
-            if ($data['status'] != '') {
-                if ($data['name'] == '' && $data['representative'] == '') {
-                    $list = NewsCategory::where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->get();
-                }
-                else if ($data['name'] != '' && $data['representative'] == '') {
-                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->get();
-                }
-                else if ($data['name'] == '' && $data['representative'] != '') {
-                    $list = NewsCategory::where('status', $data['status'])
-                    ->where('representative', $data['representative'])
-                    ->orderBy('display_order', 'desc')
-                    ->get();
-                }
-                else {
-                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->where('representative', $data['representative'])
-                    ->orderBy('display_order', 'desc')
-                    ->get();
-                }
+            $list = NewsCategory::orderBy('display_order', 'desc');
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
+            } 
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
             }
-            else {
-                if ($data['representative'] != '') {
-                    if ($data['name'] == '') {
-                        $list = NewsCategory::where('representative', $data['representative'])
-                        ->orderBy('display_order', 'desc')
-                        ->get();
-                    }
-                    else {
-                        $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
-                        ->where('representative', $data['representative'])
-                        ->orderBy('display_order', 'desc')
-                        ->get();
-                    }
-                }
-                else {
-                    $list = NewsCategory::where('name', 'like', '%' . $data['name'] . '%')
-                    ->get();
-                }
+            if($data['representative']) {
+                $list = $list->where('representative', $data['representative']);
             }
+            $list = $list->paginate($this->pagination);
         }
-        //dd($data, $list);
         $view = view($url)->with('data', $list)->with('search_value', $data);
         return view('admin_layout')->with($url, $view);
     }
@@ -247,7 +211,7 @@ class NewsCategoriesController extends Controller
     //bật tắt trạng thái
     public function unactivate_news_categories_status($id)
     {
-        NewsCategory::where('id', $id)->update(['status' => 0]);
+        NewsCategory::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }
@@ -262,7 +226,7 @@ class NewsCategoriesController extends Controller
     //bật tắt tiêu biểu
     public function unactivate_news_categories_representative($id)
     {
-        NewsCategory::where('id', $id)->update(['representative' => 0]);
+        NewsCategory::where('id', $id)->update(['representative' => 2]);
         Toastr::success('Tắt trạng thái tiêu biểu thành công', 'Thành công');
         return redirect()->back();
     }

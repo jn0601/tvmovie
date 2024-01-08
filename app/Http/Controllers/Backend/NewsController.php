@@ -38,28 +38,16 @@ class NewsController extends Controller
         }
         // có data
         else {
-            $listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
-            // search status
-            if ($data['name'] == '' && $data['status'] != '') {
-                $list = News::where('status', $data['status'])
-                ->orderBy('display_order', 'desc')
-                ->paginate($this->pagination);
+            $list = News::orderBy('display_order', 'desc');
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
             } 
-            else {
-                // search status và name
-                if ($data['status']) {
-                    $list = News::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                } 
-                // search name
-                else {
-                    $list = News::where('name', 'like', '%' . $data['name'] . '%')
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                }
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
             }
+            $list = $list->paginate($this->pagination);
+
+            $listCategory = NewsCategory::orderBy('display_order', 'desc')->get();
         }
         //dd($data);
         $view = view($url)->with('data', $list)->with('search_value', $data)->with('dataCategory', $listCategory);
@@ -202,7 +190,7 @@ class NewsController extends Controller
     //bật tắt trạng thái
     public function unactivate_news_status($id)
     {
-        News::where('id', $id)->update(['status' => 0]);
+        News::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

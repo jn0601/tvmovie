@@ -1,18 +1,14 @@
 @extends('layout')
 @section('content')
 @php
-   Session::put('country', $get_country->name);
-   Session::put('country_link', $get_country->seo_name);
-
-   Session::forget('genre');
-   Session::forget('category');
+//dd($data);
 @endphp
 <div class="row container" id="wrapper">
   <div class="halim-panel-filter">
      <div class="panel-heading">
         <div class="row">
            <div class="col-xs-6">
-            <div class="yoast_breadcrumb hidden-xs"><span><span>Quốc gia » <span class="breadcrumb_last" aria-current="page"><a href="#">{{$get_country->name}}</a></span></span></span></div>
+            <div class="yoast_breadcrumb hidden-xs"><span><span>Tìm kiếm » <span class="breadcrumb_last" aria-current="page"><a href="#">Phim {{$data['name']}}</a></span></span></span></div>
            </div>
         </div>
      </div>
@@ -23,17 +19,17 @@
   <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
    <section>
       <div class="section-bar clearfix">
-         <h1 class="section-title"><span>Phim {{$get_country->name}}</span></h1>
+         <h1 class="section-title"><span>Phim {{$data['name']}}</span></h1>
       </div>
       <div class="halim_box">
-       @foreach ($country_detail as $key => $value)
+       @foreach ($movie_detail as $key => $value)
          <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
             <div class="halim-item">
                <a class="halim-thumb" href="{{ route('movie', $value->seo_name) }}" title="{{ $value->name }}">
                   <figure><img class="lazy img-responsive" src="{{URL::to('public/backend/uploads/movies/'.$value->image)}}" 
                    alt="{{ $value->name }}" title="{{ $value->name }}"></figure>
                    @foreach ($episode as $key => $ep)
-                      @if ($ep->movie_id == $value->movie_id)
+                      @if ($ep->movie_id == $value->id)
                          <span class="status">{{ $ep->name }}</span>
                       @break
                       @endif
@@ -65,7 +61,7 @@
             <li><a class="page-numbers" href="">55</a></li>
             <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
          </ul> --}}
-         {{$country_detail->links()}}
+         {{$movie_detail->links()}}
       </div>
    </section>
 </main>

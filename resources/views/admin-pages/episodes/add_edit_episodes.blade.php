@@ -28,11 +28,11 @@
 					<div class="x_content LVR_list-admin">
 						@if ($data == '')
 						{{-- <form class="" enctype="multipart/form-data" action="{{ route('admin/episodes.store')}}" method="post" novalidate> --}}
-							{!! Form::open(['route'=>'admin/episodes.store', 'method'=>'POST', 'enctype'=>'multipart/form-data']) !!}
+							{!! Form::open(['route'=>'admin/episodes.store', 'id'=>'myForm', 'method'=>'POST', 'enctype'=>'multipart/form-data']) !!}
 							{{ csrf_field() }}
 						@else
 						{{-- <form class="" enctype="multipart/form-data" action="{{ route('admin/episodes.update',['admin/episodes/{episodes}' => $data->id]) }}" method="post" novalidate> --}}
-							{!! Form::open(['route'=>['admin/episodes.update',$data->id], 'method'=>'PUT', 'enctype'=>'multipart/form-data']) !!}
+							{!! Form::open(['route'=>['admin/episodes.update',$data->id], 'id'=>'myForm', 'method'=>'PUT', 'enctype'=>'multipart/form-data']) !!}
 							{{ csrf_field() }}
 						@endif
 							<div class="form-group row">
@@ -132,7 +132,7 @@
 														@endphp
 														@if($linkValue->server_id == $value->id)
 															<input class="form-control" data-validate-length-range="6"
-																data-validate-words="2" name="{{$link}}" value="{{old($link, $link_value)}}" placeholder="<iframe>.....</iframe>"/>
+																data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link, $link_value)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
 														@php
 															$checked = true;
 														@endphp
@@ -141,11 +141,11 @@
 													@endforeach
 													@if($checked == false)
 														<input class="form-control" data-validate-length-range="6"
-														data-validate-words="2" name="{{$link}}" value="{{old($link)}}" placeholder="<iframe>.....</iframe>"/>
+														data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
 													@endif
 												@else
 												<input class="form-control" data-validate-length-range="6"
-												data-validate-words="2" name="{{$link}}" value="{{old($link)}}" placeholder="<iframe>.....</iframe>"/>
+												data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
 												@endif
 											</div>
 										</div>
@@ -272,10 +272,10 @@
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="status" class="form-control">
 													@if ($data != '')
-													<option {{$status}} value="0">Không hoạt động</option>
+													<option {{$status}} value="2">Không hoạt động</option>
 													<option {{$status}} value="1">Hoạt động</option>
 													@else
-													<option value="0">Không hoạt động</option>
+													<option value="2">Không hoạt động</option>
 													<option selected value="1">Hoạt động</option>
 													@endif
 												</select>
@@ -349,10 +349,12 @@
 							<div class="form-group row">
 								<div class="col-md-3 title">
 									
+									
+
 								</div>
 								<div class="col-md-9">
 									<div class="">
-										<button type='submit' class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Lưu</button>
+										<button type='submit' onclick="validateInputs()" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Lưu</button>
 										<button type='reset' class="btn btn-success btn-sm"><i class="fa fa-refresh"></i> Tạo lại</button>
 									</div>
 								</div>
@@ -372,6 +374,31 @@
 		</div>
 	</div>
 </div>
-
 @endsection
+@push('scripts')
+<script type="text/javascript">
+	var numberOfInputs = {{count($listServerLink)}};
+	
+	function validateInputs() {
+			// Check if at least one input has a value
+			var atLeastOneLinkHasValue = false;
+			for (var index = 1; index <= numberOfInputs; index++) {
+					var linkValue = document.getElementById('link' + index).value;
 
+					if (linkValue) {
+							// At least one input has a value, allow submission
+							// document.getElementById('myForm').submit();
+							// return; // Exit the loop early
+							atLeastOneLinkHasValue = true;
+							break; // Exit the loop early
+					}
+			}
+			if (!atLeastOneLinkHasValue) {
+				// No inputs have a value, show an alert or take other action
+				alert('Nhập ít nhất 1 link');
+				// Prevent form submission
+				event.preventDefault();
+      }
+	}
+</script>
+@endpush

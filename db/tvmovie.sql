@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 29, 2023 at 07:21 AM
+-- Generation Time: Jan 08, 2024 at 08:28 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -66,15 +66,16 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `banners`
 --
 
 INSERT INTO `banners` (`id`, `category_id`, `name`, `desc`, `content`, `seo_name`, `link`, `display_order`, `image`, `status`) VALUES
-(1, 0, 'vcghfxghd 1', '<p>xfgdxfhfh</p>', '', 'vcghfxghd-1', '', 1, '71-sziO1OsL16.jpg', 1),
-(2, 1, 'vbmbvjmbhk 2', '', '', 'vbmbvjmbhk-2', 'vcghjfj', 2, '8105Oc1+FPL0.jpg', 1);
+(1, 1, '1', '<p>xfgdxfhfh</p>', '', '1', '', 1, 'movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG14.jpg', 1),
+(2, 1, '2', '', '', '2', 'vcghjfj', 2, 'movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG12.jpg', 1),
+(3, 1, '3', '', '', '3', '', 3, 'movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG57.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `banner_categories` (
 --
 
 INSERT INTO `banner_categories` (`id`, `name`, `desc`, `seo_name`, `display_order`) VALUES
-(1, 'dm 123', '<p>dm</p>', 'dm-123', 1);
+(1, 'footer', '', 'footer', 1);
 
 -- --------------------------------------------------------
 
@@ -144,8 +145,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `balance` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
-  `time_expired` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -153,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `role_id`, `username`, `password`, `fullname`, `email`, `phone`, `status`, `time_expired`) VALUES
-(1, 1, 'cus', '0cc175b9c0f1b6a831c399e269772661', 'cus test', 'cus@cus.com', '123', 1, '0'),
-(2, 1, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH', 'testKH@testKH', '1111111111', 1, '0'),
-(3, 1, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', 1, '0');
+INSERT INTO `customers` (`id`, `role_id`, `username`, `password`, `fullname`, `email`, `phone`, `balance`, `status`) VALUES
+(1, 1, 'cus', '0cc175b9c0f1b6a831c399e269772661', 'cus test', 'cus@cus.com', '123', '100.000 VND', 1),
+(2, 1, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH', 'testKH@testKH', '1111111111', '200.000 VND', 1),
+(3, 1, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', '500.000 VND', 1);
 
 -- --------------------------------------------------------
 
@@ -184,17 +185,25 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `episodes`
 --
 
 INSERT INTO `episodes` (`id`, `movie_id`, `admin_id`, `episode`, `name`, `desc`, `content`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(8, 2, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-21 18:09:24', '2023-12-27 05:33:53', 'tap-1', '', '', '', ''),
-(12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2023-12-28 10:09:24', 'tap-1', '', '', '', ''),
-(13, 1, 123, 6, 'Tập 6', '', '', 1, '', 0, '2023-12-27 05:33:10', '2023-12-27 05:33:10', 'tap-6', '', '', '', ''),
-(14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2023-12-27 05:52:29', 'tap-1', '', '', '', '');
+(8, 2, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-21 18:09:24', '2024-01-06 10:11:35', 'tap-1', '', '', '', ''),
+(12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2024-01-08 19:15:11', 'tap-1', '', '', '', ''),
+(13, 1, 123, 2, 'Tập 2', '', '', 1, '', 0, '2023-12-27 05:33:10', '2024-01-08 19:57:01', 'tap-2', '', '', '', ''),
+(14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2024-01-06 10:12:35', 'tap-1', '', '', '', ''),
+(21, 1, 123, 4, 'Tập 4', '', '', 1, '', 0, '2024-01-04 15:09:15', '2024-01-04 15:09:15', 'tap-4', '', '', '', ''),
+(20, 1, 123, 3, 'Tập 3', '', '', 1, '', 0, '2024-01-04 15:01:41', '2024-01-04 15:01:41', 'tap-3', '', '', '', ''),
+(22, 1, 123, 5, 'Tập 5', '', '', 1, '', 0, '2024-01-04 15:09:32', '2024-01-04 15:09:32', 'tap-5', '', '', '', ''),
+(23, 4, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:13:30', '2024-01-06 10:13:30', 'tap-1', '', '', '', ''),
+(24, 5, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:14:37', '2024-01-06 10:14:37', 'tap-1', '', '', '', ''),
+(25, 6, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:15:29', '2024-01-06 10:15:29', 'tap-1', '', '', '', ''),
+(26, 7, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:16:07', '2024-01-06 10:16:07', 'tap-1', '', '', '', ''),
+(27, 8, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:16:49', '2024-01-06 10:16:49', 'tap-1', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -209,18 +218,28 @@ CREATE TABLE IF NOT EXISTS `episode_servers` (
   `server_id` int NOT NULL,
   `link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `episode_servers`
 --
 
 INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
-(7, 13, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
-(4, 8, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/D0Hz3lAa1u6D?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"1581057\"></iframe>'),
-(5, 8, 3, '475675674634543535'),
-(6, 12, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(8, 14, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>');
+(4, 8, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/uYPbbksJxIg?si=T3GveZw1VaomV3_J\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(5, 8, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/uYPbbksJxIg?si=T3GveZw1VaomV3_J\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(8, 14, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/shW9i6k8cB0?si=DAUwcI-9ZbEF4udN\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(19, 12, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(9, 20, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
+(10, 20, 2, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
+(11, 21, 2, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
+(12, 22, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
+(13, 23, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/avz06PDqDbM?si=XRxXkxwXZ0anbI8k\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(14, 24, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/l4nP-Zm9YAs?si=6yUFW5Qe3LC6NVmW\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(15, 25, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/VvSrHIX5a-0?si=qolNfP7T7YuH7Qo_\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(16, 26, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/UGc5Tzz19UY?si=pIf50zbrXrVb5Hgp\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(17, 27, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/6e2Sh1Gw1CE?si=LLivxQaPyTvs4TRy\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(18, 13, 2, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/vwSKatRviQo?si=CiQtykNYucZCbqUh\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(20, 13, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>');
 
 -- --------------------------------------------------------
 
@@ -267,9 +286,11 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `category_id` int NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `org_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `year` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `link_trailer` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `price` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `link_trailer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
@@ -283,21 +304,22 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
   `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movies`
 --
 
-INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `desc`, `content`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 1, 'Loki mùa 2', 'Loki season 2', '<p>Trạng th&aacute;i: Full HD Vietsub</p>\r\n\r\n<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;<a href=\"https://bluphim.com/dao-dien/kate-herron-47114\" title=\"Các phim của đạo diễn Kate Herron\">Kate Herron</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/aaron-moorhead-46583\" title=\"Các phim của đạo diễn Aaron Moorhead\">Aaron Moorhead</a>&nbsp;<a href=\"https://bluphim.com/dao-dien/justin-benson-46582\" title=\"Các phim của đạo diễn Justin Benson\">Justin Benson</a></p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;<a href=\"https://bluphim.com/tuyen-tap/marvel-series-359\" title=\"Tuyển tập series - loạt phim Marvel\">Marvel</a></p>\r\n\r\n<p>Quốc gia:&nbsp;<a href=\"https://bluphim.com/quoc-gia/au-my-1\" target=\"_blank\" title=\"Tổng hợp các phim Âu - Mỹ hay và mới nhất\">&Acirc;u - Mỹ</a></p>\r\n\r\n<p>Thể loại:&nbsp;<a href=\"https://bluphim.com/the-loai/hanh-dong-1\" target=\"_blank\" title=\"Tổng hợp các phim Hành động hay và mới nhất\">H&agrave;nh động</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phieu-luu-1\" target=\"_blank\" title=\"Tổng hợp các phim Phiêu lưu hay và mới nhất\">Phi&ecirc;u lưu</a>&nbsp;<a href=\"https://bluphim.com/the-loai/ky-ao-1\" target=\"_blank\" title=\"Tổng hợp các phim Kỳ ảo hay và mới nhất\">Kỳ ảo</a>&nbsp;<a href=\"https://bluphim.com/the-loai/phim-bo-1\" target=\"_blank\" title=\"Tổng hợp các phim TV Series - Phim bộ hay và mới nhất\">TV Series - Phim bộ</a></p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;<a href=\"https://bluphim.com/dien-vien/owen-wilson-1805\" title=\"Các phim của diễn viên Owen Wilson\">Owen Wilson</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/tom-hiddleston-644\" title=\"Các phim của diễn viên Tom Hiddleston\">Tom Hiddleston</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/jonathan-majors-8248\" title=\"Các phim của diễn viên Jonathan Majors\">Jonathan Majors</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/deobia-oparei-1725\" title=\"Các phim của diễn viên Deobia Oparei\">Deobia Oparei</a>&nbsp;<a href=\"https://bluphim.com/dien-vien/richard-e-grant-2104\" title=\"Các phim của diễn viên Richard E. Grant\">Richard E. Grant</a></p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,4', 0, '2023-12-12 15:54:54', '2023-12-28 10:40:15', 'loki-mua-2', '', '', '', ''),
-(2, 2, 'Oppenheimer', 'Oppenheimer', '', '', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,4', 0, '2023-12-12 15:57:51', '2023-12-28 10:40:49', 'oppenheimer', '', '', '', ''),
-(3, 2, 'Người nhện', 'Spider Man', '', '', '', 3, '8105Oc1+FPL90.jpg', 1, '1,4', 0, '2023-12-27 05:52:13', '2023-12-28 10:40:44', 'nguoi-nhen', '', '', '', ''),
-(4, 2, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '', '', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 0, '2023-12-27 06:59:48', '2023-12-28 10:45:46', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
-(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 0, '2023-12-28 10:39:08', '2023-12-28 10:40:36', 'cu-up-ro-dau-tien', '', '', '', ''),
-(6, 2, 'Godzilla Trừ Một', 'Godzilla Minus One', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1', 0, '2023-12-28 10:44:27', '2023-12-28 10:46:51', 'godzilla-tru-mot', '', '', '', ''),
-(7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '', '', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 0, '2023-12-28 10:46:38', '2023-12-28 10:46:38', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
-(8, 1, 'Con nhà tài phiệt', 'Reborn rich', '', '', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '3', 0, '2023-12-28 10:50:33', '2023-12-28 10:50:33', 'con-nha-tai-phiet', '', '', '', '');
+INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `year`, `desc`, `content`, `price`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
+(1, 1, 'Loki mùa 2', 'Loki season 2', '2023', '<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;Kate Herron&nbsp;Aaron Moorhead&nbsp;Justin Benson</p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;Marvel</p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;Owen Wilson&nbsp;Tom Hiddleston&nbsp;Jonathan Majors&nbsp;Deobia Oparei&nbsp;Richard E. Grant</p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', '10.000 VND', 'dug56u8NN7g?si=xs5Vc4b0BLTwrcJp', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,2,4', 18, '2023-12-12 15:54:54', '2024-01-04 11:04:48', 'loki-mua-2', 'hanh dong,tam ly,marvel', '', '', ''),
+(2, 2, 'Oppenheimer', 'Oppenheimer', '2023', '', '', '10.000 VND', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,2,4', 1, '2023-12-12 15:57:51', '2024-01-04 13:49:53', 'oppenheimer', 'hanh dong,tam ly', '', '', ''),
+(3, 2, 'Người nhện', 'Spider Man', '2023', '', '', '5.000 VND', '', 3, '8105Oc1+FPL90.jpg', 1, '1,2,4', 5, '2023-12-27 05:52:13', '2024-01-06 13:37:06', 'nguoi-nhen', 'hoat hinh', '', '', ''),
+(4, 2, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '1900', '', '', '5.000 VND', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 0, '2023-12-27 06:59:48', '2024-01-04 13:50:09', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
+(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '2023', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', '5.000 VND', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 5, '2023-12-28 10:39:08', '2024-01-04 12:27:43', 'cu-up-ro-dau-tien', 'hoat hinh', '', '', ''),
+(6, 2, 'Godzilla Trừ Một', 'Godzilla Minus One', '2024', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '10.000 VND', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1,2', 3, '2023-12-28 10:44:27', '2024-01-04 13:50:16', 'godzilla-tru-mot', '', '', '', ''),
+(7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '2023', '', '', '10.000 VND', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 5, '2023-12-28 10:46:38', '2024-01-04 13:50:28', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
+(8, 1, 'Con nhà tài phiệt', 'Reborn rich', '2022', '', '', '10.000 VND', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '2,3', 1, '2023-12-28 10:50:33', '2024-01-06 13:37:12', 'con-nha-tai-phiet', '', '', '', ''),
+(11, 2, 'phim test', '', '2022', '', '', '1.000 VND', '', 9, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz51.jpg', 1, '1', 4, '2024-01-06 12:43:33', '2024-01-06 12:55:57', 'phim-test', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -339,20 +361,35 @@ CREATE TABLE IF NOT EXISTS `movie_countries` (
   `movie_id` int NOT NULL,
   `country_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_countries`
 --
 
 INSERT INTO `movie_countries` (`id`, `movie_id`, `country_id`) VALUES
-(22, 3, 2),
-(23, 2, 2),
-(20, 1, 2),
-(21, 5, 4),
-(26, 6, 4),
-(25, 7, 2),
-(27, 8, 3);
+(53, 3, 2),
+(47, 2, 2),
+(45, 1, 2),
+(46, 5, 4),
+(49, 6, 4),
+(50, 7, 2),
+(54, 8, 3),
+(52, 11, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movie_customers`
+--
+
+DROP TABLE IF EXISTS `movie_customers`;
+CREATE TABLE IF NOT EXISTS `movie_customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movie_id` int NOT NULL,
+  `customer_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -366,23 +403,26 @@ CREATE TABLE IF NOT EXISTS `movie_genres` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_genres`
 --
 
 INSERT INTO `movie_genres` (`id`, `movie_id`, `genre_id`) VALUES
-(37, 2, 4),
-(36, 2, 5),
-(33, 1, 4),
-(32, 1, 5),
-(35, 3, 2),
-(34, 5, 2),
-(41, 6, 4),
-(39, 4, 4),
-(40, 7, 4),
-(42, 8, 5);
+(77, 2, 4),
+(76, 2, 5),
+(74, 1, 4),
+(73, 1, 5),
+(86, 3, 2),
+(75, 5, 2),
+(80, 6, 4),
+(79, 4, 4),
+(81, 7, 4),
+(87, 8, 5),
+(83, 11, 8),
+(84, 11, 7),
+(85, 11, 4);
 
 -- --------------------------------------------------------
 
@@ -418,8 +458,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`id`, `category_id`, `admin_id`, `name`, `desc`, `content`, `image`, `display_order`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(3, 0, 123, 'aaaaaaaaaaaa', '<p>aaaaaaaaaaa</p>', '<p>Theo MovieWeb, một nguồn tin tại Hollywood cho biết cả&nbsp;<a href=\"https://kenh14.vn/chris-evans.html\" target=\"_blank\" title=\"chris evans\">Chris Evans</a>&nbsp;v&agrave;&nbsp;<a href=\"https://kenh14.vn/robert-downey-jr.html\" target=\"_blank\" title=\"robert downey jr.\">Robert Downey Jr.</a>&nbsp;mới đ&acirc;y đ&atilde; đồng &yacute; quay trở lại Vũ trụ Điện ảnh Marvel (MCU). Trước đ&oacute;, xuất hiện một số th&ocirc;ng tin về việc h&atilde;ng phim dự định mời c&aacute;c ng&ocirc;i sao cũ để vực thương hiệu si&ecirc;u anh h&ugrave;ng sau qu&atilde;ng thời gian kh&oacute; khăn vừa qua. Ngo&agrave;i Chris v&agrave; Robert, Scarlett Johansson cũng l&agrave; một trong những gương mặt được nhắm đến.</p>\r\n\r\n<p><a href=\"https://kenh14cdn.com/203336854389633024/2023/11/6/photo-2-1699261519600201773962.jpeg\" target=\"_blank\" title=\"Chris Evans và Robert Downey Jr. được cho là đã nhận lời quay lại Vũ trụ Điện ảnh Marvel\"><img alt=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 1.\" height=\"\" src=\"https://kenh14cdn.com/thumb_w/620/203336854389633024/2023/11/6/photo-2-1699261519600201773962.jpeg\" title=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 1.\" width=\"\" /></a></p>\r\n\r\n<p>Chris Evans v&agrave; Robert Downey Jr. được cho l&agrave; đ&atilde; nhận lời quay lại Vũ trụ Điện ảnh Marvel</p>\r\n\r\n<p>Tr&ecirc;n c&aacute;c diễn đ&agrave;n điện ảnh, người h&acirc;m mộ dự đo&aacute;n Chris Evans nhiều khả năng sẽ t&aacute;i xuất với vai Đội Trưởng Mỹ trong<em>&nbsp;Captain America: Brave New World&nbsp;</em>(2021) hoặc<em>&nbsp;Avengers: Secret Wars</em>&nbsp;(2027). Một số nguồn tin cho biết nam diễn vi&ecirc;n đang đợi cuộc đ&igrave;nh c&ocirc;ng tại Hollywood kết th&uacute;c để c&oacute; thể bắt đầu kh&acirc;u ghi h&igrave;nh.</p>\r\n\r\n<p>Trong khi đ&oacute;, nhiều giả thuyết về sự trở lại của Robert Downey Jr. trong vai Iron Man cũng được người h&acirc;m mộ đưa ra. Một trong những &yacute; tưởng nhận nhiều sự ủng hộ l&agrave; li&ecirc;n quan đến series&nbsp;<em>Ironheart</em>&nbsp;- bộ phim về Người Sắt phi&ecirc;n bản nữ của Marvel dự kiến ra mắt năm 2024. Trong nguy&ecirc;n t&aacute;c, nh&acirc;n vật Tony Stark (t&ecirc;n thật của Iron Man) đ&oacute;ng vai tr&ograve; quan trọng gi&uacute;p c&ocirc; b&eacute; Riri trở th&agrave;nh Người Sắt phi&ecirc;n bản nữ. Cụ thể, anh xuất hiện trong h&igrave;nh dạng một thực thể tr&iacute; tuệ nh&acirc;n tạo để hướng dẫn c&ocirc; b&eacute; l&agrave;m si&ecirc;u anh h&ugrave;ng.</p>\r\n\r\n<p><a href=\"https://kenh14cdn.com/203336854389633024/2023/11/6/photo-1-16992615179221469279070.jpg\" target=\"_blank\" title=\"Captain America và Iron Man là những siêu anh hùng quan trọng nhất của Vũ trụ Điện ảnh Marvel từ những bộ phim đầu tiên cho đến Avengers: Endgame (2019)\"><img alt=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 2.\" height=\"\" src=\"https://kenh14cdn.com/thumb_w/620/203336854389633024/2023/11/6/photo-1-16992615179221469279070.jpg\" title=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 2.\" width=\"\" /></a></p>\r\n\r\n<p>Captain America v&agrave; Iron Man l&agrave; những si&ecirc;u anh h&ugrave;ng quan trọng nhất của Vũ trụ Điện ảnh Marvel từ những bộ phim đầu ti&ecirc;n cho đến Avengers: Endgame (2019)</p>\r\n\r\n<p>Chris Evans v&agrave; Robert Downey Jr. rời Vũ trụ Điện ảnh Marvel sau bộ phim&nbsp;<em>Avengers: Endgame&nbsp;</em>(2019). Nh&acirc;n vật Iron Man do Robert thủ vai đ&atilde; hy sinh bản th&acirc;n để ngăn chặn Thanos ti&ecirc;u diệt vũ trụ. Trong khi đ&oacute;, Captain America do Chris Evans đ&oacute;ng quyết định nghỉ hưu, ngừng sự nghiệp si&ecirc;u anh h&ugrave;ng để d&agrave;nh thời gian cho người y&ecirc;u Peggy Carter của m&igrave;nh.</p>\r\n\r\n<p>&nbsp;</p>', '8105Oc1+FPL64.jpg', 3, 0, '3', 0, '20231201', '20231201', 'aaaaaaaaaaaa', 'nmbnmb', '', '', ''),
-(7, 0, 123, 'phim bbbbbbbbb', '<p>phim bbbbbbbbb</p>', '<p>phim bbbbbbbbb</p>', '71-sziO1OsL73.jpg', 4, 1, '1,3', 0, '20231201', '20231212', 'phim-bbbbbbbbb', 'drrgdg,fgdfgdf,vgjnvhnfn,fgjghjf', '', '', '');
+(3, 2, 123, 'aaaaaaaaaaaa', '<p>aaaaaaaaaaa</p>', '<p>Theo MovieWeb, một nguồn tin tại Hollywood cho biết cả&nbsp;<a href=\"https://kenh14.vn/chris-evans.html\" target=\"_blank\" title=\"chris evans\">Chris Evans</a>&nbsp;v&agrave;&nbsp;<a href=\"https://kenh14.vn/robert-downey-jr.html\" target=\"_blank\" title=\"robert downey jr.\">Robert Downey Jr.</a>&nbsp;mới đ&acirc;y đ&atilde; đồng &yacute; quay trở lại Vũ trụ Điện ảnh Marvel (MCU). Trước đ&oacute;, xuất hiện một số th&ocirc;ng tin về việc h&atilde;ng phim dự định mời c&aacute;c ng&ocirc;i sao cũ để vực thương hiệu si&ecirc;u anh h&ugrave;ng sau qu&atilde;ng thời gian kh&oacute; khăn vừa qua. Ngo&agrave;i Chris v&agrave; Robert, Scarlett Johansson cũng l&agrave; một trong những gương mặt được nhắm đến.</p>\r\n\r\n<p><a href=\"https://kenh14cdn.com/203336854389633024/2023/11/6/photo-2-1699261519600201773962.jpeg\" target=\"_blank\" title=\"Chris Evans và Robert Downey Jr. được cho là đã nhận lời quay lại Vũ trụ Điện ảnh Marvel\"><img alt=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 1.\" height=\"\" src=\"https://kenh14cdn.com/thumb_w/620/203336854389633024/2023/11/6/photo-2-1699261519600201773962.jpeg\" title=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 1.\" width=\"\" /></a></p>\r\n\r\n<p>Chris Evans v&agrave; Robert Downey Jr. được cho l&agrave; đ&atilde; nhận lời quay lại Vũ trụ Điện ảnh Marvel</p>\r\n\r\n<p>Tr&ecirc;n c&aacute;c diễn đ&agrave;n điện ảnh, người h&acirc;m mộ dự đo&aacute;n Chris Evans nhiều khả năng sẽ t&aacute;i xuất với vai Đội Trưởng Mỹ trong<em>&nbsp;Captain America: Brave New World&nbsp;</em>(2021) hoặc<em>&nbsp;Avengers: Secret Wars</em>&nbsp;(2027). Một số nguồn tin cho biết nam diễn vi&ecirc;n đang đợi cuộc đ&igrave;nh c&ocirc;ng tại Hollywood kết th&uacute;c để c&oacute; thể bắt đầu kh&acirc;u ghi h&igrave;nh.</p>\r\n\r\n<p>Trong khi đ&oacute;, nhiều giả thuyết về sự trở lại của Robert Downey Jr. trong vai Iron Man cũng được người h&acirc;m mộ đưa ra. Một trong những &yacute; tưởng nhận nhiều sự ủng hộ l&agrave; li&ecirc;n quan đến series&nbsp;<em>Ironheart</em>&nbsp;- bộ phim về Người Sắt phi&ecirc;n bản nữ của Marvel dự kiến ra mắt năm 2024. Trong nguy&ecirc;n t&aacute;c, nh&acirc;n vật Tony Stark (t&ecirc;n thật của Iron Man) đ&oacute;ng vai tr&ograve; quan trọng gi&uacute;p c&ocirc; b&eacute; Riri trở th&agrave;nh Người Sắt phi&ecirc;n bản nữ. Cụ thể, anh xuất hiện trong h&igrave;nh dạng một thực thể tr&iacute; tuệ nh&acirc;n tạo để hướng dẫn c&ocirc; b&eacute; l&agrave;m si&ecirc;u anh h&ugrave;ng.</p>\r\n\r\n<p><a href=\"https://kenh14cdn.com/203336854389633024/2023/11/6/photo-1-16992615179221469279070.jpg\" target=\"_blank\" title=\"Captain America và Iron Man là những siêu anh hùng quan trọng nhất của Vũ trụ Điện ảnh Marvel từ những bộ phim đầu tiên cho đến Avengers: Endgame (2019)\"><img alt=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 2.\" height=\"\" src=\"https://kenh14cdn.com/thumb_w/620/203336854389633024/2023/11/6/photo-1-16992615179221469279070.jpg\" title=\"Iron Man và Captain America được mời quay lại Vũ trụ Điện ảnh Marvel, biệt đội Avengers huyền thoại sắp sửa tái hợp? - Ảnh 2.\" width=\"\" /></a></p>\r\n\r\n<p>Captain America v&agrave; Iron Man l&agrave; những si&ecirc;u anh h&ugrave;ng quan trọng nhất của Vũ trụ Điện ảnh Marvel từ những bộ phim đầu ti&ecirc;n cho đến Avengers: Endgame (2019)</p>\r\n\r\n<p>Chris Evans v&agrave; Robert Downey Jr. rời Vũ trụ Điện ảnh Marvel sau bộ phim&nbsp;<em>Avengers: Endgame&nbsp;</em>(2019). Nh&acirc;n vật Iron Man do Robert thủ vai đ&atilde; hy sinh bản th&acirc;n để ngăn chặn Thanos ti&ecirc;u diệt vũ trụ. Trong khi đ&oacute;, Captain America do Chris Evans đ&oacute;ng quyết định nghỉ hưu, ngừng sự nghiệp si&ecirc;u anh h&ugrave;ng để d&agrave;nh thời gian cho người y&ecirc;u Peggy Carter của m&igrave;nh.</p>\r\n\r\n<p>&nbsp;</p>', '8105Oc1+FPL64.jpg', 3, 2, '3', 0, '20231201', '2024-01-04 13:34:14', 'aaaaaaaaaaaa', 'nmbnmb', '', '', ''),
+(7, 5, 123, 'phim bbbbbbbbb', '<p>phim bbbbbbbbb</p>', '<p>phim bbbbbbbbb</p>', '71-sziO1OsL73.jpg', 4, 1, '1,3', 0, '20231201', '2024-01-04 13:34:08', 'phim-bbbbbbbbb', 'drrgdg,fgdfgdf,vgjnvhnfn,fgjghjf', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -452,11 +492,11 @@ CREATE TABLE IF NOT EXISTS `news_categories` (
 --
 
 INSERT INTO `news_categories` (`id`, `name`, `desc`, `content`, `root_id`, `parent_id`, `level`, `display_order`, `image`, `representative`, `status`, `seo_name`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 'Tin mới', '', '', ' , ', 0, 1, 1, 'image002_18870_b56691ea39.jpeg', 0, 1, 'tin-moi', '', '', ''),
-(2, 'Tin abc', '<p>danh mục bbbb</p>', '', ' , 1 , ', 1, 2, 2, 'VkOoPRr73.jpeg', 1, 0, 'tin-abc', '', '', ''),
-(3, 'Tin xyz', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 5 , ', 5, 2, 3, '8105Oc1+FPL27.jpg', 1, 0, 'tin-xyz', 'danh mục ccccc', '', 'danh mục ccccc'),
-(4, 'Tin hot', '', '<p>danh mục ddddddddddddcfghvcgh</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 0, 1, 'tin-hot', '', '', ''),
-(5, 'Tin điện ảnh', '', '', ' , ', 0, 1, 5, '71-sziO1OsL80.jpg', 0, 1, 'tin-dien-anh', '', '', '');
+(1, 'Tin mới', '', '', ' , ', 0, 1, 1, 'image002_18870_b56691ea39.jpeg', 2, 1, 'tin-moi', '', '', ''),
+(2, 'Tin abc', '<p>danh mục bbbb</p>', '', ' , 1 , ', 1, 2, 2, 'VkOoPRr73.jpeg', 1, 2, 'tin-abc', '', '', ''),
+(3, 'Tin xyz', '<p>danh mục ccccc</p>', '<p>danh mục ccccc</p>', ' , 5 , ', 5, 2, 3, '8105Oc1+FPL27.jpg', 1, 2, 'tin-xyz', 'danh mục ccccc', '', 'danh mục ccccc'),
+(4, 'Tin hot', '', '<p>danh mục ddddddddddddcfghvcgh</p>', ' , ', 0, 1, 4, 'Oppenheimer_–_Vietnam_poster83.jpg', 2, 1, 'tin-hot', '', '', ''),
+(5, 'Tin điện ảnh', '', '', ' , ', 0, 1, 5, '71-sziO1OsL80.jpg', 2, 1, 'tin-dien-anh', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -482,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 INSERT INTO `orders` (`id`, `code`, `customer_id`, `service_id`, `display_order`, `status`, `date_created`, `date_updated`) VALUES
-(1, 'xfghfgh', 1, 1, 1, 0, '20231211', '20231211');
+(1, 'xfghfgh', 1, 1, 1, 2, '20231211', '20231211');
 
 -- --------------------------------------------------------
 

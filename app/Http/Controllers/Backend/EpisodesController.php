@@ -43,7 +43,7 @@ class EpisodesController extends Controller
     public function add(string $movie_seo_name)
     {
         $url = 'admin-pages.episodes.add_edit_episodes';
-        $listServerLink = ServerLink::orderBy('display_order', 'asc')->get();
+        $listServerLink = ServerLink::orderBy('display_order', 'asc')->where('status', 1)->get();
         $data = '';
         return view($url)
         ->with('movie_seo_name', $movie_seo_name)
@@ -80,6 +80,8 @@ class EpisodesController extends Controller
         $item->date_created = date("Y-m-d H:i:s");
         $item->date_updated = date("Y-m-d H:i:s");
         $item->save();
+
+        
 
         // save vào bảng phụ
         // subtitles
@@ -152,7 +154,7 @@ class EpisodesController extends Controller
         $url = 'admin-pages.episodes.add_edit_episodes';
         $data = Episode::where('id', $id)->first();
         $get_seo_name = Movie::where('id', $data->movie_id)->get('seo_name')->first();
-        $listServerLink = ServerLink::orderBy('display_order', 'asc')->get();
+        $listServerLink = ServerLink::orderBy('display_order', 'asc')->where('status', 1)->get();
         $listLink = EpisodeServer::where('episode_id', $id)->orderBy('server_id', 'asc')->get();
         $listSub = Subtitle::where('episode_id', $id)->orderBy('id', 'asc')->get();
         $view = view($url)
@@ -283,7 +285,7 @@ class EpisodesController extends Controller
     //bật tắt trạng thái
     public function unactivate_episodes_status($id)
     {
-        Episode::where('id', $id)->update(['status' => 0]);
+        Episode::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

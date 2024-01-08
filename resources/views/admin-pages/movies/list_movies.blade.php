@@ -17,18 +17,33 @@
             if (!isset($search_value)) {
               $search_value['name'] = '';
               $search_value['status'] = '';
+              $search_value['category'] = '';
+              $search_value['year'] = '';
             }
             //dd($search_value['status'] == 0 ? 'yes' : 'no');
             @endphp
             {!! Form::open(['url'=>'admin/movie-search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
             <div class="LVR_box-search">
               <div class="input-group input-group-sm">
-                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <select name="status" class="form-control">
                     <option value="">Trạng thái</option>
                     <option {{$search_value['status'] == '1' ? 'selected' : ''}} value="1">Hoạt động</option>
-                    <option {{$search_value['status'] == '0' ? 'selected' : ''}} value="0">Không Hoạt động</option>
+                    <option {{$search_value['status'] == '2' ? 'selected' : ''}} value="2">Không Hoạt động</option>
                   </select>
+                </div>
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
+                  {{-- <select name="category" class="form-control">
+                    <option value="">Chủ đề</option>
+                    @foreach($listCategory as $key => $cate)
+                    <option {{$search_value['category'] == $cate-> ? 'selected' : ''}} value="1">Hoạt động</option>
+                    @endforeach
+                    <option {{$search_value['status'] == '2' ? 'selected' : ''}} value="2">Không Hoạt động</option>
+                  </select> --}}
+                  {!! Form::select('category', $dataCategory->pluck('name', 'id'), $search_value['category'] == $search_value['category'] ? $search_value['category'] : '', ['class' => 'form-control', 'placeholder' => 'Chủ đề']) !!}
+                </div>
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
+                  {!! Form::selectYear('year', 1900, date('Y'), $search_value['year'] == $search_value['year'] ? $search_value['year'] : '', ['class' => 'form-control', 'placeholder' => 'Năm phát hành']) !!}
                 </div>
                 <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <input type="text" name="name" value="{{$search_value['name'] ? $search_value['name'] : ''}}"
@@ -57,9 +72,11 @@
                   <th class="text-center">STT</th>
                   <th class="text-center">Hình ảnh</th>
                   <th class="title-space">Tiêu đề</th>
-                  <th class="title-space">Tập phim</th>
+                  <th class="text-center">Tập phim</th>
+                  <th class="text-center">Giá</th>
                   <th class="text-center">Chủ đề</th>
                   <th class="text-center">Thể loại</th>
+                  <th class="text-center">Năm</th>
                   <th class="text-center">Trạng thái</th>
                   <th class="text-right">Tác vụ</th>
                 </tr>
@@ -74,13 +91,18 @@
                     <img src="{{URL::to('public/backend/uploads/movies/'.$movies->image)}}" class="list-image">
                   </td>
                   <td class="title-space">
-                    <a>{{ $movies->name }}</a>
-                    <br />
+                    <a style="font-weight: bold">{{ $movies->name }}</a>
+                    <br>
+                    <a>{{$movies->org_name}}</a>
+                    <br>
                     <small>Cập nhật ngày {{$movies->date_updated}}</small> 
                   </td>
 
-                  <td class="title-space">
+                  <td class="text-center">
                     <a href="{{URL::to('admin/episodes/'.$movies->seo_name)}}">Thêm tập phim</a>
+                  </td>
+                  <td class="text-center">
+                    {{$movies->price}}
                   </td>
                   
                   <td class="text-center">
@@ -105,6 +127,9 @@
                         @endforeach
                       @endif
                     @endforeach
+                  </td>
+                  <td class="text-center">
+                    {{$movies->year}}
                   </td>
                   <td class="text-center"><span class="text-ellipsis">
                       {{-- <a>{{$movies->status == 1 ? 'Hoạt động' : 'Không hoạt động'}}</a> --}}

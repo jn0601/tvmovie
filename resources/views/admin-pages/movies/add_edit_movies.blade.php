@@ -3,6 +3,9 @@
 @php  
 	if ($data != '') {
 		$status = $data->status == 1 ? 'selected' : '';
+		$year = $data->year ? $data->year : '';
+	} else {
+		$year = '';
 	}
 @endphp
 
@@ -49,6 +52,7 @@
 													$content = 'content';
 													$seoName = 'seo_name';
 													$link_trailer = 'link_trailer';
+													$price = 'price';
 
 													$name_value = isset($data['name']) ? $data['name'] : "";
 													$org_name_value = isset($data['org_name']) ? $data['org_name'] : "";
@@ -56,6 +60,7 @@
 													$content_value = isset($data['content']) ? $data['content'] : "";
 													$seo_name_value = isset($data['seo_name']) ? $data['seo_name'] : "";
 													$link_trailer_value = isset($data['link_trailer']) ? $data['link_trailer'] : "";
+													$price_value = isset($data['price']) ? $data['price'] : "";
 											@endphp
 		
 											<div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
@@ -163,12 +168,31 @@
 									Tính năng
 								</div>
 								<div class="col-md-9">
+
 									<div class="box-item-tab-content-default">
+										<div class="field item form-group">
+											<label class="col-form-label col-md-2 col-sm-2">Giá <span class="required">*</span></label>
+											<div class="col-md-10 col-sm-10 input-group input-group-sm">
+												<input class="form-control" id="price" data-validate-length-range="6"
+													data-validate-words="2" name="{{$price}}" value="{{old($price, $price_value)}}" placeholder="VND" required="required" />
+											</div>
+										</div>
+										@error($price)
+											<span style="color: red;">{{$message}}</span>
+										@enderror	
+
+										<div class="field item form-group">
+											<label class="col-form-label col-md-2 col-sm-2">Năm phát hành</label>
+											<div class="col-md-10 col-sm-10 input-group input-group-sm">
+												{!! Form::selectYear('year', 1900, date('Y'), $year, ['class' => 'selected-year']) !!}
+											</div>
+										</div>
+
 										<div class="field item form-group">
 											<label class="col-form-label col-md-2 col-sm-2">Link trailer</label>
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<input class="form-control" data-validate-length-range="6"
-													data-validate-words="2" name="{{$link_trailer}}" value="{{old($link_trailer, $link_trailer_value)}}" placeholder=""/>
+													data-validate-words="2" name="{{$link_trailer}}" value="{{old($link_trailer, $link_trailer_value)}}" placeholder="https://youtu.be/ chỉ lấy phần mã ở đây của link trailer"/>
 											</div>
 										</div>
 
@@ -176,7 +200,7 @@
 											<label class="col-form-label col-md-2 col-sm-2">Chủ đề</label>
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="category_id" class="custom-select">
-													<option value="0">Không có danh mục</option>
+													<option value="2">Không có danh mục</option>
 													@if ($data == '')
 													@foreach($listCategory as $key => $value)
 														<option value="{{$value->id}}">
@@ -198,7 +222,7 @@
 											<label class="col-form-label col-md-2 col-sm-2">Thể loại</label>
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="genre_id[]" class="custom-select js-example-templating" multiple="multiple">
-													{{-- <option value="0">Không có thể loại</option> --}}
+													{{-- <option value="2">Không có thể loại</option> --}}
 													@if ($data == '')
 													@foreach($listGenre as $key => $value)
 														<option value="{{$value->id}}">
@@ -230,7 +254,7 @@
 											<label class="col-form-label col-md-2 col-sm-2">Quốc gia</label>
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="country_id[]" class="custom-select js-example-templating" multiple="multiple">
-													{{-- <option value="0">Không có quốc gia</option> --}}
+													{{-- <option value="2">Không có quốc gia</option> --}}
 													@if ($data == '')
 													@foreach($listCountry as $key => $value)
 														<option value="{{$value->id}}">
@@ -283,10 +307,10 @@
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="status" class="form-control">
 													@if ($data != '')
-													<option {{$status}} value="0">Không hoạt động</option>
+													<option {{$status}} value="2">Không hoạt động</option>
 													<option {{$status}} value="1">Hoạt động</option>
 													@else
-													<option value="0">Không hoạt động</option>
+													<option value="2">Không hoạt động</option>
 													<option selected value="1">Hoạt động</option>
 													@endif
 												</select>

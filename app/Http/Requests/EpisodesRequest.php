@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ServerLink;
 use Illuminate\Foundation\Http\FormRequest;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Validation\Rule;
@@ -28,6 +29,7 @@ class EpisodesRequest extends FormRequest
             'img' => ['required' => Rule::requiredIf(empty($this->movie))],
             'seo_name' => 'required|max:255|unique:movies,seo_name,' . $this->movie,
         ];
+        
 
         return $dataRules;
     }

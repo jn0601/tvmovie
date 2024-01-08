@@ -23,11 +23,11 @@
             {!! Form::open(['url'=>'admin/news-search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
             <div class="LVR_box-search">
               <div class="input-group input-group-sm">
-                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <select name="status" class="form-control">
                     <option value="">Trạng thái</option>
                     <option {{$search_value['status'] == '1' ? 'selected' : ''}} value="1">Hoạt động</option>
-                    <option {{$search_value['status'] == '0' ? 'selected' : ''}} value="0">Không Hoạt động</option>
+                    <option {{$search_value['status'] == '2' ? 'selected' : ''}} value="2">Không Hoạt động</option>
                   </select>
                 </div>
                 <div class="col-md-2 col-sm-2 input-group input-group-sm">

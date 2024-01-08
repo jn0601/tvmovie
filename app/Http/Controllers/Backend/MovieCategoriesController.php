@@ -37,27 +37,14 @@ class MovieCategoriesController extends Controller
         }
         // có data
         else {
-            // search status
-            if ($data['name'] == '' && $data['status'] != '') {
-                $list = MovieCategory::where('status', $data['status'])
-                ->orderBy('display_order', 'desc')
-                ->paginate($this->pagination);
+            $list = MovieCategory::orderBy('display_order', 'desc');
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
             } 
-            else {
-                // search status và name
-                if ($data['status']) {
-                    $list = MovieCategory::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                } 
-                // search name
-                else {
-                    $list = MovieCategory::where('name', 'like', '%' . $data['name'] . '%')
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                }
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
             }
+            $list = $list->paginate($this->pagination);
         }
         //dd($data);
         $view = view($url)->with('data', $list)->with('search_value', $data);
@@ -157,7 +144,7 @@ class MovieCategoriesController extends Controller
 
     public function unactivate_movie_categories_status($id)
     {
-        MovieCategory::where('id', $id)->update(['status' => 0]);
+        MovieCategory::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

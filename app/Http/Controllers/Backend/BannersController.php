@@ -142,7 +142,7 @@ class BannersController extends Controller
     //bật tắt trạng thái
     public function unactivate_banners_status($id)
     {
-        Banner::where('id', $id)->update(['status' => 0]);
+        Banner::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

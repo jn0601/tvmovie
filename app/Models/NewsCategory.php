@@ -49,4 +49,8 @@ class NewsCategory extends Model
 
         return $data;
     }
+
+    public function news() {
+        return $this->hasMany(News::class);
+    }
 }

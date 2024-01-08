@@ -10,6 +10,7 @@
             <h2>Danh sách tập phim</h2>
             <ul class="nav navbar-right panel_toolbox">
               <a href="{{URL::to('/admin/add-episodes/'.$movie_seo_name)}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm mới</a>
+              <a href="{{URL::to('/admin/movies')}}" class="btn btn-primary btn-sm"> <i class="fa fa-sign-out"></i> Quay lại </a>
             </ul>
             <div class="clearfix"></div>
             {{-- search bar --}}
@@ -23,11 +24,11 @@
             {{-- {!! Form::open(['url'=>'admin/movie-search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
             <div class="LVR_box-search">
               <div class="input-group input-group-sm">
-                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <select name="status" class="form-control">
                     <option value="">Trạng thái</option>
                     <option {{$search_value['status'] == '1' ? 'selected' : ''}} value="1">Hoạt động</option>
-                    <option {{$search_value['status'] == '0' ? 'selected' : ''}} value="0">Không Hoạt động</option>
+                    <option {{$search_value['status'] == '2' ? 'selected' : ''}} value="2">Không Hoạt động</option>
                   </select>
                 </div>
                 <div class="col-md-2 col-sm-2 input-group input-group-sm">

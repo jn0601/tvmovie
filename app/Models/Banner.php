@@ -17,4 +17,8 @@ class Banner extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'banners';
+
+    public function category() {
+        return $this->belongsTo(BannerCategory::class);
+    }
 }

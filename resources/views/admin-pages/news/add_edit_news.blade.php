@@ -156,7 +156,7 @@
 											<label class="col-form-label col-md-2 col-sm-2">Chủ đề</label>
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="category_id" class="custom-select">
-													<option value="0">Không có danh mục</option>
+													<option value="2">Không có danh mục</option>
 													@if ($data == '')
 													@foreach($listCategory as $key => $value)
 														<option value="{{$value->id}}">
@@ -213,10 +213,10 @@
 											<div class="col-md-10 col-sm-10 input-group input-group-sm">
 												<select name="status" class="form-control">
 													@if ($data != '')
-													<option {{$status}} value="0">Không hoạt động</option>
+													<option {{$status}} value="2">Không hoạt động</option>
 													<option {{$status}} value="1">Hoạt động</option>
 													@else
-													<option value="0">Không hoạt động</option>
+													<option value="2">Không hoạt động</option>
 													<option selected value="1">Hoạt động</option>
 													@endif
 												</select>

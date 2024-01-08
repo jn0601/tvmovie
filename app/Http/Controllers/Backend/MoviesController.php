@@ -43,8 +43,9 @@ class MoviesController extends Controller
     {
         $url = 'admin-pages.movies.list_movies';
         $data = $request->all();
+        //dd($data);
         // không có data
-        if ($data['name'] == '' && $data['status'] == '') {
+        if ($data['name'] == '' && $data['status'] == '' && $data['category'] == '' && $data['year'] == '') {
             return Redirect::to('admin/movies');
         }
         // có data
@@ -52,27 +53,22 @@ class MoviesController extends Controller
             $listCategory = MovieCategory::orderBy('display_order', 'desc')->get();
             $mainGenre = Genre::orderBy('display_order', 'desc')->get();
             $listGenre = MovieGenre::orderBy('id', 'desc')->get();
-            // search status
-            if ($data['name'] == '' && $data['status'] != '') {
-                $list = Movie::where('status', $data['status'])
-                ->orderBy('display_order', 'desc')
-                ->paginate($this->pagination);
+            
+            $list = Movie::withCount('episode'); //lấy ra phim và đếm tập
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
             } 
-            else {
-                // search status và name
-                if ($data['status']) {
-                    $list = Movie::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                } 
-                // search name
-                else {
-                    $list = Movie::where('name', 'like', '%' . $data['name'] . '%')
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                }
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
+            } 
+            if ($data['category']) {
+                $list = $list->where('category_id', $data['category']);
             }
+            if ($data['year']) {
+                $list = $list->where('year', $data['year']);
+            }
+            $list = $list->orderBy('display_order', 'desc')
+            ->paginate($this->pagination);
         }
         //dd($data);
         $view = view($url)->with('data', $list)
@@ -112,6 +108,8 @@ class MoviesController extends Controller
         $item->desc = $data['desc'] ? $data['desc'] : '';
         $item->content = $data['content'] ? $data['content'] : '';
         $item->seo_name = $data['seo_name'];
+        $item->year = $data['year'] ? $data['year'] : '';
+        $item->price = $data['price'];
 
         $get_image = request('img');
         $get_name_image = $get_image->getClientOriginalName();
@@ -200,10 +198,12 @@ class MoviesController extends Controller
 
         $getImage = $request->file('img');
         $data['name'] = $dataRequest['name'];
-        $data['org_name'] = $dataRequest['org_name'] ? $dataRequest['org_name'] : '';
+        $data['org_name'] = isset($dataRequest['org_name']) ? $dataRequest['org_name'] : '';
         $data['desc'] = isset($dataRequest['desc']) ? $dataRequest['desc'] : '';
         $data['content'] = isset($dataRequest['content']) ? $dataRequest['content'] : '';
         $data['seo_name'] = isset($dataRequest['seo_name']) ? $dataRequest['seo_name'] : '';
+        $data['year'] = isset($dataRequest['year']) ? $dataRequest['year'] : '';
+        $data['price'] = ($dataRequest['price']);
 
         $data['tags'] = isset($dataRequest['tags']) ? $dataRequest['tags'] : '';
         $data['meta_title'] = isset($dataRequest['meta_title']) ? $dataRequest['meta_title'] : '';
@@ -282,7 +282,7 @@ class MoviesController extends Controller
     //bật tắt trạng thái
     public function unactivate_movies_status($id)
     {
-        Movie::where('id', $id)->update(['status' => 0]);
+        Movie::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

@@ -104,7 +104,7 @@ class ServicesController extends Controller
      */
     public function destroy(string $id)
     {
-        $check_item = Order::where('service_id', $id)->where('status', 0)->get()->first();
+        $check_item = Order::where('service_id', $id)->where('status', 2)->get()->first();
         if ($check_item) {
             Toastr::error('Dịch vụ có đơn hàng chưa xử lí', 'Thất bại');
         } else {
@@ -116,7 +116,7 @@ class ServicesController extends Controller
 
     public function unactivate_services_status($id)
     {
-        Service::where('id', $id)->update(['status' => 0]);
+        Service::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

@@ -16,4 +16,8 @@ class Subtitle extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'subtitles';
+
+    public function episode() {
+        return $this->belongsTo(Episode::class);
+    }
 }

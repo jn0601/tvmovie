@@ -37,27 +37,14 @@ class GenresController extends Controller
         }
         // có data
         else {
-            // search status
-            if ($data['name'] == '' && $data['status'] != '') {
-                $list = Genre::where('status', $data['status'])
-                ->orderBy('display_order', 'desc')
-                ->paginate($this->pagination);
+            $list = Genre::orderBy('display_order', 'desc');
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
             } 
-            else {
-                // search status và name
-                if ($data['status']) {
-                    $list = Genre::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                } 
-                // search name
-                else {
-                    $list = Genre::where('name', 'like', '%' . $data['name'] . '%')
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                }
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
             }
+            $list = $list->paginate($this->pagination);
         }
         //dd($data);
         $view = view($url)->with('data', $list)->with('search_value', $data);
@@ -155,7 +142,7 @@ class GenresController extends Controller
 
     public function unactivate_genres_status($id)
     {
-        Genre::where('id', $id)->update(['status' => 0]);
+        Genre::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }

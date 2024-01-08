@@ -18,4 +18,11 @@ class Episode extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'episodes';
+
+    public function subtitle() {
+        return $this->hasMany(Subtitle::class);
+    }
+    public function movie() {
+        return $this->belongsTo(Movie::class);
+    }
 }

@@ -33,6 +33,7 @@
       <link rel='stylesheet' id='style-css' href='{{asset('public/frontend/css/style.css?ver=5.7.2')}}' media='all' />
       <link rel='stylesheet' href='{{asset('public/frontend/css/user-style.css')}}' media='all' />
       <link rel='stylesheet' id='wp-block-library-css' href='{{asset('public/frontend/css/style.min.css?ver=5.7.2')}}' media='all' />
+      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
       <script type='text/javascript' src='{{asset('public/frontend/js/jquery.min.js?ver=5.7.2')}}' id='halim-jquery-js'></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
@@ -45,21 +46,24 @@
       <header id="header">
          <div class="container">
             <div class="row" id="headwrap">
-               <div class="col-md-3 col-sm-6 slogan">
+               <div class="col-md-2 col-sm-6 slogan">
                   <p class="site-title"><a class="logo" href="{{URL::to('/')}}" title="phim hay ">Phim Hay</p>
                   </a>
                </div>
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                   <div class="header-nav">
                      <div class="col-xs-12">
-                        <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
+                        {{-- <form id="search-form-pc" name="halimForm" role="search" action="" method="GET"> --}}
+                           {!! Form::open(['url'=>'tim-kiem', 'id'=>'search-form-pc', 'name'=>'halimForm',
+                           'role'=>'search', 'method'=>'get', 'enctype'=>'multipart/form-data']) !!}
                            <div class="form-group">
                               <div class="input-group col-xs-12">
-                                 <input id="search" type="text" name="s" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
+                                 <input id="search" type="text" name="name" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
                                  <i class="animate-spin hl-spin4 hidden"></i>
                               </div>
                            </div>
-                        </form>
+                           {!! Form::close() !!}
+                        {{-- </form> --}}
                         <ul class="ui-autocomplete ajax-results hidden"></ul>
                      </div>
                   </div>
@@ -74,9 +78,10 @@
                      use Illuminate\Support\Facades\Session;
                      $customer_id = Session::get('customer_id');
                      $customer_name = Session::get('customer_name');
+                     $balance = Session::get('balance');
                   @endphp
                   @if ($customer_id)
-                     <div class="box-shadow login-button"><span>Xin chào, </span> {{$customer_name}}</div>
+                     <div class="box-shadow login-button"><span>Xin chào, </span> {{$customer_name}} | Số dư: {{$balance}}</div>
                      <a href="{{URL::to('logout')}}" class="box-shadow login-button"><span> Đăng xuất</span></a>
                   @else
                      <a href="{{route('view_login')}}" class="box-shadow login-button"><span> Đăng nhập</span></a>
@@ -96,16 +101,24 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right expand-search-form" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
-                  <span class="hl-search" aria-hidden="true"></span>
+                  
+                  @if ($customer_id)
+                     <a href="{{URL::to('logout')}}" class="box-shadow login-button pull-right mobile-button"><span> Đăng xuất</span></a>
+                     <div class="box-shadow login-button collapsed pull-right mobile-button"><span>Xin chào, </span> {{$customer_name}}</div>
+                  @else
+                     <a href="{{route('view_login')}}" class="box-shadow login-button collapsed pull-right mobile-button"><span> Đăng nhập</span></a>
+                     <a href="{{route('view_signup')}}" class="box-shadow login-button collapsed pull-right mobile-button"><span> Đăng ký</span></a>
+                  @endif
+                  <button type="button" class="navbar-toggle collapsed pull-right expand-search-form mobile-search" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
+                  <span>Tìm kiếm</span>
                   </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
+                  {{-- <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
                   Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
                   <span class="count">0</span>
-                  </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
+                  </button> --}}
+                  {{-- <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
                   <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i class="fas fa-filter"></i></a>
-                  </button>
+                  </button> --}}
                </div>
                <div class="collapse navbar-collapse" id="halim">
                   <div class="menu-menu_1-container">
@@ -130,14 +143,14 @@
                         @foreach($category as $key => $value)
                            <li class="mega "><a title="{{$value->name}}" href="{{route('category', $value->seo_name)}}">{{$value->name}}</a></li>
                         @endforeach
-                        <li class="mega dropdown">
+                        {{-- <li class="mega dropdown">
                            <a title="Danh Mục Tin Tức" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Danh mục tin tức <span class="caret"></span></a>
                            <ul role="menu" class=" dropdown-menu menu-fixed">
                               @foreach($news_category as $key => $value)
                               <li class="menu-fixed-2"><a title="{{$value->name}}" href="{{route('news_category', $value->seo_name)}}">{{$value->name}}</a></li>
                               @endforeach
                            </ul>
-                        </li>
+                        </li> --}}
                         
                         {{-- <li class=" news">
                            <div class="subnav">
@@ -190,13 +203,12 @@
                              </div>
                            </div>
                          </li> --}}
-                        <li><a title="Phim Bộ" href="danhmuc.php">Dịch vụ</a></li>
                         <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Thông tin tài khoản</a></li>
                      </ul>
                   </div>
-                  <ul class="nav navbar-nav navbar-left" style="background:#000;">
+                  {{-- <ul class="nav navbar-nav navbar-left" style="background:#000;">
                      <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
-                  </ul>
+                  </ul> --}}
                </div>
             </nav>
             <div class="collapse navbar-collapse" id="search-form">
@@ -221,15 +233,19 @@
       <footer id="footer" class="clearfix">
          <div class="container footer-columns">
             <div class="row container">
+               @foreach($footer as $key => $value)
                <div class="widget about col-xs-12 col-sm-4 col-md-4">
                   <div class="footer-logo">
-                     <img class="img-responsive" src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg" alt="Phim hay 2021- Xem phim hay nhất" />
+                     <img class="img-responsive" src="{{URL::to('public/backend/uploads/banners/'.$value->image)}}" alt="{{$value->name}}" />
                   </div>
                   Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
                </div>
+               @endforeach
             </div>
          </div>
-      </footer>
+       </footer>
+      {{-- @include('pages.include.footer') --}}
+
       <div id='easy-top'></div>
      
       <script type='text/javascript' src='{{asset('public/frontend/js/bootstrap.min.js?ver=5.7.2')}}' id='bootstrap-js'></script>
@@ -314,8 +330,45 @@
          span.bannermobi2 img {height: 70px;width: 300px;}
          #hide_float_right a { background: #01AEF0; padding: 5px 5px 1px 5px; color: #FFF;float: left;}
       </style>
-   </body>
 
-   <div id="fb-root"></div>
-   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=729873248747273" nonce="EI48vUhe"></script>
+
+      <div id="fb-root"></div>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=729873248747273" nonce="EI48vUhe"></script>
+   
+      <script>
+         $(document).ready(function($) {
+             var owl = $('#halim_related_movies-2');
+             owl.owlCarousel({
+                 loop: true,
+                 margin: 4,
+                 autoplay: true,
+                 autoplayTimeout: 4000,
+                 autoplayHoverPause: true,
+                 nav: true,
+                 navText: ['<i class="hl-down-open rotate-left"></i>',
+                     '<i class="hl-down-open rotate-right"></i>'
+                 ],
+                 responsiveClass: true,
+                 responsive: {
+                     0: {
+                         items: 2
+                     },
+                     480: {
+                         items: 3
+                     },
+                     600: {
+                         items: 4
+                     },
+                     1000: {
+                         items: 5
+                     }
+                 }
+             })
+         });
+     </script>
+
+      <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+      {!! Toastr::message() !!}
+     
+   </body>
 </html>

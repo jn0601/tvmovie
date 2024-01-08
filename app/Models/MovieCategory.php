@@ -17,4 +17,8 @@ class MovieCategory extends Model
     ];
     protected $primaryKey = 'id';
  	protected $table = 'movie_categories';
+
+     public function movie() {
+        return $this->hasMany(Movie::class);
+    }
 }

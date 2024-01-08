@@ -37,27 +37,14 @@ class ServerLinksController extends Controller
         }
         // có data
         else {
-            // search status
-            if ($data['name'] == '' && $data['status'] != '') {
-                $list = ServerLink::where('status', $data['status'])
-                ->orderBy('display_order', 'desc')
-                ->paginate($this->pagination);
+            $list = ServerLink::orderBy('display_order', 'desc');
+            if($data['name']) {
+                $list = $list->where('name', 'like', '%' . $data['name'] . '%');
             } 
-            else {
-                // search status và name
-                if ($data['status']) {
-                    $list = ServerLink::where('name', 'like', '%' . $data['name'] . '%')
-                    ->where('status', $data['status'])
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                } 
-                // search name
-                else {
-                    $list = ServerLink::where('name', 'like', '%' . $data['name'] . '%')
-                    ->orderBy('display_order', 'desc')
-                    ->paginate($this->pagination);
-                }
+            if($data['status']) {
+                $list = $list->where('status', $data['status']);
             }
+            $list = $list->paginate($this->pagination);
         }
         //dd($data);
         $view = view($url)->with('data', $list)->with('search_value', $data);
@@ -150,7 +137,7 @@ class ServerLinksController extends Controller
 
     public function unactivate_server_links_status($id)
     {
-        ServerLink::where('id', $id)->update(['status' => 0]);
+        ServerLink::where('id', $id)->update(['status' => 2]);
         Toastr::success('Tắt hoạt động thành công', 'Thành công');
         return redirect()->back();
     }
