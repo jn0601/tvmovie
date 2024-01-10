@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2024 at 08:28 PM
+-- Generation Time: Jan 10, 2024 at 06:38 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `balance` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
@@ -156,8 +156,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 INSERT INTO `customers` (`id`, `role_id`, `username`, `password`, `fullname`, `email`, `phone`, `balance`, `status`) VALUES
 (1, 1, 'cus', '0cc175b9c0f1b6a831c399e269772661', 'cus test', 'cus@cus.com', '123', '100.000 VND', 1),
-(2, 1, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH', 'testKH@testKH', '1111111111', '200.000 VND', 1),
-(3, 1, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', '500.000 VND', 1);
+(2, 1, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH', 'testKH@testKH', '1111111111', '40.000 VND', 1),
+(3, 1, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', '500.000 VND', 1),
+(5, 1, 'kh1', '0cc175b9c0f1b6a831c399e269772661', 'kh1', 'kh1@kh1', '3333333333', '0 VND', 1);
 
 -- --------------------------------------------------------
 
@@ -311,15 +312,15 @@ CREATE TABLE IF NOT EXISTS `movies` (
 --
 
 INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `year`, `desc`, `content`, `price`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 1, 'Loki mùa 2', 'Loki season 2', '2023', '<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;Kate Herron&nbsp;Aaron Moorhead&nbsp;Justin Benson</p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;Marvel</p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;Owen Wilson&nbsp;Tom Hiddleston&nbsp;Jonathan Majors&nbsp;Deobia Oparei&nbsp;Richard E. Grant</p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', '10.000 VND', 'dug56u8NN7g?si=xs5Vc4b0BLTwrcJp', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,2,4', 18, '2023-12-12 15:54:54', '2024-01-04 11:04:48', 'loki-mua-2', 'hanh dong,tam ly,marvel', '', '', ''),
-(2, 2, 'Oppenheimer', 'Oppenheimer', '2023', '', '', '10.000 VND', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,2,4', 1, '2023-12-12 15:57:51', '2024-01-04 13:49:53', 'oppenheimer', 'hanh dong,tam ly', '', '', ''),
-(3, 2, 'Người nhện', 'Spider Man', '2023', '', '', '5.000 VND', '', 3, '8105Oc1+FPL90.jpg', 1, '1,2,4', 5, '2023-12-27 05:52:13', '2024-01-06 13:37:06', 'nguoi-nhen', 'hoat hinh', '', '', ''),
-(4, 2, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '1900', '', '', '5.000 VND', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 0, '2023-12-27 06:59:48', '2024-01-04 13:50:09', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
-(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '2023', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', '5.000 VND', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 5, '2023-12-28 10:39:08', '2024-01-04 12:27:43', 'cu-up-ro-dau-tien', 'hoat hinh', '', '', ''),
-(6, 2, 'Godzilla Trừ Một', 'Godzilla Minus One', '2024', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '10.000 VND', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1,2', 3, '2023-12-28 10:44:27', '2024-01-04 13:50:16', 'godzilla-tru-mot', '', '', '', ''),
-(7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '2023', '', '', '10.000 VND', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 5, '2023-12-28 10:46:38', '2024-01-04 13:50:28', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
-(8, 1, 'Con nhà tài phiệt', 'Reborn rich', '2022', '', '', '10.000 VND', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '2,3', 1, '2023-12-28 10:50:33', '2024-01-06 13:37:12', 'con-nha-tai-phiet', '', '', '', ''),
-(11, 2, 'phim test', '', '2022', '', '', '1.000 VND', '', 9, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz51.jpg', 1, '1', 4, '2024-01-06 12:43:33', '2024-01-06 12:55:57', 'phim-test', '', '', '', '');
+(1, 1, 'Loki mùa 2', 'Loki season 2', '2023', '<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;Kate Herron&nbsp;Aaron Moorhead&nbsp;Justin Benson</p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;Marvel</p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;Owen Wilson&nbsp;Tom Hiddleston&nbsp;Jonathan Majors&nbsp;Deobia Oparei&nbsp;Richard E. Grant</p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', '10.000 VND', 'dug56u8NN7g?si=xs5Vc4b0BLTwrcJp', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,2,4', 32, '2023-12-12 15:54:54', '2024-01-09 18:13:26', 'loki-mua-2', 'hanh dong,tam ly,marvel', '', '', ''),
+(2, 2, 'Oppenheimer', 'Oppenheimer', '2023', '', '', '10.000 VND', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,2,4', 2, '2023-12-12 15:57:51', '2024-01-09 18:13:18', 'oppenheimer', 'hanh dong,tam ly', '', '', ''),
+(3, 2, 'Người nhện', 'Spider Man', '2023', '', '', '5.000 VND', '', 3, '8105Oc1+FPL90.jpg', 1, '1,2,4', 6, '2023-12-27 05:52:13', '2024-01-09 18:12:55', 'nguoi-nhen', 'hoat hinh', '', '', ''),
+(4, 2, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '2023', '', '', '5.000 VND', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 1, '2023-12-27 06:59:48', '2024-01-09 18:12:29', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
+(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '2023', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', '5.000 VND', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 7, '2023-12-28 10:39:08', '2024-01-04 12:27:43', 'cu-up-ro-dau-tien', 'hoat hinh', '', '', ''),
+(6, 2, 'Godzilla Trừ Một', 'Godzilla Minus One', '2024', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '10.000 VND', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1,2', 4, '2023-12-28 10:44:27', '2024-01-09 18:12:14', 'godzilla-tru-mot', '', '', '', ''),
+(7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '2023', '', '', '10.000 VND', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 7, '2023-12-28 10:46:38', '2024-01-09 18:12:04', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
+(8, 1, 'Con nhà tài phiệt', 'Reborn rich', '2022', '', '', '10.000 VND', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '2,3', 2, '2023-12-28 10:50:33', '2024-01-09 18:11:49', 'con-nha-tai-phiet', '', '', '', ''),
+(11, 2, 'phim test', '', '2022', '', '', '1.000 VND', '', 9, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz51.jpg', 2, '1', 4, '2024-01-06 12:43:33', '2024-01-06 12:55:57', 'phim-test', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -361,21 +362,22 @@ CREATE TABLE IF NOT EXISTS `movie_countries` (
   `movie_id` int NOT NULL,
   `country_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_countries`
 --
 
 INSERT INTO `movie_countries` (`id`, `movie_id`, `country_id`) VALUES
-(53, 3, 2),
-(47, 2, 2),
-(45, 1, 2),
+(60, 3, 2),
+(61, 2, 2),
+(62, 1, 2),
 (46, 5, 4),
-(49, 6, 4),
-(50, 7, 2),
-(54, 8, 3),
-(52, 11, 2);
+(58, 6, 4),
+(57, 7, 2),
+(56, 8, 3),
+(52, 11, 2),
+(59, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -389,7 +391,14 @@ CREATE TABLE IF NOT EXISTS `movie_customers` (
   `movie_id` int NOT NULL,
   `customer_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `movie_customers`
+--
+
+INSERT INTO `movie_customers` (`id`, `movie_id`, `customer_id`) VALUES
+(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -403,26 +412,35 @@ CREATE TABLE IF NOT EXISTS `movie_genres` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_genres`
 --
 
 INSERT INTO `movie_genres` (`id`, `movie_id`, `genre_id`) VALUES
-(77, 2, 4),
-(76, 2, 5),
-(74, 1, 4),
-(73, 1, 5),
-(86, 3, 2),
+(103, 2, 4),
+(102, 2, 5),
+(105, 1, 5),
+(104, 1, 7),
+(99, 3, 8),
 (75, 5, 2),
-(80, 6, 4),
-(79, 4, 4),
-(81, 7, 4),
-(87, 8, 5),
+(95, 6, 7),
+(97, 4, 8),
+(92, 7, 8),
+(89, 8, 8),
 (83, 11, 8),
 (84, 11, 7),
-(85, 11, 4);
+(85, 11, 4),
+(90, 8, 6),
+(91, 8, 5),
+(93, 7, 7),
+(94, 7, 4),
+(96, 6, 4),
+(98, 4, 4),
+(100, 3, 4),
+(101, 3, 2),
+(106, 1, 4);
 
 -- --------------------------------------------------------
 
