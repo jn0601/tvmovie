@@ -59,6 +59,9 @@
                                 Bookmark
                             </div>
                         </div> --}}
+                        @php
+                            $get_customer_id = Session::get('customer_id');
+                        @endphp
                         <div class="movie_info col-xs-12">
                             <div class="movie-poster col-md-3">
                                 <img class="movie-thumb"
@@ -66,12 +69,31 @@
                                     alt="{{ $movie_detail->name }}">
                                 <div class="bwa-content">
                                     <div class="loader"></div>
+                                    @if($get_customer_id)
                                     <a href="{{ route('watch', ['seo_name' => $movie_detail->seo_name, 
                                     'tap' => $first_ep->seo_name, 
                                     'server' => $first_server->seo_name]) }}" class="bwac-btn">
                                         <i class="fa fa-play"></i>
                                     </a>
+                                    @else
+                                    <a href="{{route('view_login')}}" class="bwac-btn">
+                                        <i class="fa fa-play"></i>
+                                    </a>
+                                    @endif
                                 </div>
+                                @if ($price != 'Đã mua')
+                                    @if($get_customer_id)
+                                    <form class="buy-movie" method="post" action="{{route('payment', ['movie_id' => $movie_detail->id, 'customer_id' => $get_customer_id])}}" 
+                                        onclick="return confirm('Bạn có chắc chắn muốn mua phim này không?')">
+                                        @csrf
+                                        <button type='submit' class="btn btn-success"><i class="fa fa-credit-card"></i> Mua phim</button>
+                                    </form>
+                                    @else 
+                                    <form class="buy-movie" method="get" action="{{route('view_login')}}">
+                                        <button type='submit' class="btn btn-success"><i class="fa fa-credit-card"></i> Mua phim</button>
+                                    </form>
+                                    @endif
+                                @endif
                             </div>
                             <div class="film-poster col-md-9">
                                 <h1 class="movie-title title-1"
@@ -80,7 +102,7 @@
                                 <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie_detail->org_name }}</h2>
                                 <ul class="list-info-group">
                                     <li class="list-info-group-item"><span>Giá</span> :
-                                        {{ $movie_detail->price }}
+                                        {{ $price }}
                                      </li>
                                      <li class="list-info-group-item"><span>Lượt xem</span> :
                                         {{ $movie_detail->count_view }}

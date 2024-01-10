@@ -68,26 +68,33 @@
                      </div>
                   </div>
                </div>
+               @php
+                  use Illuminate\Support\Facades\Session;
+                  $customer_id = Session::get('customer_id');
+                  $customer_name = Session::get('customer_name');
+                  $balance = Session::get('balance');
+               @endphp
+               @if ($customer_id)
+               <div class="col-md-5 hidden-xs">
+                  {{-- <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div> --}}
+                  
+                  {{-- <div id="bookmark-list" class="hidden bookmark-list-on-pc">
+                     <ul style="margin: 0;"></ul>
+                  </div> --}}
+                     <div class="box-shadow login-button"><span>Xin chào, </span> {{$customer_name}} | Số dư: {{$balance}}</div>
+                     <a href="{{URL::to('logout')}}" class="box-shadow login-button"><span> Đăng xuất</span></a>
+               </div>
+               @else
                <div class="col-md-4 hidden-xs">
                   {{-- <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div> --}}
                   
                   {{-- <div id="bookmark-list" class="hidden bookmark-list-on-pc">
                      <ul style="margin: 0;"></ul>
                   </div> --}}
-                  @php
-                     use Illuminate\Support\Facades\Session;
-                     $customer_id = Session::get('customer_id');
-                     $customer_name = Session::get('customer_name');
-                     $balance = Session::get('balance');
-                  @endphp
-                  @if ($customer_id)
-                     <div class="box-shadow login-button"><span>Xin chào, </span> {{$customer_name}} | Số dư: {{$balance}}</div>
-                     <a href="{{URL::to('logout')}}" class="box-shadow login-button"><span> Đăng xuất</span></a>
-                  @else
                      <a href="{{route('view_login')}}" class="box-shadow login-button"><span> Đăng nhập</span></a>
                      <a href="{{route('view_signup')}}" class="box-shadow login-button"><span> Đăng ký</span></a>
-                  @endif
                </div>
+               @endif
             </div>
          </div>
       </header>
@@ -203,7 +210,13 @@
                              </div>
                            </div>
                          </li> --}}
-                        <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Thông tin tài khoản</a></li>
+                        @if ($customer_id)
+                        <li><a title="Thông tin tài khoản" href="{{route('view_account')}}">Thông tin tài khoản</a></li>
+                        <li><a title="Nạp tiền" href="{{route('view_deposit')}}">Nạp tiền</a></li>
+                        @else
+                        <li><a title="Thông tin tài khoản" href="{{route('view_login')}}">Thông tin tài khoản</a></li>
+                        <li><a title="Nạp tiền" href="{{route('view_login')}}">Nạp tiền</a></li>
+                        @endif
                      </ul>
                   </div>
                   {{-- <ul class="nav navbar-nav navbar-left" style="background:#000;">
@@ -245,9 +258,8 @@
          </div>
        </footer>
       {{-- @include('pages.include.footer') --}}
-
       <div id='easy-top'></div>
-     
+      <script type='text/javascript' src='{{asset('public/frontend/js/detect.js')}}'></script>
       <script type='text/javascript' src='{{asset('public/frontend/js/bootstrap.min.js?ver=5.7.2')}}' id='bootstrap-js'></script>
       <script type='text/javascript' src='{{asset('public/frontend/js/owl.carousel.min.js?ver=5.7.2')}}' id='carousel-js'></script>
      
@@ -366,6 +378,7 @@
              })
          });
      </script>
+
 
       <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
       {!! Toastr::message() !!}

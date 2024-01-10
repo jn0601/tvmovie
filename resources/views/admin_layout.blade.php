@@ -83,16 +83,16 @@
                   </li>
                   <li><a><i class="fa fa-edit"></i> Quản lý website <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/menus')}}">Quản lý menu</a></li>
+                      <li><a href="{{URL::to('admin/information')}}">Quản lý giao diện</a></li>
                       <li><a href="{{URL::to('admin/contacts')}}">Góp ý từ khách hàng</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-credit-card"></i> Quản lý dịch vụ <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-credit-card"></i> Quản lý dịch vụ <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/services')}}">Dịch vụ</a></li>
                       <li><a href="{{URL::to('admin/orders')}}">Đơn đăng kí</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
                   @if ($admin_level != 2)
                   {{-- <li><a><i class="fa fa-cogs"></i> Chức năng admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -126,18 +126,6 @@
                       <li><a href="{{URL::to('admin/banner-categories')}}">Danh sách danh mục</a></li>
                     </ul>
                   </li>
-                  {{-- <li><a><i class="fa fa-image"></i> Quản lý thư viện ảnh <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/albums')}}">Danh sách ảnh</a></li>
-                      <li><a href="{{URL::to('admin/list-albums-cate')}}">Danh sách danh mục</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-video-camera"></i> Quản lý thư viện video <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/videos')}}">Danh sách video</a></li>
-                      <li><a href="{{URL::to('admin/list-videos-cate')}}">Danh sách danh mục</a></li>
-                    </ul>
-                  </li> --}}
                   @if ($admin_level != 2)
                   {{-- <li><a><i class="fa fa-user"></i> Quản lý users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

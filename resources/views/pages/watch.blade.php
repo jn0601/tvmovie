@@ -60,14 +60,14 @@
                     <div class="clearfix"></div>
                     <div class="clearfix"></div>
                     <div class="title-block">
-                        <a href="javascript:;" data-toggle="tooltip" title="Add to bookmark">
+                        {{-- <a href="javascript:;" data-toggle="tooltip" title="Add to bookmark">
                             <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="37976">
                                 <div class="halim-pulse-ring"></div>
                             </div>
-                        </a>
+                        </a> --}}
                         <div class="title-wrapper-xem full">
-                            <h1 class="entry-title"><a href="#" title="{{ $movie_detail->name }}"
-                                    class="tl">{{ $movie_detail->name }}</a></h1>
+                            <h1 class="entry-title"><a href="{{route('movie', $movie_detail->seo_name)}}" title="{{ $movie_detail->name }}"
+                                    class="tl">{{ $movie_detail->name }}</a> - {{$ep_detail->name}}</h1>
                         </div>
                     </div>
                     <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
@@ -143,9 +143,9 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="htmlwrap clearfix">
+                    {{-- <div class="htmlwrap clearfix">
                         <div id="lightout"></div>
-                    </div>
+                    </div> --}}
             </section>
             <section class="related-movies">
                 <div id="halim_related_movies-2xx" class="wrap-slider">

@@ -12,6 +12,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\MovieCategory;
 use App\Models\MovieCountry;
+use App\Models\MovieCustomer;
 use App\Models\MovieGenre;
 use App\Models\News;
 use App\Models\NewsCategory;
@@ -32,6 +33,11 @@ class IndexController extends Controller
     public function view_signup() {
 
         return view('pages.login.signup');
+    }
+
+    public function view_deposit() {
+
+        return view('pages.transaction.deposit');
     }
     
     public function login(Request $request) {
@@ -82,6 +88,7 @@ class IndexController extends Controller
 
             Session::put('customer_id', $customer->id);
             Session::put('customer_name', $customer->fullname);
+            Session::put('balance', $customer->balance);
             Toastr::success('Tạo tài khoản thành công', 'Thành công');
             return Redirect::to('/');
         } else {
@@ -91,9 +98,50 @@ class IndexController extends Controller
 
     public function logout() {
         Session::forget('customer_id');
+        Session::forget('customer_name');
+        Session::forget('balance');
         Toastr::success('Đăng xuất thành công','Thành công');
 
     	return Redirect::to('/');
+    }
+
+    public function payment(Request $request) {
+        $data = $request->all();
+        $movie_info = Movie::where('id', $data['movie_id'])->first();
+        $customer_info = Customer::where('id', $data['customer_id'])->first();
+
+        // Remove non-numeric characters from the string
+        $moviePrice = preg_replace("/[^0-9]/", "", $movie_info->price);
+        // Convert the string to an integer for comparison
+        $moviePrice = (int) $moviePrice;
+
+        // Remove non-numeric characters from the string
+        $customerBalance = preg_replace("/[^0-9]/", "", $customer_info->balance);
+        // Convert the string to an integer for comparison
+        $customerBalance = (int) $customerBalance;
+
+
+        if ($moviePrice > $customerBalance) {
+            Toastr::error('Số dư không đủ', 'Thất bại');
+            return redirect()->back();
+        } else {
+            $item = new MovieCustomer();
+            $item->movie_id = $data['movie_id'];
+            $item->customer_id = $data['customer_id'];
+            $item->save();
+
+            //update balance
+            $balance = Customer::where('id', $data['customer_id'])->first();
+            $temp = $customerBalance - $moviePrice;
+            // Format the number with dots every three digits and add 'VND' at the end
+            $formattedBalance = number_format($temp, 0, ',', '.') . ' VND';
+            $balance->balance = $formattedBalance;
+            $balance->save();
+
+            Toastr::success('Mua phim thành công', 'Thành công');
+            return $this->movie($movie_info->seo_name);
+        }
+        
     }
 
     public function search(Request $request) {
@@ -263,6 +311,22 @@ class IndexController extends Controller
         ->where('movies.seo_name', $movie_detail->seo_name)->first();
         $related = Movie::has('episode')->where('category_id', $movie_detail->category_id)->orderBy(DB::raw('RAND()'))->whereNotIn('seo_name', [$seo_name])->get();
 
+        //check price
+        $get_customer_id = Session::get('customer_id');
+        if($get_customer_id) {
+            $check_legit = MovieCustomer::where('movie_id', $movie_detail->id)
+            ->where('customer_id', $get_customer_id)
+            ->first();
+            if ($check_legit) {
+                $price = 'Đã mua';
+            } else {
+                $price = $movie_detail->price;
+            }
+        } else {
+            $price = $movie_detail->price;
+        }
+        
+
         //update views movie
         // $view = Movie::has('episode')->where('seo_name', $seo_name)->first();
         // $view->count_view = $view->count_view + 1;
@@ -274,6 +338,7 @@ class IndexController extends Controller
         ->with('country', $country)
         ->with('news_category', $news_category)
         ->with('movie', $movie)
+        ->with('price', $price)
         ->with('movie_detail', $movie_detail)
         ->with('country_detail', $country_detail)
         ->with('genre_detail', $genre_detail)
@@ -287,61 +352,73 @@ class IndexController extends Controller
         ->with('news', $news);
     }
     public function watch($seo_name, $tap, $server) {
-        $sidebar = Movie::has('episode')->orderBy('display_order', 'desc')->where('status', 1)->take(10)->get();
-        $footer = Banner::where('category_id', 1)->orderBy('display_order', 'asc')->where('status', 1)->take(3)->get();
-        $category = MovieCategory::orderBy('display_order', 'desc')->where('status', 1)->get();
-        $genre = Genre::orderBy('display_order', 'desc')->where('status', 1)->get();
-        $country = Country::orderBy('display_order', 'desc')->where('status', 1)->get();
-        $news_category = NewsCategory::orderBy('display_order', 'desc')->where('status', 1)->get();
-        $news = News::orderBy('display_order', 'desc')->where('status', 1)->get();
-        $movie = Movie::has('episode')->orderBy('display_order', 'desc')->where('status', 1)->get();
-
-        $tap = $tap;
-        $server = $server;
-
+        //check mua phim
+        $get_customer_id = Session::get('customer_id');
         $movie_detail = Movie::has('episode')->where('seo_name', $seo_name)->first();
-        $country_detail = MovieCountry::join('countries', 'countries.id', '=', 'movie_countries.country_id',)->where('movie_countries.movie_id', $movie_detail->id)->first();
-        $genre_detail = MovieGenre::join('genres', 'genres.id', '=', 'movie_genres.genre_id',)->where('movie_genres.movie_id', $movie_detail->id)->first();
-        $episode = Episode::where('movie_id', $movie_detail->id)->orderBy('episode', 'asc')->where('status', 1)->get();
-        $list_servers = EpisodeServer::join('episodes', 'episodes.id', '=', 'episode_servers.episode_id')
-        ->join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
-        ->where('episodes.movie_id', $movie_detail->id)
-        ->where('episodes.seo_name', $tap)
-        ->where('server_links.status', 1)
-        ->get();
-        $list_server_all = EpisodeServer::join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
-        ->orderBy('episode_id', 'asc')
-        ->where('server_links.status', 1)
-        // ->where('episode_servers.episode_id', 12)
-        ->get();
+        $check_legit = MovieCustomer::where('movie_id', $movie_detail->id)
+        ->where('customer_id', $get_customer_id)->first();
+        if(!$check_legit) {
+            Toastr::error('Chưa mua phim này', 'Thất bại');
+            return redirect()->back();
+        } else {
+            $sidebar = Movie::has('episode')->orderBy('display_order', 'desc')->where('status', 1)->take(10)->get();
+            $footer = Banner::where('category_id', 1)->orderBy('display_order', 'asc')->where('status', 1)->take(3)->get();
+            $category = MovieCategory::orderBy('display_order', 'desc')->where('status', 1)->get();
+            $genre = Genre::orderBy('display_order', 'desc')->where('status', 1)->get();
+            $country = Country::orderBy('display_order', 'desc')->where('status', 1)->get();
+            $news_category = NewsCategory::orderBy('display_order', 'desc')->where('status', 1)->get();
+            $news = News::orderBy('display_order', 'desc')->where('status', 1)->get();
+            $movie = Movie::has('episode')->orderBy('display_order', 'desc')->where('status', 1)->get();
+    
+            $tap = $tap;
+            $server = $server;
+            
+            $ep_detail = Episode::where('movie_id', $movie_detail->id)->where('seo_name', $tap)->first();
+            $country_detail = MovieCountry::join('countries', 'countries.id', '=', 'movie_countries.country_id',)->where('movie_countries.movie_id', $movie_detail->id)->first();
+            $genre_detail = MovieGenre::join('genres', 'genres.id', '=', 'movie_genres.genre_id',)->where('movie_genres.movie_id', $movie_detail->id)->first();
+            $episode = Episode::where('movie_id', $movie_detail->id)->orderBy('episode', 'asc')->where('status', 1)->get();
+            $list_servers = EpisodeServer::join('episodes', 'episodes.id', '=', 'episode_servers.episode_id')
+            ->join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
+            ->where('episodes.movie_id', $movie_detail->id)
+            ->where('episodes.seo_name', $tap)
+            ->where('server_links.status', 1)
+            ->get();
+            $list_server_all = EpisodeServer::join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
+            ->orderBy('episode_id', 'asc')
+            ->where('server_links.status', 1)
+            // ->where('episode_servers.episode_id', 12)
+            ->get();
+            
+            // lấy link
+            $link_server = EpisodeServer::join('episodes', 'episodes.id', '=', 'episode_servers.episode_id')
+            ->join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
+            ->where('episodes.movie_id', $movie_detail->id)
+            ->where('episodes.seo_name', $tap)
+            ->where('server_links.seo_name', $server)->first();
+            $related = Movie::has('episode')->where('category_id', $movie_detail->category_id)->orderBy(DB::raw('RAND()'))->whereNotIn('seo_name', [$seo_name])->get();
+            // dd($list_server_all);
+            return view('pages.watch')
+            ->with('category', $category)
+            ->with('genre', $genre)
+            ->with('country', $country)
+            ->with('news_category', $news_category)
+            ->with('movie', $movie)
+            ->with('movie_detail', $movie_detail)
+            ->with('country_detail', $country_detail)
+            ->with('genre_detail', $genre_detail)
+            ->with('ep_detail', $ep_detail)
+            ->with('episode', $episode)
+            ->with('list_servers', $list_servers)
+            ->with('list_server_all', $list_server_all)
+            ->with('tap', $tap)
+            ->with('server', $server)
+            ->with('sidebar', $sidebar)
+            ->with('footer', $footer)
+            ->with('link_server', $link_server)
+            ->with('related', $related)
+            ->with('news', $news);
+        }
         
-        // lấy link
-        $link_server = EpisodeServer::join('episodes', 'episodes.id', '=', 'episode_servers.episode_id')
-        ->join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
-        ->where('episodes.movie_id', $movie_detail->id)
-        ->where('episodes.seo_name', $tap)
-        ->where('server_links.seo_name', $server)->first();
-        $related = Movie::has('episode')->where('category_id', $movie_detail->category_id)->orderBy(DB::raw('RAND()'))->whereNotIn('seo_name', [$seo_name])->get();
-        // dd($list_server_all);
-        return view('pages.watch')
-        ->with('category', $category)
-        ->with('genre', $genre)
-        ->with('country', $country)
-        ->with('news_category', $news_category)
-        ->with('movie', $movie)
-        ->with('movie_detail', $movie_detail)
-        ->with('country_detail', $country_detail)
-        ->with('genre_detail', $genre_detail)
-        ->with('episode', $episode)
-        ->with('list_servers', $list_servers)
-        ->with('list_server_all', $list_server_all)
-        ->with('tap', $tap)
-        ->with('server', $server)
-        ->with('sidebar', $sidebar)
-        ->with('footer', $footer)
-        ->with('link_server', $link_server)
-        ->with('related', $related)
-        ->with('news', $news);
     }
     public function episode($movie_seo_name, $seo_name) {
         $sidebar = Movie::has('episode')->orderBy('display_order', 'desc')->where('status', 1)->take(10)->get();

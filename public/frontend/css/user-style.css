@@ -119,6 +119,10 @@
   margin: 1px 0 2px !important;
 }
 
+.buy-movie {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .login-button {
       margin-top: 6px;

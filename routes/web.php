@@ -15,6 +15,8 @@ use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\ServerLinksController;
 use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,22 +119,26 @@ Route::name('admin/')->prefix('admin')->group(function() {
 
 // user
 Route::post('login', [IndexController::class, 'login']);
-Route::get('/logout', [IndexController::class, 'logout']);
+Route::get('logout', [IndexController::class, 'logout']);
 Route::post('signup', [IndexController::class, 'signup']);
-Route::get('/customer-login', [IndexController::class, 'view_login'])->name('view_login');
-Route::get('/customer-signup', [IndexController::class, 'view_signup'])->name('view_signup');
+Route::get('customer-login', [IndexController::class, 'view_login'])->name('view_login');
+Route::get('customer-signup', [IndexController::class, 'view_signup'])->name('view_signup');
+Route::post('payment', [IndexController::class, 'payment'])->name('payment');
+Route::get('nap-tien', [IndexController::class, 'view_deposit'])->name('view_deposit');
+Route::get('thong-tin-tai-khoan', [IndexController::class, 'view_account'])->name('view_account');
+Route::post('online-payment', [TransactionController::class, 'online_payment'])->name('online_payment');
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
 
-Route::get('/danh-muc/{seo_name}', [IndexController::class, 'category'])->name('category');
-Route::get('/the-loai/{seo_name}', [IndexController::class, 'genre'])->name('genre');
-Route::get('/quoc-gia/{seo_name}', [IndexController::class, 'country'])->name('country');
-Route::get('/phim/{seo_name}', [IndexController::class, 'movie'])->name('movie')->middleware('web', 'trackMovieViews');
-Route::get('/xem-phim/{seo_name}/{tap}/{server}', [IndexController::class, 'watch'])->name('watch');
-Route::get('/tap-phim/{movie_seo_name}/{seo_name}', [IndexController::class, 'episode'])->name('episode');
-Route::get('/tag/{tag}', [IndexController::class, 'tag'])->name('tag');
-Route::get('/nam/{year}', [IndexController::class, 'year'])->name('year');
-Route::get('/tim-kiem/', [IndexController::class, 'search']);
+Route::get('danh-muc/{seo_name}', [IndexController::class, 'category'])->name('category');
+Route::get('the-loai/{seo_name}', [IndexController::class, 'genre'])->name('genre');
+Route::get('quoc-gia/{seo_name}', [IndexController::class, 'country'])->name('country');
+Route::get('phim/{seo_name}', [IndexController::class, 'movie'])->name('movie')->middleware('web', 'trackMovieViews');
+Route::get('xem-phim/{seo_name}/{tap}/{server}', [IndexController::class, 'watch'])->name('watch');
+Route::get('tap-phim/{movie_seo_name}/{seo_name}', [IndexController::class, 'episode'])->name('episode');
+Route::get('tag/{tag}', [IndexController::class, 'tag'])->name('tag');
+Route::get('nam/{year}', [IndexController::class, 'year'])->name('year');
+Route::get('tim-kiem/', [IndexController::class, 'search']);
 
-Route::get('/danh-muc-tin-tuc/{seo_name}', [IndexController::class, 'news_category'])->name('news_category');
-Route::get('/tin-tuc/{seo_name}', [IndexController::class, 'news'])->name('news');
+Route::get('danh-muc-tin-tuc/{seo_name}', [IndexController::class, 'news_category'])->name('news_category');
+Route::get('tin-tuc/{seo_name}', [IndexController::class, 'news'])->name('news');
 
