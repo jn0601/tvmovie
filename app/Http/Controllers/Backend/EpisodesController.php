@@ -12,6 +12,7 @@ use App\Models\Subtitle;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class EpisodesController extends Controller
 {
@@ -57,6 +58,7 @@ class EpisodesController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $get_admin_id = Session::get('admin_id');
         //dd($data);
         $item = new Episode();
         $item->name = $data['name'];
@@ -73,7 +75,7 @@ class EpisodesController extends Controller
         $item->episode = $data['episode'];
         $get_id = Movie::where('seo_name', $request->movie_seo_name)->get('id')->first();
         $item->movie_id = $get_id->id;
-        $item->admin_id = 123;
+        $item->admin_id = $get_admin_id;
         $item->status = $data['status'];
         $item->options = isset($data['options']) ? implode(',', $data['options']) : '';
         $item->count_view = 0;

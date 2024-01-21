@@ -210,13 +210,16 @@
                              </div>
                            </div>
                          </li> --}}
-                        @if ($customer_id)
+                        <li><a title="Phim miễn phí" href="{{route('view_free_movie')}}">Phim miễn phí</a></li>
+                        <li><a title="Phim đã mua" href="{{route('view_bought_movie')}}">Phim đã mua</a></li>
                         <li><a title="Thông tin tài khoản" href="{{route('view_account')}}">Thông tin tài khoản</a></li>
                         <li><a title="Nạp tiền" href="{{route('view_deposit')}}">Nạp tiền</a></li>
+                        {{-- @if ($customer_id)
+                        
                         @else
                         <li><a title="Thông tin tài khoản" href="{{route('view_login')}}">Thông tin tài khoản</a></li>
                         <li><a title="Nạp tiền" href="{{route('view_login')}}">Nạp tiền</a></li>
-                        @endif
+                        @endif --}}
                      </ul>
                   </div>
                   {{-- <ul class="nav navbar-nav navbar-left" style="background:#000;">
@@ -345,7 +348,7 @@
 
 
       <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=729873248747273" nonce="EI48vUhe"></script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=729873248747273" nonce="hfWyzPiN"></script>
    
       <script>
          $(document).ready(function($) {
@@ -378,7 +381,27 @@
              })
          });
      </script>
-
+      <script>
+         window.fbAsyncInit = function() {
+           FB.init({
+             appId      : '{your-app-id}',
+             cookie     : true,
+             xfbml      : true,
+             version    : '{api-version}'
+           });
+             
+           FB.AppEvents.logPageView();   
+             
+         };
+       
+         (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+       </script>
 
       <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
       {!! Toastr::message() !!}

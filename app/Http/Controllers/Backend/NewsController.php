@@ -9,6 +9,7 @@ use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class NewsController extends Controller
 {
@@ -77,6 +78,7 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $data = $request->all();
+        $get_admin_id = Session::get('admin_id');
         $news = new News();
         $news->name = $data['name'];
         $news->desc = $data['desc'] ? $data['desc'] : '';
@@ -96,7 +98,7 @@ class NewsController extends Controller
         $news->meta_keyword = $data['meta_keyword'] ? $data['meta_keyword'] : '';
 
         $news->category_id = $data['category_id'];
-        $news->admin_id = 123;
+        $news->admin_id = $get_admin_id;
         $news->status = $data['status'];
         $news->options = isset($data['options']) ? implode(',', $data['options']) : '';
         $news->count_view = 0;

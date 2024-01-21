@@ -132,7 +132,8 @@
 														@endphp
 														@if($linkValue->server_id == $value->id)
 															<input class="form-control" data-validate-length-range="6"
-																data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link, $link_value)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
+																data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link, $link_value)}}" 
+																placeholder="<iframe> width=100% height=500 allowfullscreen ..</iframe>"/>
 														@php
 															$checked = true;
 														@endphp
@@ -141,11 +142,13 @@
 													@endforeach
 													@if($checked == false)
 														<input class="form-control" data-validate-length-range="6"
-														data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
+														data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" 
+														placeholder="<iframe> width=100% height=500 allowfullscreen ..</iframe>"/>
 													@endif
 												@else
 												<input class="form-control" data-validate-length-range="6"
-												data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" placeholder="<iframe> width=100% height=500..</iframe>"/>
+												data-validate-words="2" name="{{$link}}" id="{{$link}}" value="{{old($link)}}" 
+												placeholder="<iframe> width=100% height=500 allowfullscreen ..</iframe>"/>
 												@endif
 											</div>
 										</div>

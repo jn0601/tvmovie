@@ -46,20 +46,20 @@
 								</div>
 							@endif
               <div>
-                <input type="text" id="customer-username" name="username" oninput="validateUsername()"
+                <input type="text" id="customer-username" name="username" value="{{old('username')}}" oninput="validateUsername()"
                 name="username" class="form-control" placeholder="Tên đăng nhập" required="required" />
               </div>
               <div>
-                <input type="text" name="fullname" class="form-control" placeholder="Họ và tên" required="required" />
+                <input type="text" name="fullname" class="form-control" placeholder="Họ và tên" value="{{old('fullname')}}" required="required" />
               </div>
               <div>
-                <input type="email" name="email" class="form-control" placeholder="Email" required="required" />
+                <input type="email" name="email" class="form-control" placeholder="Email" value="{{old('email')}}" required="required" />
               </div>
               <div>
                 <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required="required" />
               </div>
               <div>
-                <input type="text" id="phone-number" oninput="validatePhoneNumber()" maxlength="10" 
+                <input type="text" id="phone-number" oninput="validatePhoneNumber()" maxlength="10"  value="{{old('phone')}}"
                 name="phone" class="form-control" placeholder="Số điện thoại" required="required" />
               </div>
               <div>

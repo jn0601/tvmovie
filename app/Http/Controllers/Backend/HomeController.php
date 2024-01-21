@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\Customer;
+use App\Models\Genre;
+use App\Models\Movie;
+use App\Models\MovieCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -13,10 +18,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $admin_id = Session::get('admin_id');
-        //$roles = RoleUser::where('user_id', $admin_id)->get('role_id');
+        // $admin_id = Session::get('admin_id');
+        $genre = Genre::all()->count();
+        $movieCategory = MovieCategory::all()->count();
+        $country = Country::all()->count();
+        $movie = Movie::all()->count();
+        $user = Customer::all()->count();
 
-        return view('admin-pages.admin_home');
+        return view('admin-pages.admin_home')
+        ->with('genre', $genre)
+        ->with('movieCategory', $movieCategory)
+        ->with('country', $country)
+        ->with('movie', $movie)
+        ->with('user', $user);
     }
 
     /**

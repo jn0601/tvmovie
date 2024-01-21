@@ -48,6 +48,10 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // Other middleware entries
         'trackMovieViews' => \App\Http\Middleware\TrackMovieViews::class,
+        'checkCustomerSession' => \App\Http\Middleware\CheckCustomerSession::class,
+        'checkBoughtMovie' => \App\Http\Middleware\CheckBoughtMovie::class,
+        'checkRole' => \App\Http\Middleware\checkRole::class,
+        'checkUser' => \App\Http\Middleware\checkUser::class,
     ];
 
     /**

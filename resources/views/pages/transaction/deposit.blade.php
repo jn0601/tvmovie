@@ -44,7 +44,8 @@
                                 placeholder="Số tiền" required="required" />
                         </div>
                         <div>
-                            <button class="btn btn-success submit" name="payUrl" type="submit">NẠP TIỀN MOMO</button>
+                            {{-- <button class="btn btn-success submit" name="payUrl" type="submit">NẠP TIỀN MOMO</button> --}}
+                            <button class="btn btn-primary submit" name="redirect" type="submit">NẠP TIỀN VNPAY</button>
                             {{-- <a href="{{route('view_signup')}}" class="btn btn-default submit" style="margin-top: -5px !important; font-size: 16px !important">ĐĂNG KÝ</a> --}}
                             {{-- <a class="reset_pass" href="#">Quên mật khẩu?</a> --}}
                         </div>

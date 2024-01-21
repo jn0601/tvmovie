@@ -61,7 +61,8 @@
                 <h2>@php
                     use Illuminate\Support\Facades\Session;
                     $name = Session::get('fullname');
-                    $admin_level = Session::get('admin_level');
+                    $get_type = Session::get('admin_type');
+                    $get_id = Session::get('admin_id');
                     if ($name) {
                         echo $name ;
                     } 
@@ -81,37 +82,25 @@
                   <li><a href="{{URL::to('admin')}}"><i class="fa fa-home"></i> Trang chủ 
                 </a>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Quản lý website <span class="fa fa-chevron-down"></span></a>
+                  @hasrole('Quản trị viên')
+                  {{-- <li><a><i class="fa fa-edit"></i> Quản lý website <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('admin/information')}}">Quản lý giao diện</a></li>
                       <li><a href="{{URL::to('admin/contacts')}}">Góp ý từ khách hàng</a></li>
                     </ul>
-                  </li>
-                  {{-- <li><a><i class="fa fa-credit-card"></i> Quản lý dịch vụ <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/services')}}">Dịch vụ</a></li>
-                      <li><a href="{{URL::to('admin/orders')}}">Đơn đăng kí</a></li>
-                    </ul>
                   </li> --}}
-                  @if ($admin_level != 2)
-                  {{-- <li><a><i class="fa fa-cogs"></i> Chức năng admin <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/features')}}">Quản lý menu chức năng</a></li>
-                    </ul>
-                  </li> --}}
-                  @endif
-                  {{-- <li><a><i class="fa fa-desktop"></i> Chức năng chính <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                    
-                    </ul>
-                  </li> --}}
+                  @endhasrole
                   <li><a><i class="fa fa-desktop"></i> Quản lý phim <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      @hasrole('Quản trị viên')
                       <li><a href="{{URL::to('admin/movie-categories')}}">Danh sách danh mục</a></li>
+                      @endhasrole
                       <li><a href="{{URL::to('admin/movies')}}">Danh sách phim</a></li>
+                      @hasrole('Quản trị viên')
                       <li><a href="{{URL::to('admin/countries')}}">Danh sách quốc gia</a></li>
                       <li><a href="{{URL::to('admin/genres')}}">Danh sách thể loại</a></li>
                       <li><a href="{{URL::to('admin/server-links')}}">Danh sách server</a></li>
+                      @endhasrole
                     </ul>
                   </li>
                   <li><a><i class="fa fa-newspaper-o"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
@@ -120,23 +109,25 @@
                       <li><a href="{{URL::to('admin/news-categories')}}">Danh sách danh mục</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-sliders"></i> Quản lý banner<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{URL::to('admin/banners')}}">Danh sách banner</a></li>
-                      <li><a href="{{URL::to('admin/banner-categories')}}">Danh sách danh mục</a></li>
-                    </ul>
-                  </li>
-                  @if ($admin_level != 2)
-                  {{-- <li><a><i class="fa fa-user"></i> Quản lý users <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      @if ($admin_level == 99)
-                      <li><a href="{{URL::to('admin/list-adminpa-users')}}">Danh sách admin PA</a></li>
-                      @endif
-                      <li><a href="{{URL::to('admin/users')}}">Danh sách người dùng</a></li>
-                      <li><a href="{{URL::to('admin/roles')}}">Quản lý vai trò</a></li>
-                    </ul>
-                  </li> --}}
-                  @endif
+                    @hasrole('Quản trị viên')
+                    <li><a><i class="fa fa-sliders"></i> Quản lý banner<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{URL::to('admin/banner-categories')}}">Danh sách danh mục</a></li>
+                        <li><a href="{{URL::to('admin/banners')}}">Danh sách banner</a></li>
+                      </ul>
+                    </li>
+                    @endhasrole
+                    <li><a><i class="fa fa-user"></i> Quản lý người dùng <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        @hasrole('Quản trị viên')
+                        @if ($get_type == 99)
+                        <li><a href="{{URL::to('admin/roles')}}">Quản lý vai trò</a></li>
+                        @endif
+                        <li><a href="{{URL::to('admin/admins/list-admin')}}">Danh sách quản trị viên</a></li>
+                        @endhasrole
+                        <li><a href="{{URL::to('admin/customers')}}">Danh sách khách hàng</a></li>
+                      </ul>
+                    </li>
                 </ul>
               </div>
             </div>
@@ -177,7 +168,7 @@
                      } ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Thông tin cá nhân</a>
+                    <a class="dropdown-item"  href="{{URL::to('admin/admins/edit/'.$get_id)}}"> Thông tin cá nhân</a>
                       <!-- <a class="dropdown-item"  href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
@@ -377,6 +368,72 @@
     }
   });
 });
+</script>
+
+<script type="text/javascript">
+  function validatePhoneNumber() {
+      // Get the input element using the id
+      var input = document.getElementById('phone-number');
+
+      // Remove non-numeric characters from the input
+      var phoneNumber = input.value.replace(/\D/g, '');
+
+      // Check if the phone number has exactly 10 digits
+      if (phoneNumber.length === 10) {
+            // Valid phone number
+            input.setCustomValidity('');
+      } else {
+            // Invalid phone number, set a custom validation message
+            input.setCustomValidity('Số điện thoại phải đủ 10 kí tự.');
+      }
+  }
+</script>
+
+<script type="text/javascript">
+  function validateUsername() {
+      // Get the input element by id
+      var input = document.getElementById('customer-username');
+
+      // Get the input value
+      var username = input.value;
+
+      // Define the regex pattern
+      var pattern = /^[a-z0-9]+$/i;
+
+      // Test the input against the pattern
+      if (pattern.test(username) && username.length <= 32) {
+          // Valid username
+          input.setCustomValidity('');
+      } else {
+          // Invalid username, set a custom validation message
+          input.setCustomValidity('Tên đăng nhập chỉ chứa chữ cái và số');
+      }
+  }
+</script>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+      // Get the select element
+      var selectElement = document.querySelector('select[name="type"]');
+
+      // Get the div section to show/hide
+      var divSection = document.getElementById('div-role');
+
+      // Function to update the visibility of the div section
+      function updateDivVisibility() {
+          // Show the div section if the selected value is 99; otherwise, hide it
+          divSection.style.display = (selectElement.value == '1') ? '' : 'none';
+      }
+
+      // Call the function on page load
+      updateDivVisibility();
+
+      // Add change event listener to the select element
+      selectElement.addEventListener('change', function () {
+          // Update the visibility when the selection changes
+          updateDivVisibility();
+      });
+  });
 </script>
 
 @stack('scripts')

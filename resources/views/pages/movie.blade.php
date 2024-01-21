@@ -81,7 +81,7 @@
                                     </a>
                                     @endif
                                 </div>
-                                @if ($price != 'Đã mua')
+                                @if ($price != 'Đã mua' && $price != '0 VND')
                                     @if($get_customer_id)
                                     <form class="buy-movie" method="post" action="{{route('payment', ['movie_id' => $movie_detail->id, 'customer_id' => $get_customer_id])}}" 
                                         onclick="return confirm('Bạn có chắc chắn muốn mua phim này không?')">
@@ -131,9 +131,15 @@
                                  <li>{!! $movie_detail->desc !!}</li>
                                 </ul>
                                 
-                                <div class="fb-like" data-href="{{ $current_url }}" data-width="" data-layout=""
-                                    data-action="" data-size="" data-share="true"></div>
-                                <div class="movie-trailer hidden"></div>
+                                
+                                <div class="movie-trailer hidden">
+                                    
+                                    
+                                </div>
+                                <div class="fb-like" data-href="{{ $current_url }}" data-width="" data-layout="button_count"
+                                    data-action="like" data-size="small" data-share="true"></div>
+                                {{-- <div class="fb-like" data-href="{{$current_url}}" data-width="" data-layout="" 
+                                data-action="" data-size="" data-share="true"></div> --}}
                             </div>
                         </div>
                     </div>
@@ -219,8 +225,11 @@
                      <li>phim black widow 2021</li>
                      <li>xem black widow</li>
                   </ul> --}}
-                                <div class="fb-comments" data-href="{{ $current_url }}" data-width="" data-numposts="5">
+                                <div style="background-color:white">
+                                    <div class="fb-comments" data-href="{{ $current_url }}" data-width="100%" data-numposts="5">
+                                    </div>
                                 </div>
+                                
                             </article>
                         </div>
                     </div>

@@ -123,6 +123,39 @@
   text-align: center;
 }
 
+.title-movie {
+  width: 100% !important;
+}
+.div-label {
+  /* display: -webkit-box; */
+}
+.account-label {
+  /* padding-right: 20px !important; */
+  font-size: large;
+  padding-top: 0px !important;
+}
+
+.back-button {
+  -webkit-appearance: button !important;
+  text-transform: none !important;
+  overflow: visible !important;
+  font-family: inherit !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  /* text-indent: 0px; */
+  text-shadow: none;
+  /* padding-block: 1px;
+  padding-inline: 6px; */
+  margin: -2px 15px 0px 0px !important;
+  /* margin-bottom: 5px; */
+  /* margin-right: 5px; */
+}
+.back-button:hover {
+  text-transform: none !important;
+  text-decoration: none !important;
+}
+
 @media (max-width: 768px) {
   .login-button {
       margin-top: 6px;

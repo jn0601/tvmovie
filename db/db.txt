@@ -148,6 +148,10 @@ entity movies {
     --
     name <color:peru>varchar</color>
     --
+    org_name <color:peru>varchar</color>
+    --
+    year <color:peru>varchar</color>
+    --
     desc <color:peru>text</color>
     --
     content <color:peru>mediumtext</color> 

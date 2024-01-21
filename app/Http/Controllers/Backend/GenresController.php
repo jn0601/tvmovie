@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GenresRequest;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\MovieGenre;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Redirect;
@@ -130,7 +131,7 @@ class GenresController extends Controller
      */
     public function destroy(string $id)
     {
-        $check_item = Movie::where('category_id', $id)->get()->first();
+        $check_item = MovieGenre::where('genre_id', $id)->get()->first();
         if ($check_item) {
             Toastr::error('Thể loại có chứa phim', 'Thất bại');
         } else {

@@ -65,7 +65,7 @@
                                 <div class="halim-pulse-ring"></div>
                             </div>
                         </a> --}}
-                        <div class="title-wrapper-xem full">
+                        <div class="title-wrapper-xem full title-movie">
                             <h1 class="entry-title"><a href="{{route('movie', $movie_detail->seo_name)}}" title="{{ $movie_detail->name }}"
                                     class="tl">{{ $movie_detail->name }}</a> - {{$ep_detail->name}}</h1>
                         </div>

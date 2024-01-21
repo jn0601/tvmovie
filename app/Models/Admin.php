@@ -25,4 +25,16 @@ class Admin extends Model implements AuthenticatableContract
      {
          return $this->password;
      }
+
+     public function roles() {
+        return $this->belongsToMany(Role::class, 'role_admins', 'admin_id', 'role_id');
+    }
+
+    public function hasAnyRole($roles) {
+        return null !== $this->roles()->whereIn('name',$roles)->first();
+    }
+    // check nhiều roles thì whereIn
+    public function hasRole($role) {
+        return null !== $this->roles()->where('name',$role)->first();
+    }
 }
