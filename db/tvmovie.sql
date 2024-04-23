@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 21, 2024 at 06:57 PM
+-- Generation Time: Apr 23, 2024 at 01:56 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -30,12 +30,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `type` smallint NOT NULL,
-  `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -60,13 +60,13 @@ DROP TABLE IF EXISTS `banners`;
 CREATE TABLE IF NOT EXISTS `banners` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -89,9 +89,9 @@ INSERT INTO `banners` (`id`, `category_id`, `name`, `desc`, `content`, `seo_name
 DROP TABLE IF EXISTS `banner_categories`;
 CREATE TABLE IF NOT EXISTS `banner_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -112,14 +112,14 @@ INSERT INTO `banner_categories` (`id`, `name`, `desc`, `seo_name`, `display_orde
 DROP TABLE IF EXISTS `countries`;
 CREATE TABLE IF NOT EXISTS `countries` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -142,15 +142,15 @@ INSERT INTO `countries` (`id`, `name`, `desc`, `display_order`, `status`, `seo_n
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE IF NOT EXISTS `customers` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `balance` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `balance` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
@@ -158,9 +158,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 INSERT INTO `customers` (`id`, `username`, `password`, `fullname`, `email`, `phone`, `balance`, `status`) VALUES
 (1, 'cus', '0cc175b9c0f1b6a831c399e269772661', 'cus test', 'cus@cus.com', '123', '100.000 VND', 1),
-(2, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH123', 'testKH@testKH', '1111111111', '150.000 VND', 1),
+(2, 'testKH', '0cc175b9c0f1b6a831c399e269772661', 'testKH123', 'testKH@testKH', '1111111111', '145.000 VND', 1),
 (3, 'KHvip', '0cc175b9c0f1b6a831c399e269772661', 'KHvip', 'KHvip@KHvip', '2222222222', '470.000 VND', 1),
-(5, 'kh1', '0cc175b9c0f1b6a831c399e269772661', 'kh1', 'kh1@kh1', '3333333333', '0 VND', 1);
+(5, 'kh1', '0cc175b9c0f1b6a831c399e269772661', 'kh1', 'kh1@kh1', '3333333333', '40.000 VND', 1);
 
 -- --------------------------------------------------------
 
@@ -174,21 +174,21 @@ CREATE TABLE IF NOT EXISTS `episodes` (
   `movie_id` int NOT NULL,
   `admin_id` int NOT NULL,
   `episode` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
-  `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `count_view` int NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `tags` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `episodes`
@@ -198,7 +198,7 @@ INSERT INTO `episodes` (`id`, `movie_id`, `admin_id`, `episode`, `name`, `desc`,
 (8, 2, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-21 18:09:24', '2024-01-06 10:11:35', 'tap-1', '', '', '', ''),
 (12, 1, 123, 1, 'Tập 1', '', '', 1, '1', 0, '2023-12-27 05:01:10', '2024-01-08 19:15:11', 'tap-1', '', '', '', ''),
 (13, 1, 123, 2, 'Tập 2', '', '', 1, '', 0, '2023-12-27 05:33:10', '2024-01-08 19:57:01', 'tap-2', '', '', '', ''),
-(14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2024-01-06 10:12:35', 'tap-1', '', '', '', ''),
+(14, 3, 123, 1, 'Tập 1', '', '', 1, '', 0, '2023-12-27 05:52:29', '2024-01-22 01:42:12', 'tap-1', '', '', '', ''),
 (21, 1, 123, 4, 'Tập 4', '', '', 1, '', 0, '2024-01-04 15:09:15', '2024-01-04 15:09:15', 'tap-4', '', '', '', ''),
 (20, 1, 123, 3, 'Tập 3', '', '', 1, '', 0, '2024-01-04 15:01:41', '2024-01-04 15:01:41', 'tap-3', '', '', '', ''),
 (22, 1, 123, 5, 'Tập 5', '', '', 1, '', 0, '2024-01-04 15:09:32', '2024-01-04 15:09:32', 'tap-5', '', '', '', ''),
@@ -206,7 +206,8 @@ INSERT INTO `episodes` (`id`, `movie_id`, `admin_id`, `episode`, `name`, `desc`,
 (24, 5, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:14:37', '2024-01-06 10:14:37', 'tap-1', '', '', '', ''),
 (25, 6, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:15:29', '2024-01-06 10:15:29', 'tap-1', '', '', '', ''),
 (26, 7, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:16:07', '2024-01-06 10:16:07', 'tap-1', '', '', '', ''),
-(27, 8, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:16:49', '2024-01-06 10:16:49', 'tap-1', '', '', '', '');
+(27, 8, 123, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-06 10:16:49', '2024-01-06 10:16:49', 'tap-1', '', '', '', ''),
+(30, 15, 2, 1, 'Tập 1', '', '', 1, '', 0, '2024-01-22 03:29:57', '2024-01-22 03:29:57', 'tap-1', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `episode_servers` (
   `server_id` int NOT NULL,
   `link` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `episode_servers`
@@ -230,7 +231,8 @@ CREATE TABLE IF NOT EXISTS `episode_servers` (
 INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
 (4, 8, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/uYPbbksJxIg?si=T3GveZw1VaomV3_J\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
 (5, 8, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/uYPbbksJxIg?si=T3GveZw1VaomV3_J\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(8, 14, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/shW9i6k8cB0?si=DAUwcI-9ZbEF4udN\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(8, 14, 1, '<iframe src=\"https://drive.google.com/file/d/1H3qvkilaQTqpMD_46hBZ5EFEBUAlRsHT/preview\" width=\"100%\" height=\"500\" allowfullscreen allow=\"autoplay\"></iframe>'),
+(28, 14, 2, '<iframe width=\"100%\" height=\"500\" frameborder=\"0\" src=\"https://mega.nz/embed/870zXQzC#5TIxyLFOmHm0T_Dj76BcYKSdAZpeptNHQfbY2iQprrI\" allowfullscreen ></iframe>'),
 (19, 12, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
 (9, 20, 1, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
 (10, 20, 2, '<iframe id=\"iframe-embed\" width=\"100%\" height=\"500\" scrolling=\"no\" frameborder=\"0\" src=\"https://megacloud.tv/embed-1/e-1/Hsv0Ix1Dat9H?z=\" allowfullscreen=\"allowfullscreen\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" __idm_id__=\"32769\"></iframe>'),
@@ -242,7 +244,9 @@ INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
 (16, 26, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/UGc5Tzz19UY?si=pIf50zbrXrVb5Hgp\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
 (17, 27, 1, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/6e2Sh1Gw1CE?si=LLivxQaPyTvs4TRy\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
 (18, 13, 2, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/vwSKatRviQo?si=CiQtykNYucZCbqUh\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(20, 13, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>');
+(20, 13, 3, '<iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/dug56u8NN7g?si=4YEAWYAayY9zODFV\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(29, 30, 1, '<iframe src=\"https://drive.google.com/file/d/1H3qvkilaQTqpMD_46hBZ5EFEBUAlRsHT/preview\" width=\"100%\" height=\"500\" allowfullscreen allow=\"autoplay\"></iframe>'),
+(30, 30, 2, '<iframe width=\"100%\" height=\"500\" frameborder=\"0\" src=\"https://mega.nz/embed/870zXQzC#5TIxyLFOmHm0T_Dj76BcYKSdAZpeptNHQfbY2iQprrI\" allowfullscreen ></iframe>');
 
 -- --------------------------------------------------------
 
@@ -253,14 +257,14 @@ INSERT INTO `episode_servers` (`id`, `episode_id`, `server_id`, `link`) VALUES
 DROP TABLE IF EXISTS `genres`;
 CREATE TABLE IF NOT EXISTS `genres` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -287,42 +291,45 @@ DROP TABLE IF EXISTS `movies`;
 CREATE TABLE IF NOT EXISTS `movies` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `org_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `year` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `price` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `org_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `year` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `price` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `link_trailer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
-  `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `count_view` int NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `tags` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movies`
 --
 
 INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `year`, `desc`, `content`, `price`, `link_trailer`, `display_order`, `image`, `status`, `options`, `count_view`, `date_created`, `date_updated`, `seo_name`, `tags`, `meta_title`, `meta_desc`, `meta_keyword`) VALUES
-(1, 1, 'Loki mùa 2', 'Loki season 2', '2023', '<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;Kate Herron&nbsp;Aaron Moorhead&nbsp;Justin Benson</p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;Marvel</p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;Owen Wilson&nbsp;Tom Hiddleston&nbsp;Jonathan Majors&nbsp;Deobia Oparei&nbsp;Richard E. Grant</p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', '10.000 VND', 'dug56u8NN7g?si=xs5Vc4b0BLTwrcJp', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,2,4', 41, '2023-12-12 15:54:54', '2024-01-09 18:13:26', 'loki-mua-2', 'hanh dong,tam ly,marvel', '', '', ''),
+(1, 1, 'Loki mùa 2', 'Loki season 2', '2023', '<p>Điểm IMDb:&nbsp;<a href=\"https://www.imdb.com/title/tt9140554/\" target=\"_blank\">8.2</a></p>\r\n\r\n<p>Đạo diễn:&nbsp;Kate Herron&nbsp;Aaron Moorhead&nbsp;Justin Benson</p>\r\n\r\n<p>T&igrave;nh trạng: Ho&agrave;n tất</p>\r\n\r\n<p>Năm sản xuất: 2023</p>\r\n\r\n<p>Loạt phim:&nbsp;Marvel</p>\r\n\r\n<p>Diễn vi&ecirc;n:&nbsp;Owen Wilson&nbsp;Tom Hiddleston&nbsp;Jonathan Majors&nbsp;Deobia Oparei&nbsp;Richard E. Grant</p>', '<p>Phim&nbsp;<strong>Loki Season 2 (Loki - M&ugrave;a 2)</strong>&nbsp;l&agrave; phần tiếp theo của phim Loki (2021), v&agrave; l&agrave; phần thứ mười trong vũ trụ điện ảnh Marvel. Trong phần phim n&agrave;y, Loki (Tom Hiddleston thủ vai) v&agrave; Sylvie (Sophia Di Martino thủ vai) tiếp tục cuộc h&agrave;nh tr&igrave;nh của họ để t&igrave;m kiếm Time-Keepers, những người m&agrave; họ tin rằng l&agrave; những kẻ đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Cuối phần phim đầu ti&ecirc;n, Loki v&agrave; Sylvie đ&atilde; giết chết một trong những Time-Keepers, v&agrave; họ ph&aacute;t hiện ra rằng Sacred Timeline l&agrave; một ảo tưởng. Họ cũng ph&aacute;t hiện ra rằng Kang the Conqueror (Jonathan Majors thủ vai) l&agrave; người thực sự đứng sau việc tạo ra Sacred Timeline.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Trong phần phim thứ hai, Loki v&agrave; Sylvie sẽ phải đối mặt với Kang the Conqueror. Họ cũng sẽ phải đối mặt với những hậu quả của việc ph&aacute; hủy Sacred Timeline.</p>', '10.000 VND', 'dug56u8NN7g?si=xs5Vc4b0BLTwrcJp', 1, 'image002_18870_b56691ea27.jpeg', 1, '1,2,4', 42, '2023-12-12 15:54:54', '2024-01-09 18:13:26', 'loki-mua-2', 'hanh dong,tam ly,marvel', '', '', ''),
 (2, 2, 'Oppenheimer', 'Oppenheimer', '2023', '', '', '10.000 VND', '', 2, 'Oppenheimer_–_Vietnam_poster18.jpg', 1, '1,2,4', 6, '2023-12-12 15:57:51', '2024-01-09 18:13:18', 'oppenheimer', 'hanh dong,tam ly', '', '', ''),
-(3, 2, 'Người nhện', 'Spider Man', '2023', '', '', '5.000 VND', '', 3, '8105Oc1+FPL90.jpg', 1, '1,2,4', 7, '2023-12-27 05:52:13', '2024-01-09 18:12:55', 'nguoi-nhen', 'hoat hinh', '', '', ''),
-(4, 1, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '2023', '', '', '0 VND', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 1, '2023-12-27 06:59:48', '2024-01-21 18:49:24', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
-(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '2023', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', '0 VND', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 10, '2023-12-28 10:39:08', '2024-01-18 12:29:04', 'cu-up-ro-dau-tien', 'hoat hinh', '', '', ''),
+(3, 2, 'Người nhện', 'Spider Man', '2023', '', '', '5.000 VND', '', 3, '8105Oc1+FPL90.jpg', 1, '1,2,4', 9, '2023-12-27 05:52:13', '2024-01-09 18:12:55', 'nguoi-nhen', 'hoat hinh', '', '', ''),
+(4, 1, 'Nhiệm Vụ Bất Khả Thi', 'Mission Impossible', '2023', '', '', '0 VND', '', 4, '71-sziO1OsL13.jpg', 1, '1,4', 2, '2023-12-27 06:59:48', '2024-01-21 18:49:24', 'nhiem-vu-bat-kha-thi', '', '', '', ''),
+(5, 2, 'Cú úp rổ đầu tiên', 'The first slam dunk', '2023', '<p>zdsrshgdzhfgh</p>', '<p>dghfxgjfyjry</p>', '0 VND', 'https://youtu.be/dug56u8NN7g?si=rNDyCgR-15d5K_VE', 5, 'VkOoPRr2.jpeg', 1, '1,4', 11, '2023-12-28 10:39:08', '2024-01-18 12:29:04', 'cu-up-ro-dau-tien', 'hoat hinh', '', '', ''),
 (6, 1, 'Godzilla Trừ Một', 'Godzilla Minus One', '2024', '<p>gfukjfgjitgyj</p>', '<p>gyjkgyjitygju</p>', '10.000 VND', '', 6, 'GodzillaMinusOne_PayoffPoster_web16.png', 1, '1,2', 7, '2023-12-28 10:44:27', '2024-01-21 18:48:46', 'godzilla-tru-mot', '', '', '', ''),
 (7, 2, 'Aquaman và vương quốc thất lạc', 'Aquaman and the lost kingdom', '2023', '', '', '10.000 VND', '', 7, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz85.jpg', 1, '1', 8, '2023-12-28 10:46:38', '2024-01-09 18:12:04', 'aquaman-va-vuong-quoc-that-lac', '', '', '', ''),
 (8, 1, 'Con nhà tài phiệt', 'Reborn rich', '2022', '', '', '10.000 VND', '', 8, 'lich-chieu-reborn-rich-song-joong-ki-36.jpg', 1, '2,3', 4, '2023-12-28 10:50:33', '2024-01-09 18:11:49', 'con-nha-tai-phiet', '', '', '', ''),
-(11, 2, 'phim test', '', '2022', '', '', '1.000 VND', '', 9, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz51.jpg', 2, '1', 4, '2024-01-06 12:43:33', '2024-01-06 12:55:57', 'phim-test', '', '', '', '');
+(11, 2, 'phim test', '', '2022', '', '', '1.000 VND', '', 9, 'MV5BMTkxM2FiYjctYjliYy00NjY2LWFmOTEtMWZiYWRjNjA4MGYxXkEyXkFqcGdeQXVyMTUzMTg2ODkz51.jpg', 2, '1', 4, '2024-01-06 12:43:33', '2024-01-06 12:55:57', 'phim-test', '', '', '', ''),
+(13, 2, 'phim test 2', '', '2023', '', '', '0 VND', '', 10, 'VkOoPRr70.jpeg', 2, '', 0, '2024-01-21 19:24:21', '2024-01-21 19:24:21', 'phim-test-2', '', '', '', ''),
+(14, 2, 'phim 123', '', '1900', '', '', '0 VND', '', 11, 'image002_18870_b56691ea77.jpeg', 2, '', 0, '2024-01-21 19:24:41', '2024-01-21 19:24:41', 'phim-123', '', '', '', ''),
+(15, 1, 'Kị sĩ ánh trăng', 'Moon Knight', '2023', '<p>Moon Knight Season 1 (Hiệp Sĩ &Aacute;nh Trăng - M&ugrave;a 1) kể về cuộc sống của Marc Spector, một cựu l&iacute;nh đ&aacute;nh thu&ecirc; v&agrave; người mạo hiểm đi khắp thế giới trong những nhiệm vụ nguy hiểm. Sau một lần bị một băng đảng giết hại, Marc được cứu sống bởi một linh mục Ai Cập t&ecirc;n l&agrave; Khonshu, người l&agrave; vị thần mặt trăng trong thần thoại Ai Cập.</p>', '<p>Từ đ&oacute;, Marc Spector trở th&agrave;nh Moon Knight, một si&ecirc;u anh h&ugrave;ng c&oacute; năng lực tăng cường v&agrave; khả năng tự chữa l&agrave;nh nhanh ch&oacute;ng. Nhưng điều đặc biệt v&agrave; phức tạp l&agrave; Marc c&oacute; ba nh&acirc;n c&aacute;ch kh&aacute;c nhau: Marc Spector, người l&iacute;nh đ&aacute;nh thu&ecirc;; Steven Grant, một doanh nh&acirc;n gi&agrave;u c&oacute;; v&agrave; Jake Lockley, một t&agrave;i xế taxi. Ba nh&acirc;n c&aacute;ch n&agrave;y đều đại diện cho c&aacute;c kh&iacute;a cạnh kh&aacute;c nhau trong t&acirc;m hồn của anh v&agrave; thường xuy&ecirc;n tương t&aacute;c v&agrave; đối đầu với nhau.</p>', '10.000 VND', 'x7Krla_UxRg?si=6E0CizJcShhiM9Ta', 12, 'halfstack_busshelter_48x70_moonknight_v7_lg_082.jpg', 1, '1,4', 2, '2024-01-22 03:26:29', '2024-01-22 03:26:29', 'ki-si-anh-trang', 'marvel,hanh dong,tam ly', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -333,14 +340,14 @@ INSERT INTO `movies` (`id`, `category_id`, `name`, `org_name`, `year`, `desc`, `
 DROP TABLE IF EXISTS `movie_categories`;
 CREATE TABLE IF NOT EXISTS `movie_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -364,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `movie_countries` (
   `movie_id` int NOT NULL,
   `country_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_countries`
@@ -379,7 +386,8 @@ INSERT INTO `movie_countries` (`id`, `movie_id`, `country_id`) VALUES
 (57, 7, 2),
 (56, 8, 3),
 (52, 11, 2),
-(68, 4, 2);
+(68, 4, 2),
+(69, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -393,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `movie_customers` (
   `movie_id` int NOT NULL,
   `customer_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_customers`
@@ -406,7 +414,9 @@ INSERT INTO `movie_customers` (`id`, `movie_id`, `customer_id`) VALUES
 (4, 6, 3),
 (5, 1, 3),
 (6, 12, 8),
-(7, 1, 8);
+(7, 1, 8),
+(8, 3, 2),
+(9, 15, 5);
 
 -- --------------------------------------------------------
 
@@ -420,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `movie_genres` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie_genres`
@@ -448,7 +458,10 @@ INSERT INTO `movie_genres` (`id`, `movie_id`, `genre_id`) VALUES
 (117, 4, 8),
 (100, 3, 4),
 (101, 3, 2),
-(106, 1, 4);
+(106, 1, 4),
+(119, 15, 7),
+(120, 15, 5),
+(121, 15, 4);
 
 -- --------------------------------------------------------
 
@@ -461,21 +474,21 @@ CREATE TABLE IF NOT EXISTS `news` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
   `admin_id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `options` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `count_view` int NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `tags` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -496,20 +509,20 @@ INSERT INTO `news` (`id`, `category_id`, `admin_id`, `name`, `desc`, `content`, 
 DROP TABLE IF EXISTS `news_categories`;
 CREATE TABLE IF NOT EXISTS `news_categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `content` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
-  `root_id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `root_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `parent_id` int NOT NULL,
   `level` smallint NOT NULL,
   `display_order` int NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `representative` smallint NOT NULL,
   `status` smallint NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `meta_keyword` text COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -533,13 +546,13 @@ INSERT INTO `news_categories` (`id`, `name`, `desc`, `content`, `root_id`, `pare
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `customer_id` int NOT NULL,
   `service_id` int NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -559,8 +572,8 @@ INSERT INTO `orders` (`id`, `code`, `customer_id`, `service_id`, `display_order`
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` smallint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -608,13 +621,13 @@ INSERT INTO `role_admins` (`id`, `role_id`, `admin_id`) VALUES
 DROP TABLE IF EXISTS `server_links`;
 CREATE TABLE IF NOT EXISTS `server_links` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -636,14 +649,14 @@ INSERT INTO `server_links` (`id`, `name`, `desc`, `display_order`, `status`, `se
 DROP TABLE IF EXISTS `services`;
 CREATE TABLE IF NOT EXISTS `services` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `desc` text COLLATE utf8mb4_general_ci NOT NULL,
-  `seo_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `price` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `seo_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `display_order` int NOT NULL,
   `status` smallint NOT NULL,
-  `date_created` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `date_updated` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `date_created` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_updated` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -664,8 +677,8 @@ DROP TABLE IF EXISTS `subtitles`;
 CREATE TABLE IF NOT EXISTS `subtitles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `episode_id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

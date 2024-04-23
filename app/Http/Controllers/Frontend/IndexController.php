@@ -403,6 +403,7 @@ class IndexController extends Controller
         $episode = Episode::with('movie')->where('movie_id', $movie_detail->id)->orderBy('episode', 'desc')->where('status', 1)->get();
         $first_ep = Episode::with('movie')->where('movie_id', $movie_detail->id)->orderBy('episode', 'asc')->where('status', 1)->first();
         $first_server = EpisodeServer::join('server_links', 'server_links.id', '=', 'episode_servers.server_id')
+        ->where('server_links.status', 1)
         ->where('episode_id', $first_ep->id)
         ->orderBy('episode_id', 'asc')
         ->first();
@@ -413,7 +414,12 @@ class IndexController extends Controller
         ->where('movie_genres.movie_id', $movie_detail->id)->get();
         $category_detail = Movie::has('episode')->join('movie_categories', 'movie_categories.id', '=', 'movies.category_id')
         ->where('movies.seo_name', $movie_detail->seo_name)->first();
-        $related = Movie::has('episode')->where('category_id', $movie_detail->category_id)->orderBy(DB::raw('RAND()'))->whereNotIn('seo_name', [$seo_name])->get();
+        $related = Movie::has('episode')
+        ->where('category_id', $movie_detail->category_id)
+        ->where('status', 1)
+        ->orderBy(DB::raw('RAND()'))
+        ->whereNotIn('seo_name', [$seo_name])
+        ->get();
 
         //check price
         $get_customer_id = Session::get('customer_id');

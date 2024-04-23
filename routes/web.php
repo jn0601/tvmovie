@@ -162,6 +162,7 @@ Route::middleware(['checkCustomerSession'])->group(function () {
     Route::get('phim-da-mua', [IndexController::class, 'view_bought_movie'])->name('view_bought_movie');
     Route::post('online-payment', [TransactionController::class, 'online_payment'])->name('online_payment');
     Route::get('online-payment/cap-nhat-so-du', [TransactionController::class, 'response'])->name('response');
+    Route::get('xem-phim/{seo_name}/{tap}/{server}', [IndexController::class, 'watch'])->name('watch')->middleware('web', 'checkBoughtMovie');
 });
 
 Route::get('/', [IndexController::class, 'home'])->name('homepage');
@@ -176,7 +177,7 @@ Route::get('danh-muc/{seo_name}', [IndexController::class, 'category'])->name('c
 Route::get('the-loai/{seo_name}', [IndexController::class, 'genre'])->name('genre');
 Route::get('quoc-gia/{seo_name}', [IndexController::class, 'country'])->name('country');
 Route::get('phim/{seo_name}', [IndexController::class, 'movie'])->name('movie');
-Route::get('xem-phim/{seo_name}/{tap}/{server}', [IndexController::class, 'watch'])->name('watch')->middleware('web', 'checkBoughtMovie');
+
 // Route::get('tap-phim/{movie_seo_name}/{seo_name}', [IndexController::class, 'episode'])->name('episode');
 Route::get('tag/{tag}', [IndexController::class, 'tag'])->name('tag');
 Route::get('nam/{year}', [IndexController::class, 'year'])->name('year');

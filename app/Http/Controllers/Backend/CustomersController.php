@@ -151,8 +151,15 @@ class CustomersController extends Controller
      */
     public function destroy(string $id)
     {
-        Customer::where('id', $id)->delete();
-        Toastr::success('Xóa thành công', 'Thành công');
+        $check_item = Customer::where('id', $id)
+        ->where('balance', '!=', '0 VND')
+        ->get()->first();
+        if ($check_item) {
+            Toastr::error('Tài khoản có tiền', 'Thất bại');
+        } else {
+            Customer::where('id', $id)->delete();
+            Toastr::success('Xóa thành công', 'Thành công');
+        }
         return redirect()->back();
     }
 

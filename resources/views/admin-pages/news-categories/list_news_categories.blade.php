@@ -30,14 +30,14 @@
                     <option {{$search_value['status'] == '2' ? 'selected' : ''}} value="2">Không Hoạt động</option>
                   </select>
                 </div>
-                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <select name="representative" class="form-control">
                     <option value="">Tiêu biểu</option>
                     <option {{$search_value['representative'] == '1' ? 'selected' : ''}} value="1">Có</option>
                     <option {{$search_value['representative'] == '2' ? 'selected' : ''}} value="2">Không</option>
                   </select>
                 </div>
-                <div class="col-md-2 col-sm-2 input-group input-group-sm">
+                <div class="col-md-3 col-sm-3 input-group input-group-sm">
                   <input type="text" name="name" value="{{$search_value['name'] ? $search_value['name'] : ''}}"
                   class="form-conmtrol search-bar" placeholder="Nhập tên cần tìm...">
                 </div>

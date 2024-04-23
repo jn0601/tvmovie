@@ -271,6 +271,7 @@ class MoviesController extends Controller
                 unlink('public/backend/uploads/movies/'.$get_image->image);
             }
             Movie::where('id', $id)->delete();
+            MovieCustomer::where('movie_id', $id)->delete();
             MovieCountry::where('movie_id', $id)->delete();
             MovieGenre::where('movie_id', $id)->delete();
             Toastr::success('Xóa thành công', 'Thành công');

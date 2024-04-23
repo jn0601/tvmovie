@@ -23,7 +23,10 @@ class CheckBoughtMovie
         $ipAddress = $request->ip();
         $get_customer_id = Session::get('customer_id');
         $movieSeoName = $request->route('seo_name'); // Adjust this based on your route parameter name
-        $movie_detail = Movie::has('episode')->where('seo_name', $movieSeoName)->first();
+        $movie_detail = Movie::has('episode')
+        ->where('seo_name', $movieSeoName)
+        ->where('status', 1)
+        ->first();
         // check giá khác 0
         if ($movie_detail->price != "0 VND") {
             //check mua phim

@@ -40,7 +40,7 @@
                   <input type="text" name="email" value="{{$search_value['email'] ? $search_value['email'] : ''}}"
                   class="form-conmtrol search-bar" placeholder="Nhập email cần tìm...">
                 </div>
-                <div class="col-md-1 col-sm-1 input-group input-group-sm">
+                <div class="col-md-2 col-sm-2 input-group input-group-sm">
                   <input type="text" name="phone" value="{{$search_value['phone'] ? $search_value['phone'] : ''}}"
                   class="form-conmtrol search-bar" placeholder="Số điện thoại...">
                 </div>

@@ -63,14 +63,14 @@
                   <div class="row">
                     <div class="credits col-sm-12">
                       <p>
-                        <a href="https://web30s.vn/" 
+                        <a href="#" 
                         title="Thiết kế website" 
                         target="_blank">Sản phẩm của</a>
                         <a href="#" target="_blank">
-                          <img style="height: 30px; width:50px" 
-                          src="{{asset('public/frontend/image/dfghfdh.png')}}">
+                          <!-- <img style="height: 30px; width:50px" 
+                          src="{{asset('public/frontend/image/dfghfdh.png')}}"> -->
                         </a>
-                        <a href="https://pavietnam.vn/" 
+                        <a href="#" 
                         title="Thiết kế website" 
                         target="_blank">Cung cấp bởi....</a>
                       </p>
