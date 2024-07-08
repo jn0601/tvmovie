@@ -18,7 +18,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $admin_id = Session::get('admin_id');
         $genre = Genre::all()->count();
         $movieCategory = MovieCategory::all()->count();
         $country = Country::all()->count();

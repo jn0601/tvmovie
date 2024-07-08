@@ -99,6 +99,7 @@
                   </td>
 
                   <td class="text-center">
+                    {{$movies->episode_count}} tập <br>
                     <a href="{{URL::to('admin/episodes/'.$movies->seo_name)}}">Thêm tập phim</a>
                   </td>
                   <td class="text-center">

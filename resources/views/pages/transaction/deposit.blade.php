@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Trang đăng nhập</title>
+    <title>Trang nạp tiền</title>
 
 
     <!-- Bootstrap -->
@@ -175,7 +175,7 @@
                 inputValue = inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
                 // Add a space and "VND" at the end
-                inputValue += ' VND';
+                // inputValue += ' VND';
 
                 // Set the formatted value back to the input
                 this.value = inputValue;

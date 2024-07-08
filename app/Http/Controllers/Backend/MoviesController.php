@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\MovieCategory;
 use App\Models\MovieCountry;
+use App\Models\MovieCustomer;
 use App\Models\MovieGenre;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -26,7 +27,7 @@ class MoviesController extends Controller
     public function index()
     {
         $url = 'admin-pages.movies.list_movies';
-        $list = Movie::orderBy('display_order', 'desc')->paginate($this->pagination);
+        $list = Movie::withCount('episode')->orderBy('display_order', 'desc')->paginate($this->pagination);
         $listCategory = MovieCategory::orderBy('id', 'desc')->get();
         $mainGenre = Genre::orderBy('display_order', 'desc')->get();
         $listGenre = MovieGenre::orderBy('id', 'desc')->get();
@@ -43,7 +44,7 @@ class MoviesController extends Controller
     {
         $url = 'admin-pages.movies.list_movies';
         $data = $request->all();
-        //dd($data);
+        // dd($data);
         // không có data
         if ($data['name'] == '' && $data['status'] == '' && $data['category'] == '' && $data['year'] == '') {
             return Redirect::to('admin/movies');

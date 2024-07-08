@@ -257,16 +257,15 @@
           <div class="pull-right">
             {{-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> --}}
             <p>
-              <a href="" 
+              <a href="#" 
               title="" 
               target="_blank">Sản phẩm của</a>
-              <a href="" target="_blank">
+              <a href="#">
                 <img style="height: 30px; width:50px" 
                 src="{{asset('public/frontend/img/251684864.png')}}">
               </a>
-              <a href="https://pavietnam.vn/" 
-              title="Thiết kế website" 
-              target="_blank">Cung cấp bởi .....</a>
+              <a href="#" 
+              title="Thiết kế website">Cung cấp bởi .....</a>
             </p>
           </div>
           <div class="clearfix"></div>
