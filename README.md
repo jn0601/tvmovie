@@ -12,7 +12,7 @@
 Requirements: PHP and MySQL versions are at least 8.2.
 
 - Put this entire project folder into your localhost server like WampServer or Xampp.
-- Set up the database by go to localhost/phpmyadmin, log in (root, '') and create a database with name "tvmovie". 
+- Set up the database by going to localhost/phpmyadmin, log in (root, '') and create a database with name "tvmovie". 
 - Import the database from db/tvmovie.sql to the database you just created.
 - Now you can access the user site by going to localhost/tvmovie, admin site at localhost/tvmovie/admin with account root (username: root, password: a).
 
